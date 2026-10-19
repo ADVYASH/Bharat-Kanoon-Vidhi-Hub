@@ -1,0 +1,1174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b14">
+<title>Protected Website</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    color: white;
+    background: #080b14;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* BACKGROUND VIDEO */
+
+.background-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* BLACK OVERLAY: 0.55 */
+
+.background-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.55);
+    pointer-events: none;
+}
+
+/* WEBSITE CONTENT */
+
+.website {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    padding: 80px 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.website h1 {
+    margin: 0 0 18px;
+    font-size: clamp(36px, 6vw, 64px);
+}
+
+.website p {
+    max-width: 650px;
+    margin: 0;
+    color: rgba(255,255,255,.8);
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.demo-button {
+    margin-top: 30px;
+    padding: 14px 25px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 12px;
+    background: rgba(255,255,255,.12);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* PASSWORD OVERLAY */
+
+.password-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: transparent;
+}
+
+/* DESIGNER POPUP */
+
+.password-popup {
+    position: relative;
+    width: 100%;
+    max-width: 425px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 38px 32px;
+    text-align: center;
+
+    background: linear-gradient(
+        145deg,
+        rgba(20,29,48,.96),
+        rgba(7,12,24,.97)
+    );
+
+    border: 1px solid rgba(148,163,184,.36);
+    border-radius: 26px;
+
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.60),
+        0 0 35px rgba(59,130,246,.12),
+        inset 0 1px 0 rgba(255,255,255,.10);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    animation: popupAppear .45s ease-out;
+}
+
+@keyframes popupAppear {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ICON */
+
+.lock-icon {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 23px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(59,130,246,.22),
+        rgba(30,41,59,.8)
+    );
+
+    border: 1px solid rgba(96,165,250,.45);
+
+    box-shadow:
+        0 8px 30px rgba(37,99,235,.12),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    font-size: 32px;
+}
+
+/* HEADINGS */
+
+.password-popup h2 {
+    margin: 0 0 12px;
+    font-size: 29px;
+    font-weight: 750;
+    letter-spacing: -.7px;
+}
+
+.description {
+    margin: 0 0 26px;
+    color: #aab6c9;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* INPUTS */
+
+.password-input,
+.admin-input {
+    display: block;
+    width: 100%;
+    padding: 16px;
+
+    border: 1px solid #334155;
+    border-radius: 13px;
+    outline: none;
+
+    background: rgba(2,6,23,.78);
+    color: white;
+    font-size: 15px;
+    text-align: center;
+
+    transition: border-color .25s, box-shadow .25s;
+}
+
+.password-input {
+    letter-spacing: 2px;
+}
+
+.password-input::placeholder,
+.admin-input::placeholder {
+    color: #718096;
+    letter-spacing: 0;
+}
+
+.password-input:focus,
+.admin-input:focus {
+    border-color: #60a5fa;
+    box-shadow:
+        0 0 0 4px rgba(59,130,246,.12),
+        0 0 20px rgba(59,130,246,.08);
+}
+
+/* UNLOCK BUTTON */
+
+.unlock-button {
+    width: 100%;
+    margin-top: 16px;
+    padding: 16px;
+
+    border: 1px solid rgba(147,197,253,.25);
+    border-radius: 13px;
+
+    background: linear-gradient(135deg,#2563eb,#1d4ed8);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+
+    box-shadow: 0 8px 22px rgba(37,99,235,.22);
+    transition: .2s ease;
+}
+
+.unlock-button:hover {
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(37,99,235,.30);
+}
+
+.unlock-button:active {
+    transform: scale(.98);
+}
+
+.unlock-button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* GENERAL MESSAGES */
+
+.message {
+    min-height: 22px;
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.error {
+    color: #fca5a5;
+}
+
+.success {
+    color: #86efac;
+    font-size: 15px;
+}
+
+.attempts {
+    margin-top: 16px;
+    color: #8190a7;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+/* DANGER WARNING */
+
+.warning-alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 14px;
+    padding: 13px 12px;
+
+    border: 1px solid rgba(248,113,113,.45);
+    border-radius: 12px;
+
+    background: rgba(127,29,29,.25);
+    color: #fca5a5;
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+
+    animation: warningAppear .3s ease;
+}
+
+.warning-alert.danger {
+    background: rgba(153,27,27,.4);
+    border-color: rgba(239,68,68,.75);
+    color: #fecaca;
+}
+
+.warning-alert.critical {
+    background: rgba(127,29,29,.65);
+    border-color: #ef4444;
+    color: white;
+    animation: warningAppear .3s ease, dangerPulse 1s infinite;
+}
+
+.warning-emoji {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+@keyframes warningAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dangerPulse {
+    50% {
+        box-shadow: 0 0 15px rgba(239,68,68,.25);
+    }
+}
+
+/* LOCKOUT SCREEN */
+
+.lockout {
+    color: #dbe4f0;
+    line-height: 1.7;
+}
+
+.lockout-icon {
+    margin-bottom: 15px;
+    font-size: 48px;
+}
+
+.lockout h3,
+.admin-question h3 {
+    margin: 0 0 12px;
+    color: white;
+    font-size: 24px;
+}
+
+.lockout p,
+.admin-question p {
+    margin: 0 0 22px;
+    color: #aab6c9;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.countdown {
+    margin-top: 20px;
+    color: white;
+    font-size: clamp(27px,7vw,35px);
+    font-weight: 750;
+    letter-spacing: 2px;
+    font-variant-numeric: tabular-nums;
+}
+
+.lockout-note {
+    margin-top: 16px;
+    color: #8190a7;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* ADMIN BUTTON */
+
+.admin-button {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 9px 16px;
+
+    border: 1px solid rgba(148,163,184,.25);
+    border-radius: 9px;
+
+    background: rgba(255,255,255,.04);
+    color: #94a3b8;
+    font-size: 11px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.admin-button:hover {
+    color: white;
+    border-color: rgba(96,165,250,.5);
+    background: rgba(59,130,246,.1);
+}
+
+/* ADMIN ACTIONS */
+
+.admin-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.admin-submit,
+.admin-cancel {
+    flex: 1;
+    padding: 13px;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.admin-submit {
+    border: 1px solid rgba(147,197,253,.25);
+    background: #2563eb;
+    color: white;
+}
+
+.admin-submit:hover {
+    background: #3b82f6;
+}
+
+.admin-cancel {
+    border: 1px solid #334155;
+    background: rgba(255,255,255,.04);
+    color: #e2e8f0;
+}
+
+.admin-cancel:hover {
+    background: rgba(255,255,255,.09);
+}
+
+/* SHAKE */
+
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+}
+
+.shake {
+    animation: shake .4s ease;
+}
+
+/* MOBILE */
+
+@media (max-width:500px) {
+    .password-overlay {
+        padding: 14px;
+    }
+
+    .password-popup {
+        padding: 30px 22px;
+        border-radius: 22px;
+        max-height: calc(100vh - 28px);
+    }
+
+    .password-popup h2 {
+        font-size: 25px;
+    }
+
+    .lock-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 20px;
+        font-size: 28px;
+    }
+
+    .website {
+        padding: 50px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .password-popup,
+    .warning-alert,
+    .shake {
+        animation: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND VIDEO -->
+
+<video
+    class="background-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+>
+    <source src="image/bg.mp4" type="video/mp4">
+</video>
+
+<!-- DARK OVERLAY: 0.55 -->
+
+<div class="background-overlay"></div>
+
+<!-- WEBSITE CONTENT -->
+
+<main class="website">
+    <h1>Welcome</h1>
+
+    <p>Your website content goes here.</p>
+
+    <button
+        type="button"
+        class="demo-button"
+        onclick="alert('Website content is unlocked!')"
+    >
+        Website Content
+    </button>
+</main>
+
+<!-- PASSWORD POPUP -->
+
+<div
+    class="password-overlay"
+    id="passwordOverlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="passwordTitle"
+>
+    <div class="password-popup" id="passwordPopup">
+
+        <!-- NORMAL PASSWORD SCREEN -->
+
+        <div id="normalScreen">
+
+            <div class="lock-icon">🔒</div>
+
+            <h2 id="passwordTitle">Enter Password</h2>
+
+            <p class="description">
+                This website is protected.<br>
+                Enter the password to continue.
+            </p>
+
+            <form id="passwordForm">
+                <input
+                    type="password"
+                    id="passwordInput"
+                    class="password-input"
+                    placeholder="Enter password"
+                    autocomplete="off"
+                    maxlength="30"
+                    aria-label="Enter password"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="unlock-button"
+                    id="unlockButton"
+                >
+                    Unlock →
+                </button>
+            </form>
+
+            <div
+                class="message"
+                id="message"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+            <!-- WRONG PASSWORD WARNING -->
+
+            <div
+                id="warningAlert"
+                class="warning-alert hidden"
+                role="alert"
+                aria-live="assertive"
+            >
+                <span class="warning-emoji" id="warningEmoji">⚠️</span>
+                <span id="warningText">Incorrect password!</span>
+            </div>
+
+            <div class="attempts" id="attempts">
+                3 attempts remaining
+            </div>
+
+        </div>
+
+        <!-- LOCKOUT SCREEN -->
+
+        <div id="lockoutScreen" class="hidden">
+
+            <div class="lockout">
+
+                <div class="lockout-icon">🔐</div>
+
+                <h3>Access Locked</h3>
+
+                <p>
+                    Too many incorrect password attempts.
+                    Please try again after the lockout period.
+                </p>
+
+                <div class="countdown" id="countdown">
+                    12:00:00
+                </div>
+
+                <div class="lockout-note">
+                    Access will automatically become available
+                    when the timer expires.
+                </div>
+
+                <button
+                    type="button"
+                    class="admin-button"
+                    id="openAdminButton"
+                >
+                    🛠 Admin
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- ADMIN VERIFICATION -->
+
+        <div id="adminScreen" class="hidden">
+
+            <div class="admin-question">
+
+                <div class="lock-icon">🛠️</div>
+
+                <h3>Admin Verification</h3>
+
+                <p>
+                    What is the full form of
+                    <strong>BSTCH</strong>?
+                </p>
+
+                <form id="adminForm">
+
+                    <input
+                        type="text"
+                        id="adminInput"
+                        class="admin-input"
+                        placeholder="Enter your answer"
+                        autocomplete="off"
+                        aria-label="Admin verification answer"
+                        required
+                    >
+
+                    <div class="admin-actions">
+
+                        <button
+                            type="button"
+                            class="admin-cancel"
+                            id="cancelAdminButton"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="admin-submit"
+                        >
+                            Verify
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <div
+                    class="message"
+                    id="adminMessage"
+                    role="status"
+                    aria-live="polite"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+"use strict";
+
+/* PASSWORDS */
+
+const VALID_PASSWORDS = [
+    "202320282026",
+    "202320262028",
+    "202620232028",
+    "202620282023",
+    "202820232026",
+    "202820262023"
+];
+
+/* ADMIN ANSWER */
+
+const ADMIN_ANSWER = "bella shadow tiger coco hazel";
+
+/* SETTINGS */
+
+const MAX_ATTEMPTS = 3;
+const LOCKOUT_DURATION = 12 * 60 * 60 * 1000;
+
+/* STORAGE KEYS */
+
+const ATTEMPTS_KEY = "passwordAttempts";
+const LOCKOUT_KEY = "passwordLockoutUntil";
+
+/* DESTINATION HTML FILE */
+
+const DESTINATION =
+    "dfsfdbdghjgdghvdhjvnnncdgvbbfgvgvfgdfsfdbdghjgdghvdhjvnnncdgvbbfgvgvfgdfsfdbdghjgdghvdhjvnnncdgvbbfgvgvfgdfsfdbdghjgdghvdhjvnnncdgvbbfgvgvfgdfsfdbdghjgdghvdhjvnnncdgvbbfgvgvfg.html";
+
+/* ELEMENTS */
+
+const popup = document.getElementById("passwordPopup");
+
+const normalScreen = document.getElementById("normalScreen");
+const lockoutScreen = document.getElementById("lockoutScreen");
+const adminScreen = document.getElementById("adminScreen");
+
+const passwordForm = document.getElementById("passwordForm");
+const passwordInput = document.getElementById("passwordInput");
+const unlockButton = document.getElementById("unlockButton");
+
+const message = document.getElementById("message");
+const attemptsDisplay = document.getElementById("attempts");
+
+const warningAlert = document.getElementById("warningAlert");
+const warningEmoji = document.getElementById("warningEmoji");
+const warningText = document.getElementById("warningText");
+
+const countdown = document.getElementById("countdown");
+
+const adminForm = document.getElementById("adminForm");
+const adminInput = document.getElementById("adminInput");
+const adminMessage = document.getElementById("adminMessage");
+
+const openAdminButton = document.getElementById("openAdminButton");
+const cancelAdminButton = document.getElementById("cancelAdminButton");
+
+let countdownInterval = null;
+
+/* STORAGE HELPERS */
+
+function getAttempts() {
+    return Math.max(
+        0,
+        Number(localStorage.getItem(ATTEMPTS_KEY)) || 0
+    );
+}
+
+function getLockoutUntil() {
+    return Number(localStorage.getItem(LOCKOUT_KEY)) || 0;
+}
+
+/* MESSAGES */
+
+function showMessage(element, text, type = "") {
+    element.textContent = text;
+    element.className = "message" + (type ? " " + type : "");
+}
+
+/* SCREEN MANAGEMENT */
+
+function showNormalScreen() {
+    normalScreen.classList.remove("hidden");
+    lockoutScreen.classList.add("hidden");
+    adminScreen.classList.add("hidden");
+}
+
+function showLockoutScreen() {
+    normalScreen.classList.add("hidden");
+    lockoutScreen.classList.remove("hidden");
+    adminScreen.classList.add("hidden");
+}
+
+function showAdminScreen() {
+    normalScreen.classList.add("hidden");
+    lockoutScreen.classList.add("hidden");
+    adminScreen.classList.remove("hidden");
+
+    adminInput.value = "";
+    showMessage(adminMessage, "");
+
+    adminInput.focus();
+}
+
+/* ATTEMPTS DISPLAY */
+
+function updateAttempts() {
+    const remaining = Math.max(
+        0,
+        MAX_ATTEMPTS - getAttempts()
+    );
+
+    attemptsDisplay.textContent =
+        remaining +
+        (remaining === 1
+            ? " attempt remaining"
+            : " attempts remaining");
+}
+
+/* SHAKE ANIMATION */
+
+function shakePopup() {
+    popup.classList.remove("shake");
+    void popup.offsetWidth;
+    popup.classList.add("shake");
+}
+
+popup.addEventListener("animationend", function(event) {
+    if (event.animationName === "shake") {
+        popup.classList.remove("shake");
+    }
+});
+
+/* WRONG PASSWORD WARNINGS */
+
+function showPasswordWarning(attempts) {
+    warningAlert.classList.remove(
+        "hidden",
+        "danger",
+        "critical"
+    );
+
+    if (attempts === 1) {
+        warningEmoji.textContent = "⚠️";
+
+        warningText.textContent =
+            "WARNING! Incorrect password. 2 attempts remaining.";
+
+    } else if (attempts === 2) {
+        warningAlert.classList.add("danger");
+
+        warningEmoji.textContent = "🚨";
+
+        warningText.textContent =
+            "DANGER! Wrong password. Only 1 attempt remains!";
+
+    } else {
+        warningAlert.classList.add("critical");
+
+        warningEmoji.textContent = "🔴";
+
+        warningText.textContent =
+            "🚨 CRITICAL WARNING! Access locked for 12 hours!";
+    }
+}
+
+/* PASSWORD CHECK */
+
+function checkPassword(event) {
+    event.preventDefault();
+
+    const lockoutUntil = getLockoutUntil();
+
+    if (lockoutUntil > Date.now()) {
+        showLockout(lockoutUntil);
+        return;
+    }
+
+    if (getAttempts() >= MAX_ATTEMPTS) {
+        startLockout();
+        return;
+    }
+
+    const enteredPassword = passwordInput.value.trim();
+
+    if (!enteredPassword) {
+        showMessage(message, "Please enter a password.", "error");
+        passwordInput.focus();
+        return;
+    }
+
+    /* CORRECT PASSWORD */
+
+    if (VALID_PASSWORDS.includes(enteredPassword)) {
+        localStorage.removeItem(ATTEMPTS_KEY);
+        localStorage.removeItem(LOCKOUT_KEY);
+
+        warningAlert.classList.add("hidden");
+
+        showMessage(message, "Access Granted ✓", "success");
+
+        passwordInput.disabled = true;
+        unlockButton.disabled = true;
+
+        /*
+         * Open the destination in another tab.
+         * Browser popup settings may block this.
+         */
+
+        const destinationTab = window.open(DESTINATION, "_blank");
+
+        if (destinationTab) {
+            destinationTab.opener = null;
+        }
+
+        /*
+         * Return to index.html after a short delay.
+         * A successful login is not remembered.
+         */
+
+        setTimeout(function() {
+            window.location.replace("index.html");
+        }, 800);
+
+        return;
+    }
+
+    /* INCORRECT PASSWORD */
+
+    const attempts = getAttempts() + 1;
+
+    localStorage.setItem(ATTEMPTS_KEY, String(attempts));
+
+    showPasswordWarning(attempts);
+
+    if (attempts >= MAX_ATTEMPTS) {
+        /*
+         * Display the critical warning briefly before
+         * switching to the lockout screen.
+         */
+
+        unlockButton.disabled = true;
+        passwordInput.disabled = true;
+
+        setTimeout(function() {
+            startLockout();
+        }, 900);
+
+        return;
+    }
+
+    const remaining = MAX_ATTEMPTS - attempts;
+
+    showMessage(message, "Incorrect password.", "error");
+
+    attemptsDisplay.textContent =
+        remaining +
+        (remaining === 1
+            ? " attempt remaining"
+            : " attempts remaining");
+
+    passwordInput.value = "";
+    passwordInput.focus();
+
+    shakePopup();
+}
+
+/* START LOCKOUT */
+
+function startLockout() {
+    const existingLockout = getLockoutUntil();
+
+    const lockoutUntil = existingLockout > Date.now()
+        ? existingLockout
+        : Date.now() + LOCKOUT_DURATION;
+
+    localStorage.setItem(LOCKOUT_KEY, String(lockoutUntil));
+
+    passwordInput.disabled = false;
+    unlockButton.disabled = false;
+
+    showLockout(lockoutUntil);
+}
+
+/* SHOW LOCKOUT */
+
+function showLockout(lockoutUntil) {
+    showLockoutScreen();
+    updateCountdown(lockoutUntil);
+}
+
+/* COUNTDOWN */
+
+function updateCountdown(lockoutUntil) {
+    if (countdownInterval !== null) {
+        clearInterval(countdownInterval);
+    }
+
+    function tick() {
+        const remaining = lockoutUntil - Date.now();
+
+        if (remaining <= 0) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
+
+            clearLockout();
+            return;
+        }
+
+        const totalSeconds = Math.floor(remaining / 1000);
+
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        countdown.textContent =
+            String(hours).padStart(2, "0") + ":" +
+            String(minutes).padStart(2, "0") + ":" +
+            String(seconds).padStart(2, "0");
+    }
+
+    tick();
+    countdownInterval = setInterval(tick, 1000);
+}
+
+/* ADMIN SCREEN */
+
+function openAdmin() {
+    showAdminScreen();
+}
+
+function closeAdmin() {
+    adminScreen.classList.add("hidden");
+    lockoutScreen.classList.remove("hidden");
+
+    adminInput.value = "";
+    showMessage(adminMessage, "");
+}
+
+/* ADMIN VERIFICATION */
+
+function verifyAdmin(event) {
+    event.preventDefault();
+
+    const answer = adminInput.value
+        .trim()
+        .replace(/\s+/g, " ")
+        .toLowerCase();
+
+    if (!answer) {
+        showMessage(
+            adminMessage,
+            "Please enter your answer.",
+            "error"
+        );
+
+        adminInput.focus();
+        return;
+    }
+
+    if (answer === ADMIN_ANSWER) {
+        showMessage(
+            adminMessage,
+            "Admin verification successful ✓",
+            "success"
+        );
+
+        localStorage.removeItem(LOCKOUT_KEY);
+        localStorage.removeItem(ATTEMPTS_KEY);
+
+        setTimeout(function() {
+            clearLockout();
+        }, 700);
+
+        return;
+    }
+
+    showMessage(adminMessage, "❌ Incorrect answer.", "error");
+
+    adminInput.value = "";
+    adminInput.focus();
+
+    shakePopup();
+}
+
+/* CLEAR LOCKOUT */
+
+function clearLockout() {
+    localStorage.removeItem(LOCKOUT_KEY);
+    localStorage.removeItem(ATTEMPTS_KEY);
+
+    if (countdownInterval !== null) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+    }
+
+    warningAlert.classList.add("hidden");
+    warningAlert.classList.remove("danger", "critical");
+
+    showNormalScreen();
+
+    attemptsDisplay.textContent = "3 attempts remaining";
+
+    passwordInput.value = "";
+    passwordInput.disabled = false;
+    unlockButton.disabled = false;
+
+    showMessage(message, "");
+    showMessage(adminMessage, "");
+
+    passwordInput.focus();
+}
+
+/* INITIALIZE */
+
+function initialize() {
+    const lockoutUntil = getLockoutUntil();
+
+    if (lockoutUntil > Date.now()) {
+        showLockout(lockoutUntil);
+        return;
+    }
+
+    if (lockoutUntil) {
+        clearLockout();
+        return;
+    }
+
+    if (getAttempts() >= MAX_ATTEMPTS) {
+        startLockout();
+        return;
+    }
+
+    showNormalScreen();
+    updateAttempts();
+    passwordInput.focus();
+}
+
+/* EVENT LISTENERS */
+
+passwordForm.addEventListener("submit", checkPassword);
+adminForm.addEventListener("submit", verifyAdmin);
+
+openAdminButton.addEventListener("click", openAdmin);
+cancelAdminButton.addEventListener("click", closeAdmin);
+
+/* START WHEN PAGE IS READY */
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initialize);
+} else {
+    initialize();
+}
+</script>
+
+</body>
+</html>
