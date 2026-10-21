@@ -1,0 +1,1061 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bharat Kannon Vidhi Hub - Code of Criminal Procedure, 1973, chapters, sections, investigation, bail and criminal trials.">
+<title>CrPC | Bharat Kanoon Vidhi Hub</title>
+
+<style>
+:root {
+    --bg: #090909;
+    --panel: #141414;
+    --panel2: #1c1c1c;
+    --red: #d71920;
+    --gold: #d6b46a;
+    --text: #f5f5f5;
+    --muted: #b8b8b8;
+    --border: #303030;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+    width: 100%;
+    min-height: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 75px;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.8;
+}
+
+a { color: inherit; }
+
+header, nav, .hero, section.content, .facts, footer {
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    padding: 24px 20px;
+    background: #101010;
+    border-bottom: 2px solid var(--red);
+}
+
+.brand {
+    color: var(--gold);
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-top: 4px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    padding: 14px 20px;
+    background: #171717;
+    border-bottom: 1px solid var(--border);
+}
+
+nav a {
+    color: #eee;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color .2s;
+}
+
+nav a:hover { color: var(--gold); }
+
+.hero {
+    min-height: 55vh;
+    padding: 75px 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(ellipse at top, #421114, #171010 45%, #090909 85%);
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-label {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 5px 18px;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    font-size: clamp(70px, 11vw, 125px);
+    letter-spacing: 8px;
+    line-height: 1.25;
+    margin-top: 12px;
+}
+
+.hero h2 {
+    color: var(--gold);
+    font-size: clamp(20px, 3vw, 34px);
+    margin-top: 8px;
+}
+
+.hero p {
+    color: #ccc;
+    max-width: 950px;
+    margin: 20px auto 0;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 28px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 11px 23px;
+    background: var(--red);
+    color: white;
+    border: 1px solid var(--red);
+    border-radius: 3px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn:hover { background: #a80f15; }
+
+.btn-outline {
+    color: var(--gold);
+    background: transparent;
+    border-color: var(--gold);
+}
+
+.btn-outline:hover {
+    color: #111;
+    background: var(--gold);
+}
+
+.container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+section.content { padding: 55px 0; }
+
+.section-title {
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.section-title span { color: var(--red); }
+
+.section-intro {
+    color: var(--muted);
+    max-width: 1000px;
+    margin-bottom: 28px;
+}
+
+.about-box {
+    width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    border-radius: 4px;
+    padding: 28px;
+}
+
+.about-box p {
+    color: #d0d0d0;
+    margin-bottom: 14px;
+}
+
+.about-box p:last-child { margin-bottom: 0; }
+
+.facts {
+    background: #171010;
+    border-top: 1px solid #392020;
+    border-bottom: 1px solid #392020;
+    padding: 28px 4%;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.fact { text-align: center; padding: 10px; }
+
+.fact strong {
+    display: block;
+    color: var(--gold);
+    font-size: clamp(23px, 3vw, 32px);
+}
+
+.fact span { color: var(--muted); font-size: 14px; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.card {
+    min-width: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+    transition: .2s;
+}
+
+.card:hover {
+    border-color: var(--red);
+    transform: translateY(-3px);
+}
+
+.card-number {
+    color: var(--red);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.card h3 {
+    color: var(--gold);
+    margin: 8px 0;
+    font-size: 19px;
+}
+
+.card p { color: var(--muted); font-size: 14px; }
+
+.resource-link {
+    display: block;
+    width: 100%;
+    padding: 19px 22px;
+    margin-bottom: 13px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.resource-link:hover { border-color: var(--gold); }
+.resource-link strong { color: var(--gold); }
+
+.resource-link span {
+    display: block;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.notice {
+    width: 100%;
+    background: #17150f;
+    border: 1px solid #514222;
+    padding: 20px;
+    margin-top: 25px;
+    color: #d5c9aa;
+    font-size: 14px;
+}
+
+.chapter-tools {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.chapter-tools input,
+.chapter-tools select {
+    min-width: 0;
+    flex: 1;
+    padding: 14px 16px;
+    color: white;
+    background: #171717;
+    border: 1px solid #414141;
+    border-radius: 3px;
+    font-size: 14px;
+    outline: none;
+}
+
+.chapter-tools input:focus,
+.chapter-tools select:focus { border-color: var(--gold); }
+
+.chapter-tools select option {
+    color: white;
+    background: #171717;
+}
+
+.directory-count {
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.chapter-card {
+    min-width: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--red);
+    border-radius: 4px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: border-color .2s, transform .2s;
+}
+
+.chapter-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+}
+
+.chapter-label {
+    color: var(--red);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.chapter-card h3 {
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 12px 0;
+}
+
+.section-range {
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.chapter-description {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+    flex: 1;
+}
+
+.chapter-card a {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.chapter-card a:hover { text-decoration: underline; }
+
+.empty-result {
+    display: none;
+    padding: 25px;
+    color: var(--muted);
+    border: 1px dashed var(--border);
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    background: #101010;
+    border-top: 2px solid var(--red);
+    padding: 30px 20px;
+    color: #aaa;
+    font-size: 13px;
+}
+
+footer strong { color: var(--gold); }
+
+@media (min-width: 1600px) {
+    .container { padding-left: 3%; padding-right: 3%; }
+
+    .grid, .chapter-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .chapter-card { padding: 25px; }
+}
+
+@media (max-width: 1100px) {
+    .container { padding-left: 3%; padding-right: 3%; }
+
+    .grid, .chapter-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .container { padding-left: 18px; padding-right: 18px; }
+
+    .grid, .chapter-grid, .facts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+    }
+
+    .hero { min-height: auto; padding: 55px 18px; }
+    .hero h1 { letter-spacing: 4px; }
+
+    .chapter-card, .card { padding: 17px; }
+    .about-box { padding: 20px; }
+    section.content { padding: 42px 0; }
+    .chapter-tools { flex-direction: column; }
+
+    .chapter-tools input, .chapter-tools select {
+        width: 100%;
+        flex: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid, .chapter-grid, .facts-grid { grid-template-columns: 1fr; }
+
+    header { padding: 20px 12px; }
+
+    .tagline { font-size: 10px; letter-spacing: 2px; }
+
+    nav { gap: 9px 15px; padding: 12px; }
+    nav a { font-size: 13px; }
+
+    .hero-label { letter-spacing: 1px; font-size: 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">BHARAT KANOON VIDHI HUB</div>
+    <div class="tagline">INDIAN LAW • LEGAL KNOWLEDGE • JUSTICE</div>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About CrPC</a>
+    <a href="#features">Key Features</a>
+    <a href="#importance">Importance</a>
+    <a href="#resources">Legal Resources</a>
+    <a href="#chapters">Chapters & Sections</a>
+</nav>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="hero-label">HISTORICAL INDIAN CRIMINAL PROCEDURE</div>
+    <h1>CrPC</h1>
+    <h2>Code of Criminal Procedure, 1973</h2>
+
+    <p>
+        Explore India's former criminal procedure legislation through
+        an educational guide to police investigations, arrest, bail,
+        criminal courts, inquiries, trials, appeals, revisions and
+        the administration of criminal justice.
+    </p>
+
+    <div class="buttons">
+        <a class="btn" href="#about">Explore CrPC</a>
+        <a class="btn btn-outline" href="#chapters">Browse Chapters</a>
+    </div>
+</section>
+
+<section class="content" id="about">
+<div class="container">
+    <h2 class="section-title">About <span>CrPC</span></h2>
+    <p class="section-intro">
+        Understanding India's former criminal procedure legislation.
+    </p>
+
+    <div class="about-box">
+        <p>
+            The <strong>Code of Criminal Procedure, 1973 (CrPC)</strong>
+            was India's principal legislation governing criminal
+            procedure. It prescribed the procedures for investigation
+            of offences, arrest, bail, inquiries, trials, appeals and
+            other stages of criminal proceedings.
+        </p>
+
+        <p>
+            The Code was enacted as Act No. 2 of 1974 on 25 January 1974
+            and came into force on 1 April 1974. It established a
+            procedural framework for criminal courts, police
+            investigations, prosecution and judicial proceedings.
+        </p>
+
+        <p>
+            The Bharatiya Nagarik Suraksha Sanhita, 2023 (BNSS),
+            Act No. 46 of 2023, replaced the CrPC with effect from
+            1 July 2024, subject to applicable repeal, savings and
+            transitional provisions. Certain pending matters may
+            continue under the earlier Code where the applicable
+            savings provisions require it.
+        </p>
+
+        <p>
+            Bharat Kanoon Vidhi Hub provides this educational overview
+            to help students, researchers and readers understand the
+            historical structure of the CrPC and navigate its chapters
+            and sections.
+        </p>
+    </div>
+</div>
+</section>
+
+<section class="facts">
+<div class="container facts-grid">
+    <div class="fact">
+        <strong>1973</strong>
+        <span>Year in the title</span>
+    </div>
+    <div class="fact">
+        <strong>37</strong>
+        <span>Numbered chapters</span>
+    </div>
+    <div class="fact">
+        <strong>484</strong>
+        <span>Final numbered section</span>
+    </div>
+</div>
+</section>
+
+<section class="content" id="features">
+<div class="container">
+    <h2 class="section-title">Key Areas of <span>CrPC</span></h2>
+    <p class="section-intro">
+        Major subjects covered by the former criminal procedure law.
+    </p>
+
+    <div class="grid">
+        <article class="card">
+            <div class="card-number">01</div>
+            <h3>FIR & Investigation</h3>
+            <p>Historical procedures for reporting cognizable offences, police investigations, witness statements and investigation reports.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">02</div>
+            <h3>Arrest & Safeguards</h3>
+            <p>Rules concerning arrest with or without warrant, custody, production before a magistrate and safeguards for arrested persons.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">03</div>
+            <h3>Bail & Bonds</h3>
+            <p>Procedures for bail, bonds, release from custody and related powers of criminal courts.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">04</div>
+            <h3>Criminal Courts</h3>
+            <p>Constitution, jurisdiction, powers and functions of criminal courts, sessions courts and magistrates.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">05</div>
+            <h3>Trials & Judgments</h3>
+            <p>Procedures for sessions trials, warrant cases, summons cases, summary trials and pronouncement of judgments.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">06</div>
+            <h3>Appeals & Revision</h3>
+            <p>Historical provisions governing appeals, references, revisions and transfers of criminal cases.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">07</div>
+            <h3>Maintenance & Public Order</h3>
+            <p>Procedures relating to maintenance, public nuisance, urgent orders and prevention of breaches of peace.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">08</div>
+            <h3>Criminal Procedure & Justice</h3>
+            <p>Rules concerning complaints, charges, prosecution, legal representation, evidence and enforcement of sentences.</p>
+        </article>
+    </div>
+</div>
+</section>
+
+<section class="content" id="importance">
+<div class="container">
+    <h2 class="section-title">Why Study the <span>CrPC?</span></h2>
+
+    <div class="about-box">
+        <p>
+            Criminal procedure determines how criminal cases move
+            through the justice system, from investigation and
+            arrest to trial, judgment and appeal. The CrPC played
+            a central role in organising these procedures in India.
+        </p>
+
+        <p>
+            Studying the Code is useful for law students, advocates,
+            researchers and readers examining historical criminal
+            proceedings and the development of procedural law.
+        </p>
+
+        <p>
+            The CrPC should be studied alongside the Code of Criminal
+            Procedure's successor, the Bharatiya Nagarik Suraksha
+            Sanhita, 2023 (BNSS), the Bharatiya Nyaya Sanhita, 2023
+            (BNS), and the Bharatiya Sakshya Adhiniyam, 2023 (BSA).
+            The applicable law depends on the relevant dates,
+            statutory savings and transitional provisions.
+        </p>
+    </div>
+</div>
+</section>
+
+<section class="content" id="resources">
+<div class="container">
+    <h2 class="section-title">Legal <span>Resources</span></h2>
+    <p class="section-intro">
+        Explore historical and current criminal law legislation.
+    </p>
+
+    <a class="resource-link"
+       href="bns-read.html">
+        <strong>Bharatiya Nyaya Sanhita (BNS) - 2023</strong>
+        <span>The Bharatiya Nyaya Sanhita, 2023, defines criminal offences and prescribes punishments under India's substantive criminal law framework. It addresses offences against individuals, property, public order, and the state, replacing the Indian Penal Code, 1860, subject to applicable legal provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="bnss-read.html">
+        <strong>Bharatiya Nagarik Suraksha Sanhita (BNSS) - 2023</strong>
+        <span>The Bharatiya Nagarik Suraksha Sanhita, 2023, establishes the procedural framework for criminal justice in India. It governs police investigations, arrests, bail, trials, inquiries, appeals, and related judicial processes, replacing the Code of Criminal Procedure, 1973, subject to applicable legal provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="bsa-read.html">
+        <strong>Bharatiya Sakshya Adhiniyam (BSA) - 2023</strong>
+        <span>The Bharatiya Sakshya Adhiniyam, 2023, establishes the legal framework governing evidence in judicial proceedings. It addresses the relevancy and admissibility of facts, documentary evidence, electronic records, witness testimony, and proof of facts, replacing the Indian Evidence Act, 1872, subject to applicable legal provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="ipc-read.html">
+        <strong>Indian Penal Code (IPC) - 1860</strong>
+        <span>The Indian Penal Code, 1860, was India's principal substantive criminal law legislation, defining numerous offences and prescribing their punishments. It covered offences involving the human body, property, public tranquillity, and other matters. It was replaced by the Bharatiya Nyaya Sanhita, 2023, subject to applicable transitional provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="crpc-read.html">
+        <strong>Code of Criminal Procedure (CrPC) - 1973</strong>
+        <span>The Code of Criminal Procedure, 1973, established the procedural framework for administering criminal justice in India. It governed investigations, arrests, bail, inquiries, trials, appeals, and revisions. It was replaced by the Bharatiya Nagarik Suraksha Sanhita, 2023, subject to applicable transitional provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="iea-read.html">
+        <strong>Indian Evidence Act (IEA) - 1872</strong>
+        <span>The Indian Evidence Act, 1872, established the legal framework governing the admissibility and relevancy of evidence in Indian judicial proceedings. It addressed facts in issue, documentary evidence, witness examination, presumptions, and proof of facts. It was replaced by the Bharatiya Sakshya Adhiniyam, 2023, subject to applicable transitional provisions.</span>
+    </a>
+
+    <div class="notice">
+        <strong>Legal Disclaimer:</strong>
+        This website is for general educational and informational
+        purposes only and does not constitute legal advice.
+        The CrPC is historical legislation. Verify the applicable
+        statutory text, repeal-and-savings provisions, amendments
+        and judicial decisions before relying on any section.
+    </div>
+</div>
+</section>
+
+<section class="content" id="chapters">
+<div class="container">
+
+    <h2 class="section-title">CrPC <span>Chapters & Sections</span></h2>
+
+    <p class="section-intro">
+        Browse the chapter structure of the Code of Criminal Procedure,
+        1973. Search chapter titles, section ranges and subjects.
+        Inserted Chapter XXIA on plea bargaining is included separately.
+    </p>
+
+    <div class="chapter-tools">
+        <input id="chapterSearch"
+               type="search"
+               placeholder="Search chapter, section or subject..."
+               aria-label="Search CrPC chapters">
+
+        <select id="chapterFilter" aria-label="Filter chapters">
+            <option value="all">All chapters</option>
+            <option value="1">Chapters 1–10</option>
+            <option value="2">Chapters 11–20</option>
+            <option value="3">Chapters 21–30</option>
+            <option value="4">Chapters 31–37</option>
+        </select>
+    </div>
+
+    <div class="directory-count" id="directoryCount" aria-live="polite">
+        Showing 38 chapter entries
+    </div>
+
+    <div class="chapter-grid" id="chapterGrid"></div>
+
+    <div class="empty-result" id="emptyResult">
+        No matching chapters found. Try another search.
+    </div>
+
+    <div class="notice">
+        <strong>Legal accuracy notice:</strong>
+        This directory is an educational navigation aid.
+        The Code was amended over time, and some provisions
+        were inserted, omitted or repealed. Confirm chapter headings,
+        section ranges and the relevant historical text against an
+        authoritative version of the Act before relying on it.
+    </div>
+
+    <div class="buttons">
+        <a class="btn"
+           href="crpc-read.html">
+            Read Full CrPC Act
+        </a>
+        <a class="btn btn-outline" href="#home">Back to Top</a>
+    </div>
+</div>
+</section>
+
+</main>
+
+<footer>
+    <strong>BHARAT KANOON VIDHI HUB</strong>
+    <p>Knowledge of Law • Awareness of Rights • Access to Justice</p>
+    <p>© 2026 Bharat Kanoon Vidhi Hub. Educational use.</p>
+</footer>
+
+<script>
+const chapters = [
+    {
+        n: 1, group: 1, label: "CHAPTER I",
+        title: "Preliminary",
+        range: "Sections 1–5",
+        description: "Introduces the Code, its short title, extent, commencement, definitions and relationship with other laws."
+    },
+    {
+        n: 2, group: 1, label: "CHAPTER II",
+        title: "Constitution of Criminal Courts and Offices",
+        range: "Sections 6–25A",
+        description: "Covers criminal courts, territorial divisions, magistrates, public prosecutors and prosecution offices."
+    },
+    {
+        n: 3, group: 1, label: "CHAPTER III",
+        title: "Power of Courts",
+        range: "Sections 26–35",
+        description: "Addresses courts competent to try offences, sentencing powers and the conferral and exercise of judicial powers."
+    },
+    {
+        n: 4, group: 1, label: "CHAPTER IV",
+        title: "Powers of Superior Officers of Police and Aid to Magistrates and Police",
+        range: "Sections 36–40",
+        description: "Explains powers of superior police officers and duties of the public to assist magistrates and police."
+    },
+    {
+        n: 5, group: 1, label: "CHAPTER V",
+        title: "Arrest of Persons",
+        range: "Sections 41–60A",
+        description: "Covers arrest procedures, arrest without warrant, safeguards, information about arrest and production before a magistrate."
+    },
+    {
+        n: 6, group: 1, label: "CHAPTER VI",
+        title: "Processes to Compel Appearance",
+        range: "Sections 61–90",
+        description: "Addresses summonses, warrants of arrest, proclamations, attachment and processes to secure court appearance."
+    },
+    {
+        n: 7, group: 1, label: "CHAPTER VII",
+        title: "Processes to Compel the Production of Things",
+        range: "Sections 91–105",
+        description: "Covers orders to produce documents or things, search warrants, searches and seizure-related procedures."
+    },
+    {
+        n: 8, group: 1, label: "CHAPTER VIIA",
+        title: "Reciprocal Arrangements for Assistance in Certain Matters and Procedure for Attachment and Forfeiture of Property",
+        range: "Sections 105A–105L",
+        description: "Addresses reciprocal legal assistance and procedures concerning attachment and forfeiture of property in covered matters."
+    },
+    {
+        n: 9, group: 1, label: "CHAPTER VIII",
+        title: "Security for Keeping the Peace and for Good Behaviour",
+        range: "Sections 106–124",
+        description: "Covers proceedings requiring security for keeping the peace or good behaviour in circumstances prescribed by law."
+    },
+    {
+        n: 10, group: 1, label: "CHAPTER IX",
+        title: "Order for Maintenance of Wives, Children and Parents",
+        range: "Sections 125–128",
+        description: "Provides procedures for maintenance applications by eligible wives, children and parents and enforcement of orders."
+    },
+    {
+        n: 11, group: 2, label: "CHAPTER X",
+        title: "Maintenance of Public Order and Tranquillity",
+        range: "Sections 129–148",
+        description: "Addresses unlawful assemblies, public nuisances, urgent orders and disputes likely to cause breaches of peace."
+    },
+    {
+        n: 12, group: 2, label: "CHAPTER XI",
+        title: "Preventive Action of the Police",
+        range: "Sections 149–153",
+        description: "Covers preventive police action, information about planned offences and measures to prevent cognizable offences."
+    },
+    {
+        n: 13, group: 2, label: "CHAPTER XII",
+        title: "Information to the Police and Their Powers to Investigate",
+        range: "Sections 154–176",
+        description: "Addresses information about offences, investigation, witness statements, police reports and inquiries into suspicious deaths."
+    },
+    {
+        n: 14, group: 2, label: "CHAPTER XIII",
+        title: "Jurisdiction of Criminal Courts in Inquiries and Trials",
+        range: "Sections 177–189",
+        description: "Determines where inquiries and trials may take place, including offences connected with different locations."
+    },
+    {
+        n: 15, group: 2, label: "CHAPTER XIV",
+        title: "Conditions Requisite for Initiation of Proceedings",
+        range: "Sections 190–199",
+        description: "Covers cognizance of offences, required sanctions and restrictions before courts initiate specified proceedings."
+    },
+    {
+        n: 16, group: 2, label: "CHAPTER XV",
+        title: "Complaints to Magistrates",
+        range: "Sections 200–203",
+        description: "Addresses examination of complainants, preliminary inquiry and dismissal of complaints where appropriate."
+    },
+    {
+        n: 17, group: 2, label: "CHAPTER XVI",
+        title: "Commencement of Proceedings Before Magistrates",
+        range: "Sections 204–210",
+        description: "Covers issuance of process, supply of documents, commitment to the Court of Session and related procedural steps."
+    },
+    {
+        n: 18, group: 2, label: "CHAPTER XVII",
+        title: "The Charge",
+        range: "Sections 211–224",
+        description: "Governs the form and contents of charges, alteration of charges, joinder of charges and related rules."
+    },
+    {
+        n: 19, group: 2, label: "CHAPTER XVIII",
+        title: "Trial Before a Court of Session",
+        range: "Sections 225–237",
+        description: "Explains Sessions trial procedure, including prosecution evidence, discharge, framing charges, defence and judgment."
+    },
+    {
+        n: 20, group: 2, label: "CHAPTER XIX",
+        title: "Trial of Warrant-Cases by Magistrates",
+        range: "Sections 238–250",
+        description: "Sets out procedures for warrant-case trials before magistrates, including cases instituted on police reports and otherwise."
+    },
+    {
+        n: 21, group: 3, label: "CHAPTER XX",
+        title: "Trial of Summons-Cases by Magistrates",
+        range: "Sections 251–259",
+        description: "Covers the substance of accusation, pleas, evidence, acquittal, conviction and other summons-case procedures."
+    },
+    {
+        n: 22, group: 3, label: "CHAPTER XXI",
+        title: "Summary Trials",
+        range: "Sections 260–265",
+        description: "Provides simplified trial procedures for eligible cases, subject to statutory conditions and recording requirements."
+    },
+    {
+        n: 23, group: 3, label: "CHAPTER XXIA",
+        title: "Plea Bargaining",
+        range: "Sections 265A–265L",
+        description: "Covers applications for plea bargaining, mutually satisfactory disposition, court proceedings and disposal under statutory conditions."
+    },
+    {
+        n: 24, group: 3, label: "CHAPTER XXII",
+        title: "Attendance of Persons Confined or Detained in Prisons",
+        range: "Sections 266–271",
+        description: "Addresses procedures for securing the attendance of persons confined or detained in prison for criminal proceedings."
+    },
+    {
+        n: 25, group: 3, label: "CHAPTER XXIII",
+        title: "Evidence in Inquiries and Trials",
+        range: "Sections 272–299",
+        description: "Covers recording and presentation of evidence, commissions, expert reports, witnesses and related evidentiary procedures."
+    },
+    {
+        n: 26, group: 3, label: "CHAPTER XXIV",
+        title: "General Provisions as to Inquiries and Trials",
+        range: "Sections 300–327",
+        description: "Contains general rules on criminal inquiries and trials, legal representation, adjournments, compounding and withdrawal from prosecution."
+    },
+    {
+        n: 27, group: 3, label: "CHAPTER XXV",
+        title: "Provisions as to Accused Persons of Unsound Mind",
+        range: "Sections 328–339",
+        description: "Covers procedures for assessing an accused person's mental condition, fitness to stand trial and related decisions."
+    },
+    {
+        n: 28, group: 3, label: "CHAPTER XXVI",
+        title: "Provisions as to Offences Affecting the Administration of Justice",
+        range: "Sections 340–352",
+        description: "Addresses court procedures concerning specified offences affecting the administration of justice and complaints by courts."
+    },
+    {
+        n: 29, group: 3, label: "CHAPTER XXVII",
+        title: "The Judgment",
+        range: "Sections 353–365",
+        description: "Covers pronouncement and contents of judgments, compensation, victim-related orders and other judicial outcomes."
+    },
+    {
+        n: 30, group: 3, label: "CHAPTER XXVIII",
+        title: "Submission of Death Sentences for Confirmation",
+        range: "Sections 366–371",
+        description: "Prescribes submission of death sentences for High Court confirmation and associated examination of records and orders."
+    },
+    {
+        n: 31, group: 4, label: "CHAPTER XXIX",
+        title: "Appeals",
+        range: "Sections 372–394",
+        description: "Sets out statutory rights of appeal, appellate procedures and powers available to challenge specified criminal court decisions."
+    },
+    {
+        n: 32, group: 4, label: "CHAPTER XXX",
+        title: "Reference and Revision",
+        range: "Sections 395–405",
+        description: "Addresses references to the High Court and revisional powers exercised by higher courts under the Code."
+    },
+    {
+        n: 33, group: 4, label: "CHAPTER XXXI",
+        title: "Transfer of Criminal Cases",
+        range: "Sections 406–412",
+        description: "Provides procedures and powers for transferring criminal cases and appeals between courts in specified circumstances."
+    },
+    {
+        n: 34, group: 4, label: "CHAPTER XXXII",
+        title: "Execution, Suspension, Remission and Commutation of Sentences",
+        range: "Sections 413–435",
+        description: "Covers execution of sentences, imprisonment-related procedures, suspension, remission, commutation and implementation of sentences."
+    },
+    {
+        n: 35, group: 4, label: "CHAPTER XXXIII",
+        title: "Provisions as to Bail and Bonds",
+        range: "Sections 436–450",
+        description: "Addresses bail, release from custody, bonds, sureties and related statutory procedures."
+    },
+    {
+        n: 36, group: 4, label: "CHAPTER XXXIV",
+        title: "Disposal of Property",
+        range: "Sections 451–459",
+        description: "Addresses custody, disposal, restoration and handling of property produced before courts or seized in criminal proceedings."
+    },
+    {
+        n: 37, group: 4, label: "CHAPTER XXXV",
+        title: "Irregular Proceedings",
+        range: "Sections 460–466",
+        description: "Deals with procedural irregularities and circumstances in which proceedings may or may not be invalidated."
+    },
+    {
+        n: 38, group: 4, label: "CHAPTER XXXVI",
+        title: "Limitation for Taking Cognizance of Certain Offences",
+        range: "Sections 467–473",
+        description: "Sets out limitation periods for taking cognizance of specified offences and rules for computing those periods."
+    },
+    {
+        n: 39, group: 4, label: "CHAPTER XXXVII",
+        title: "Miscellaneous",
+        range: "Sections 474–484",
+        description: "Contains miscellaneous procedural provisions, trials before High Courts, rule-making powers, inherent powers and repeal-and-savings provisions."
+    }
+];
+
+const chapterGrid = document.getElementById("chapterGrid");
+const searchInput = document.getElementById("chapterSearch");
+const filterSelect = document.getElementById("chapterFilter");
+const directoryCount = document.getElementById("directoryCount");
+const emptyResult = document.getElementById("emptyResult");
+
+function renderChapters() {
+    chapterGrid.innerHTML = chapters.map(chapter => `
+        <article class="chapter-card"
+                 data-chapter="${chapter.n}"
+                 data-group="${chapter.group}">
+            <span class="chapter-label">${chapter.label}</span>
+
+            <h3>${chapter.title}</h3>
+
+            <p class="section-range">${chapter.range}</p>
+
+            <p class="chapter-description">${chapter.description}</p>
+
+            <a href="crpc-read.html">
+                Read Act ↗
+            </a>
+        </article>
+    `).join("");
+
+    filterChapters();
+}
+
+function filterChapters() {
+    const query = searchInput.value.trim().toLowerCase();
+    const filter = filterSelect.value;
+    let visible = 0;
+
+    document.querySelectorAll(".chapter-card").forEach(card => {
+        const group = card.dataset.group;
+        const content = card.textContent.toLowerCase();
+
+        const matchesGroup = filter === "all" || group === filter;
+        const matchesSearch = content.includes(query);
+        const show = matchesGroup && matchesSearch;
+
+        card.style.display = show ? "flex" : "none";
+
+        if (show) visible++;
+    });
+
+    directoryCount.textContent =
+        `Showing ${visible} of ${chapters.length} chapter entries`;
+
+    emptyResult.style.display = visible === 0 ? "block" : "none";
+}
+
+searchInput.addEventListener("input", filterChapters);
+filterSelect.addEventListener("change", filterChapters);
+
+renderChapters();
+</script>
+
+</body>
+</html>
