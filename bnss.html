@@ -1,0 +1,1195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bharat Kannon Vidhi Hub - BNSS chapters, sections and criminal procedure law educational resources.">
+<title>BNSS | Bharat Kannon Vidhi Hub</title>
+
+<style>
+:root {
+    --bg: #090909;
+    --panel: #141414;
+    --panel2: #1c1c1c;
+    --red: #d71920;
+    --gold: #d6b46a;
+    --text: #f5f5f5;
+    --muted: #b8b8b8;
+    --border: #303030;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 75px;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.8;
+}
+
+a {
+    color: inherit;
+}
+
+header,
+nav,
+.hero,
+section.content,
+.facts,
+footer {
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    padding: 24px 20px;
+    background: #101010;
+    border-bottom: 2px solid var(--red);
+}
+
+.brand {
+    color: var(--gold);
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-top: 4px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    padding: 14px 20px;
+    background: #171717;
+    border-bottom: 1px solid var(--border);
+}
+
+nav a {
+    color: #eee;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color .2s;
+}
+
+nav a:hover {
+    color: var(--gold);
+}
+
+.hero {
+    min-height: 55vh;
+    padding: 75px 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at top, #421114, #171010 45%, #090909 85%);
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-label {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 5px 18px;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    font-size: clamp(70px, 11vw, 125px);
+    letter-spacing: 8px;
+    line-height: 1.25;
+    margin-top: 12px;
+}
+
+.hero h2 {
+    color: var(--gold);
+    font-size: clamp(20px, 3vw, 34px);
+    margin-top: 8px;
+}
+
+.hero p {
+    color: #ccc;
+    max-width: 950px;
+    margin: 20px auto 0;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 28px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 11px 23px;
+    background: var(--red);
+    color: white;
+    border: 1px solid var(--red);
+    border-radius: 3px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn:hover {
+    background: #a80f15;
+}
+
+.btn-outline {
+    color: var(--gold);
+    background: transparent;
+    border-color: var(--gold);
+}
+
+.btn-outline:hover {
+    color: #111;
+    background: var(--gold);
+}
+
+.container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+section.content {
+    padding: 55px 0;
+}
+
+.section-title {
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.section-title span {
+    color: var(--red);
+}
+
+.section-intro {
+    color: var(--muted);
+    max-width: 1000px;
+    margin-bottom: 28px;
+}
+
+.about-box {
+    width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    border-radius: 4px;
+    padding: 28px;
+}
+
+.about-box p {
+    color: #d0d0d0;
+    margin-bottom: 14px;
+}
+
+.about-box p:last-child {
+    margin-bottom: 0;
+}
+
+.facts {
+    background: #171010;
+    border-top: 1px solid #392020;
+    border-bottom: 1px solid #392020;
+    padding: 28px 4%;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.fact {
+    text-align: center;
+    padding: 10px;
+}
+
+.fact strong {
+    display: block;
+    color: var(--gold);
+    font-size: clamp(23px, 3vw, 32px);
+}
+
+.fact span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.card {
+    min-width: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+    transition: .2s;
+}
+
+.card:hover {
+    border-color: var(--red);
+    transform: translateY(-3px);
+}
+
+.card-number {
+    color: var(--red);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.card h3 {
+    color: var(--gold);
+    margin: 8px 0;
+    font-size: 19px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.resource-link {
+    display: block;
+    width: 100%;
+    padding: 19px 22px;
+    margin-bottom: 13px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.resource-link:hover {
+    border-color: var(--gold);
+}
+
+.resource-link strong {
+    color: var(--gold);
+}
+
+.resource-link span {
+    display: block;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.notice {
+    width: 100%;
+    background: #17150f;
+    border: 1px solid #514222;
+    padding: 20px;
+    margin-top: 25px;
+    color: #d5c9aa;
+    font-size: 14px;
+}
+
+/* FULL-WIDTH CHAPTER DIRECTORY */
+
+.chapter-tools {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.chapter-tools input,
+.chapter-tools select {
+    min-width: 0;
+    flex: 1;
+    padding: 14px 16px;
+    color: white;
+    background: #171717;
+    border: 1px solid #414141;
+    border-radius: 3px;
+    font-size: 14px;
+    outline: none;
+}
+
+.chapter-tools input:focus,
+.chapter-tools select:focus {
+    border-color: var(--gold);
+}
+
+.chapter-tools select option {
+    color: white;
+    background: #171717;
+}
+
+.directory-count {
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.chapter-card {
+    min-width: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--red);
+    border-radius: 4px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: border-color .2s, transform .2s;
+}
+
+.chapter-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+}
+
+.chapter-label {
+    color: var(--red);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.chapter-card h3 {
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 12px 0;
+}
+
+.section-range {
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.chapter-description {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+    flex: 1;
+}
+
+.chapter-card a {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.chapter-card a:hover {
+    text-decoration: underline;
+}
+
+.empty-result {
+    display: none;
+    padding: 25px;
+    color: var(--muted);
+    border: 1px dashed var(--border);
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    background: #101010;
+    border-top: 2px solid var(--red);
+    padding: 30px 20px;
+    color: #aaa;
+    font-size: 13px;
+}
+
+footer strong {
+    color: var(--gold);
+}
+
+/* VERY WIDE DESKTOP SCREENS */
+
+@media (min-width: 1600px) {
+    .container {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .grid,
+    .chapter-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .chapter-card {
+        padding: 25px;
+    }
+}
+
+/* LAPTOPS AND SMALL DESKTOPS */
+
+@media (max-width: 1100px) {
+    .container {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .grid,
+    .chapter-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* TABLETS AND MOBILE DEVICES */
+
+@media (max-width: 700px) {
+    .container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .grid,
+    .chapter-grid,
+    .facts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 55px 18px;
+    }
+
+    .hero h1 {
+        letter-spacing: 4px;
+    }
+
+    .chapter-card,
+    .card {
+        padding: 17px;
+    }
+
+    .about-box {
+        padding: 20px;
+    }
+
+    section.content {
+        padding: 42px 0;
+    }
+
+    .chapter-tools {
+        flex-direction: column;
+    }
+
+    .chapter-tools input,
+    .chapter-tools select {
+        width: 100%;
+        flex: auto;
+    }
+}
+
+/* SMALL MOBILE DEVICES */
+
+@media (max-width: 480px) {
+    .grid,
+    .chapter-grid,
+    .facts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        padding: 20px 12px;
+    }
+
+    .tagline {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    nav {
+        gap: 9px 15px;
+        padding: 12px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .hero-label {
+        letter-spacing: 1px;
+        font-size: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">BHARAT KANNON VIDHI HUB</div>
+    <div class="tagline">INDIAN LAW • LEGAL KNOWLEDGE • JUSTICE</div>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About BNSS</a>
+    <a href="#features">Key Features</a>
+    <a href="#importance">Importance</a>
+    <a href="#resources">Legal Resources</a>
+    <a href="#chapters">Chapters & Sections</a>
+</nav>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="hero-label">INDIAN CRIMINAL PROCEDURE LAW</div>
+    <h1>BNSS</h1>
+    <h2>Bharatiya Nagarik Suraksha Sanhita, 2023</h2>
+
+    <p>
+        Explore India's criminal procedure legislation through an
+        educational guide to criminal investigation, arrest, bail,
+        inquiries, trials, appeals and the administration of justice.
+    </p>
+
+    <div class="buttons">
+        <a class="btn" href="#about">Explore BNSS</a>
+        <a class="btn btn-outline" href="#chapters">Browse Chapters</a>
+    </div>
+</section>
+
+<section class="content" id="about">
+<div class="container">
+    <h2 class="section-title">About <span>BNSS</span></h2>
+    <p class="section-intro">
+        Understanding the law governing criminal procedure in India.
+    </p>
+
+    <div class="about-box">
+        <p>
+            The <strong>Bharatiya Nagarik Suraksha Sanhita, 2023
+            (BNSS)</strong> is an Indian statute that consolidates and
+            amends the law relating to criminal procedure. It establishes
+            procedures through which criminal cases are investigated,
+            inquired into, tried and otherwise dealt with by the
+            authorities and courts.
+        </p>
+        <p>
+            The BNSS was enacted as Act No. 46 of 2023 and replaced
+            the Code of Criminal Procedure, 1973, subject to applicable
+            repeal-and-savings provisions. It generally came into force
+            on 1 July 2024, with the notified exception relating to
+            Section 106(2).
+        </p>
+        <p>
+            Its provisions address criminal courts, police investigations,
+            arrest, production of evidence, criminal trials, judgments,
+            appeals, bail and related procedural matters.
+        </p>
+        <p>
+            Bharat Kannon Vidhi Hub provides this educational overview
+            to help students, researchers and readers navigate the
+            structure and subjects of the BNSS.
+        </p>
+    </div>
+</div>
+</section>
+
+<section class="facts">
+<div class="container facts-grid">
+    <div class="fact">
+        <strong>2023</strong>
+        <span>Year of enactment</span>
+    </div>
+    <div class="fact">
+        <strong>39</strong>
+        <span>Chapters in the Act</span>
+    </div>
+    <div class="fact">
+        <strong>531</strong>
+        <span>Sections in the Act</span>
+    </div>
+</div>
+</section>
+
+<section class="content" id="features">
+<div class="container">
+    <h2 class="section-title">Key Areas of <span>BNSS</span></h2>
+    <p class="section-intro">
+        Major subjects covered by criminal procedure legislation.
+    </p>
+
+    <div class="grid">
+        <article class="card">
+            <div class="card-number">01</div>
+            <h3>FIR & Investigation</h3>
+            <p>Reporting information about offences, police investigation, evidence collection and investigative procedure.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">02</div>
+            <h3>Arrest & Safeguards</h3>
+            <p>Legal procedures concerning arrest, custody, production before a magistrate and applicable safeguards.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">03</div>
+            <h3>Bail & Bonds</h3>
+            <p>Procedures relating to bail, bonds, release from custody and conditions imposed by competent authorities.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">04</div>
+            <h3>Criminal Courts</h3>
+            <p>Constitution, jurisdiction, powers and functions of criminal courts and judicial magistrates.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">05</div>
+            <h3>Trials & Judgments</h3>
+            <p>Procedural rules concerning inquiries, different kinds of trials, evidence, judgments and appeals.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">06</div>
+            <h3>Digital Procedures</h3>
+            <p>Provisions concerning audio-video electronic means and technology in specified criminal proceedings.</p>
+        </article>
+    </div>
+</div>
+</section>
+
+<section class="content" id="importance">
+<div class="container">
+    <h2 class="section-title">Why is <span>BNSS</span> Important?</h2>
+    <div class="about-box">
+        <p>
+            Criminal procedure establishes the lawful process through
+            which alleged offences are investigated and cases proceed
+            before criminal courts. It regulates the procedural powers
+            and responsibilities of the authorities involved.
+        </p>
+        <p>
+            Studying BNSS is useful for law students, advocates,
+            researchers, police personnel and people seeking to
+            understand the criminal justice system.
+        </p>
+        <p>
+            BNSS should be studied alongside the Bharatiya Nyaya
+            Sanhita, 2023 (BNS), the Bharatiya Sakshya Adhiniyam,
+            2023 (BSA), the Constitution of India and applicable
+            judicial decisions.
+        </p>
+    </div>
+</div>
+</section>
+
+<section class="content" id="resources">
+<div class="container">
+    <h2 class="section-title">Official <span>Legal Resources</span></h2>
+    <p class="section-intro">
+        Refer to official sources for the authoritative legislation.
+    </p>
+
+    <a class="resource-link"
+       href="bns-read.html"
+       target="_blank" rel="noopener noreferrer">
+        <strong>Bharatiya Nyaya Sanhita (BNS) - 2023</strong>
+        <span>The Bharatiya Nyaya Sanhita, 2023, defines criminal offences and prescribes punishments under India's substantive criminal law framework. It addresses offences against individuals, property, public order, and the state, replacing the Indian Penal Code, 1860, subject to applicable legal provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="bnss-read.html"
+       target="_blank" rel="noopener noreferrer">
+        <strong>Bharatiya Nagarik Suraksha Sanhita (BNSS) - 2023</strong>
+        <span>The Bharatiya Nagarik Suraksha Sanhita, 2023, establishes the procedural framework for criminal justice in India. It governs police investigations, arrests, bail, trials, inquiries, appeals, and related judicial processes, replacing the Code of Criminal Procedure, 1973, subject to applicable legal provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="bsa-read.html"
+       target="_blank" rel="noopener noreferrer">
+        <strong>Bharatiya Sakshya Adhiniyam (BSA) - 2023</strong>
+        <span>The Bharatiya Sakshya Adhiniyam, 2023, establishes the legal framework governing evidence in judicial proceedings. It addresses the relevancy and admissibility of facts, documentary evidence, electronic records, witness testimony, and proof of facts, replacing the Indian Evidence Act, 1872, subject to applicable legal provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="ipc-read.html"
+       target="_blank" rel="noopener noreferrer">
+        <strong>Indian Penal Code (IPC) - 1860</strong>
+        <span>The Indian Penal Code, 1860, was India's principal substantive criminal law legislation, defining numerous offences and prescribing their punishments. It covered offences involving the human body, property, public tranquillity, and other matters. It was replaced by the Bharatiya Nyaya Sanhita, 2023, subject to applicable transitional provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="crpc-read.html"
+       target="_blank" rel="noopener noreferrer">
+        <strong>Code of Criminal Procedure (CrPC) - 1973</strong>
+        <span>The Code of Criminal Procedure, 1973, established the procedural framework for administering criminal justice in India. It governed investigations, arrests, bail, inquiries, trials, appeals, and revisions. It was replaced by the Bharatiya Nagarik Suraksha Sanhita, 2023, subject to applicable transitional provisions.</span>
+    </a>
+
+    <div class="notice">
+        <strong>Legal Disclaimer:</strong>
+        This website is for general educational and informational
+        purposes only and does not constitute legal advice. Verify the
+        current statutory text, applicable notifications, amendments
+        and judicial decisions before relying on a provision.
+    </div>
+</div>
+</section>
+
+<!-- BNSS CHAPTERS AND SECTIONS -->
+
+<section class="content" id="chapters">
+<div class="container">
+
+    <h2 class="section-title">BNSS <span>Chapters & Sections</span></h2>
+    <p class="section-intro">
+        Browse the chapters of the Bharatiya Nagarik Suraksha Sanhita,
+        2023. Search chapter titles, section numbers and subjects.
+        Descriptions are intended as educational summaries.
+    </p>
+
+    <div class="chapter-tools">
+        <input id="chapterSearch" type="search"
+               placeholder="Search chapter, section or subject..."
+               aria-label="Search BNSS chapters">
+
+        <select id="chapterFilter" aria-label="Filter chapters">
+            <option value="all">All chapters</option>
+            <option value="1">Chapters 1–10</option>
+            <option value="2">Chapters 11–20</option>
+            <option value="3">Chapters 21–30</option>
+            <option value="4">Chapters 31–39</option>
+        </select>
+    </div>
+
+    <div class="directory-count" id="directoryCount" aria-live="polite">
+        Showing 39 chapters
+    </div>
+
+    <div class="chapter-grid" id="chapterGrid">
+
+        <article class="chapter-card" data-chapter="1">
+            <span class="chapter-label">CHAPTER I</span>
+            <h3>Preliminary</h3>
+            <p class="section-range">Sections 1–5</p>
+            <p class="chapter-description">Introduces the Act, its short title, extent, commencement, definitions and relationship with other laws.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="2">
+            <span class="chapter-label">CHAPTER II</span>
+            <h3>Constitution of Criminal Courts and Offices</h3>
+            <p class="section-range">Sections 6–20</p>
+            <p class="chapter-description">Covers classes of criminal courts, territorial divisions, judicial and executive magistrates, and public prosecutors.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="3">
+            <span class="chapter-label">CHAPTER III</span>
+            <h3>Power of Courts</h3>
+            <p class="section-range">Sections 21–29</p>
+            <p class="chapter-description">Explains which courts may try offences, sentencing powers and the conferral and exercise of judicial powers.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="4">
+            <span class="chapter-label">CHAPTER IV</span>
+            <h3>Powers of Superior Officers of Police and Aid to the Magistrates and the Police</h3>
+            <p class="section-range">Sections 30–34</p>
+            <p class="chapter-description">Addresses powers of superior police officers and duties of the public relating to magistrates and police.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="5">
+            <span class="chapter-label">CHAPTER V</span>
+            <h3>Arrest of Persons</h3>
+            <p class="section-range">Sections 35–62</p>
+            <p class="chapter-description">Covers arrest procedures, arrest without warrant, safeguards, information about arrest and production before a magistrate.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="6">
+            <span class="chapter-label">CHAPTER VI</span>
+            <h3>Processes to Compel Appearance</h3>
+            <p class="section-range">Sections 63–93</p>
+            <p class="chapter-description">Deals with summonses, warrants of arrest, proclamations, attachment and procedures to secure court appearance.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="7">
+            <span class="chapter-label">CHAPTER VII</span>
+            <h3>Processes to Compel the Production of Things</h3>
+            <p class="section-range">Sections 94–110</p>
+            <p class="chapter-description">Covers orders to produce documents or things, search warrants, searches and seizure-related procedures.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="8">
+            <span class="chapter-label">CHAPTER VIII</span>
+            <h3>Reciprocal Arrangements for Assistance in Certain Matters and Procedure for Attachment and Forfeiture of Property</h3>
+            <p class="section-range">Sections 111–124</p>
+            <p class="chapter-description">Addresses reciprocal legal assistance and statutory procedures for attachment and forfeiture of property in covered matters.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="9">
+            <span class="chapter-label">CHAPTER IX</span>
+            <h3>Security for Keeping the Peace and for Good Behaviour</h3>
+            <p class="section-range">Sections 125–143</p>
+            <p class="chapter-description">Deals with proceedings requiring security for keeping the peace or good behaviour in circumstances prescribed by law.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="10">
+            <span class="chapter-label">CHAPTER X</span>
+            <h3>Order for Maintenance of Wives, Children and Parents</h3>
+            <p class="section-range">Sections 144–147</p>
+            <p class="chapter-description">Provides procedures concerning maintenance applications by eligible wives, children and parents, and enforcement of orders.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="11">
+            <span class="chapter-label">CHAPTER XI</span>
+            <h3>Maintenance of Public Order and Tranquillity</h3>
+            <p class="section-range">Sections 148–167</p>
+            <p class="chapter-description">Covers unlawful assemblies, public nuisances, urgent orders and specified disputes likely to cause breaches of peace.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="12">
+            <span class="chapter-label">CHAPTER XII</span>
+            <h3>Preventive Action of the Police</h3>
+            <p class="section-range">Sections 168–172</p>
+            <p class="chapter-description">Sets out preventive police duties and provisions relating to the prevention of cognizable offences and maintenance of order.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="13">
+            <span class="chapter-label">CHAPTER XIII</span>
+            <h3>Information to the Police and Their Powers to Investigate</h3>
+            <p class="section-range">Sections 173–196</p>
+            <p class="chapter-description">Addresses information about offences, police investigation, statements, searches, reports and inquiries into suspicious deaths.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="14">
+            <span class="chapter-label">CHAPTER XIV</span>
+            <h3>Jurisdiction of Criminal Courts in Inquiries and Trials</h3>
+            <p class="section-range">Sections 197–209</p>
+            <p class="chapter-description">Determines where inquiries and trials may take place, including rules for offences connected with different locations.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="15">
+            <span class="chapter-label">CHAPTER XV</span>
+            <h3>Conditions Requisite for Initiation of Proceedings</h3>
+            <p class="section-range">Sections 210–222</p>
+            <p class="chapter-description">Sets out conditions, sanctions and restrictions that apply before courts take cognizance of specified offences.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="16">
+            <span class="chapter-label">CHAPTER XVI</span>
+            <h3>Complaints to Magistrates</h3>
+            <p class="section-range">Sections 223–226</p>
+            <p class="chapter-description">Covers examination of complainants, complaint procedures, postponement of process and dismissal of complaints where appropriate.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="17">
+            <span class="chapter-label">CHAPTER XVII</span>
+            <h3>Commencement of Proceedings Before Magistrates</h3>
+            <p class="section-range">Sections 227–233</p>
+            <p class="chapter-description">Addresses issuance of process, supply of documents, commitment to the Court of Session and related procedural steps.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="18">
+            <span class="chapter-label">CHAPTER XVIII</span>
+            <h3>The Charge</h3>
+            <p class="section-range">Sections 234–247</p>
+            <p class="chapter-description">Governs the form and contents of charges, alteration of charges, joinder of charges and related criminal procedure rules.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="19">
+            <span class="chapter-label">CHAPTER XIX</span>
+            <h3>Trial Before a Court of Session</h3>
+            <p class="section-range">Sections 248–260</p>
+            <p class="chapter-description">Explains Sessions trial procedure, including discharge, framing of charges, prosecution evidence, defence, arguments and judgment.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="20">
+            <span class="chapter-label">CHAPTER XX</span>
+            <h3>Trial of Warrant-Cases by Magistrates</h3>
+            <p class="section-range">Sections 261–273</p>
+            <p class="chapter-description">Sets out procedures for warrant-case trials before magistrates, including cases instituted on police reports and otherwise.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="21">
+            <span class="chapter-label">CHAPTER XXI</span>
+            <h3>Trial of Summons-Cases by Magistrates</h3>
+            <p class="section-range">Sections 274–282</p>
+            <p class="chapter-description">Covers pleas, evidence, acquittal, conviction and other procedures in summons-case trials before magistrates.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="22">
+            <span class="chapter-label">CHAPTER XXII</span>
+            <h3>Summary Trials</h3>
+            <p class="section-range">Sections 283–288</p>
+            <p class="chapter-description">Provides a simplified trial procedure for eligible cases, subject to statutory conditions and recording requirements.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="23">
+            <span class="chapter-label">CHAPTER XXIII</span>
+            <h3>Plea Bargaining</h3>
+            <p class="section-range">Sections 289–300</p>
+            <p class="chapter-description">Covers applications for plea bargaining, mutually satisfactory disposition, court proceedings and disposal under statutory conditions.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="24">
+            <span class="chapter-label">CHAPTER XXIV</span>
+            <h3>Attendance of Persons Confined or Detained in Prisons</h3>
+            <p class="section-range">Sections 301–306</p>
+            <p class="chapter-description">Covers procedures for securing the attendance of persons confined or detained in prison for criminal proceedings.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="25">
+            <span class="chapter-label">CHAPTER XXV</span>
+            <h3>Evidence in Inquiries and Trials</h3>
+            <p class="section-range">Sections 307–336</p>
+            <p class="chapter-description">Addresses recording and presentation of evidence, witnesses, commissions, expert evidence and related trial procedures.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="26">
+            <span class="chapter-label">CHAPTER XXVI</span>
+            <h3>General Provisions as to Inquiries and Trials</h3>
+            <p class="section-range">Sections 337–366</p>
+            <p class="chapter-description">Contains general rules on criminal inquiries and trials, legal representation, adjournments, compounding and withdrawal from prosecution.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="27">
+            <span class="chapter-label">CHAPTER XXVII</span>
+            <h3>Provisions as to Accused Persons of Unsound Mind</h3>
+            <p class="section-range">Sections 367–378</p>
+            <p class="chapter-description">Covers procedures for assessing an accused person's mental condition, fitness to stand trial and related judicial decisions.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="28">
+            <span class="chapter-label">CHAPTER XXVIII</span>
+            <h3>Provisions as to Offences Affecting the Administration of Justice</h3>
+            <p class="section-range">Sections 379–391</p>
+            <p class="chapter-description">Addresses court procedures for specified offences affecting the administration of justice and complaints by courts where required.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="29">
+            <span class="chapter-label">CHAPTER XXIX</span>
+            <h3>The Judgment</h3>
+            <p class="section-range">Sections 392–406</p>
+            <p class="chapter-description">Covers pronouncement and contents of judgments, compensation, victim-related orders and other matters concerning judicial outcomes.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="30">
+            <span class="chapter-label">CHAPTER XXX</span>
+            <h3>Submission of Death Sentences for Confirmation</h3>
+            <p class="section-range">Sections 407–412</p>
+            <p class="chapter-description">Prescribes submission of death sentences for High Court confirmation and the associated examination of records and orders.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="31">
+            <span class="chapter-label">CHAPTER XXXI</span>
+            <h3>Appeals</h3>
+            <p class="section-range">Sections 413–435</p>
+            <p class="chapter-description">Sets out statutory rights of appeal, appellate procedures and powers available for challenging specified criminal court decisions.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="32">
+            <span class="chapter-label">CHAPTER XXXII</span>
+            <h3>Reference and Revision</h3>
+            <p class="section-range">Sections 436–445</p>
+            <p class="chapter-description">Deals with references to the High Court and revisional powers exercised by higher courts under the Act.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="33">
+            <span class="chapter-label">CHAPTER XXXIII</span>
+            <h3>Transfer of Criminal Cases</h3>
+            <p class="section-range">Sections 446–452</p>
+            <p class="chapter-description">Provides procedures and powers for transferring criminal cases and appeals between courts under specified circumstances.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="34">
+            <span class="chapter-label">CHAPTER XXXIV</span>
+            <h3>Execution, Suspension, Remission and Commutation of Sentences</h3>
+            <p class="section-range">Sections 453–477</p>
+            <p class="chapter-description">Covers execution of sentences, imprisonment-related procedures, suspension, remission, commutation and implementation of sentences.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="35">
+            <span class="chapter-label">CHAPTER XXXV</span>
+            <h3>Provisions as to Bail and Bonds</h3>
+            <p class="section-range">Sections 478–496</p>
+            <p class="chapter-description">Addresses bail, release from custody, bonds, sureties, anticipatory bail and related statutory procedures.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="36">
+            <span class="chapter-label">CHAPTER XXXVI</span>
+            <h3>Disposal of Property</h3>
+            <p class="section-range">Sections 497–505</p>
+            <p class="chapter-description">Addresses custody, disposal, restoration and handling of property produced before courts or seized in criminal proceedings.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="37">
+            <span class="chapter-label">CHAPTER XXXVII</span>
+            <h3>Irregular Proceedings</h3>
+            <p class="section-range">Sections 506–512</p>
+            <p class="chapter-description">Deals with procedural irregularities and the circumstances in which proceedings may or may not be invalidated.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="38">
+            <span class="chapter-label">CHAPTER XXXVIII</span>
+            <h3>Limitation for Taking Cognizance of Certain Offences</h3>
+            <p class="section-range">Sections 513–519</p>
+            <p class="chapter-description">Sets out limitation periods for taking cognizance of specified offences and rules for computing those periods.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+        <article class="chapter-card" data-chapter="39">
+            <span class="chapter-label">CHAPTER XXXIX</span>
+            <h3>Miscellaneous</h3>
+            <p class="section-range">Sections 520–531</p>
+            <p class="chapter-description">Contains miscellaneous procedural provisions, rule-making powers, forms, electronic proceedings and repeal-and-savings provisions.</p>
+            <a href="bnss-read.html" target="_blank" rel="noopener noreferrer">Read Act ↗</a>
+        </article>
+
+    </div>
+
+    <div class="empty-result" id="emptyResult">
+        No matching chapters found. Try another search.
+    </div>
+
+    <div class="notice">
+        <strong>Legal accuracy notice:</strong>
+        This directory is an educational aid. Chapter descriptions are
+        summaries, not statutory interpretations. Verify all headings,
+        section ranges, amendments and applicable provisions against
+        the official Act before relying on them in legal work.
+    </div>
+
+    <div class="buttons">
+        <a class="btn"
+           href="bnss-read.html"
+           target="_blank" rel="noopener noreferrer">Read Full BNSS Act</a>
+        <a class="btn btn-outline" href="#home">Back to Top</a>
+    </div>
+</div>
+</section>
+
+</main>
+
+<footer>
+    <strong>BHARAT KANNON VIDHI HUB</strong>
+    <p>Knowledge of Law • Awareness of Rights • Access to Justice</p>
+    <p>© 2026 Bharat Kannon Vidhi Hub. Educational use.</p>
+</footer>
+
+<script>
+const searchInput = document.getElementById("chapterSearch");
+const filterSelect = document.getElementById("chapterFilter");
+const chapterCards = Array.from(document.querySelectorAll(".chapter-card"));
+const directoryCount = document.getElementById("directoryCount");
+const emptyResult = document.getElementById("emptyResult");
+
+function filterChapters() {
+    const query = searchInput.value.trim().toLowerCase();
+    const filter = filterSelect.value;
+    let visible = 0;
+
+    chapterCards.forEach(card => {
+        const number = Number(card.dataset.chapter);
+        const content = card.textContent.toLowerCase();
+
+        let matchesRange = true;
+
+        if (filter === "1") matchesRange = number >= 1 && number <= 10;
+        if (filter === "2") matchesRange = number >= 11 && number <= 20;
+        if (filter === "3") matchesRange = number >= 21 && number <= 30;
+        if (filter === "4") matchesRange = number >= 31 && number <= 39;
+
+        const show = matchesRange && content.includes(query);
+        card.style.display = show ? "flex" : "none";
+
+        if (show) visible++;
+    });
+
+    directoryCount.textContent =
+        `Showing ${visible} of ${chapterCards.length} chapters`;
+
+    emptyResult.style.display = visible === 0 ? "block" : "none";
+}
+
+searchInput.addEventListener("input", filterChapters);
+filterSelect.addEventListener("change", filterChapters);
+</script>
+
+</body>
+</html>
