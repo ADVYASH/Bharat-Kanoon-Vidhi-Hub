@@ -1,0 +1,894 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bharat Kannon Vidhi Hub - Indian Evidence Act, 1872, chapters, sections, documentary evidence, witnesses and burden of proof.">
+<title>Indian Evidence Act | Bharat Kanoon Vidhi Hub</title>
+
+<style>
+:root {
+    --bg:#090909;
+    --panel:#141414;
+    --red:#d71920;
+    --gold:#d6b46a;
+    --text:#f5f5f5;
+    --muted:#b8b8b8;
+    --border:#303030;
+}
+
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html {
+    width:100%;
+    min-height:100%;
+    scroll-behavior:smooth;
+    scroll-padding-top:75px;
+}
+
+body {
+    width:100%;
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+    line-height:1.8;
+}
+
+a { color:inherit; }
+
+header,nav,.hero,section.content,.facts,footer {
+    width:100%;
+}
+
+header {
+    text-align:center;
+    padding:24px 20px;
+    background:#101010;
+    border-bottom:2px solid var(--red);
+}
+
+.brand {
+    color:var(--gold);
+    font-size:clamp(24px,3vw,40px);
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.tagline {
+    color:var(--muted);
+    font-size:12px;
+    letter-spacing:3px;
+    margin-top:4px;
+}
+
+nav {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px 28px;
+    padding:14px 20px;
+    background:#171717;
+    border-bottom:1px solid var(--border);
+}
+
+nav a {
+    color:#eee;
+    font-size:14px;
+    text-decoration:none;
+    transition:color .2s;
+}
+
+nav a:hover { color:var(--gold); }
+
+.hero {
+    min-height:55vh;
+    padding:75px 4%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:radial-gradient(ellipse at top,#421114,#171010 45%,#090909 85%);
+    border-bottom:1px solid var(--border);
+}
+
+.hero-label {
+    display:inline-block;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    padding:5px 18px;
+    font-size:12px;
+    letter-spacing:3px;
+}
+
+.hero h1 {
+    font-size:clamp(55px,9vw,110px);
+    letter-spacing:5px;
+    line-height:1.25;
+    margin-top:12px;
+}
+
+.hero h2 {
+    color:var(--gold);
+    font-size:clamp(20px,3vw,34px);
+    margin-top:8px;
+}
+
+.hero p {
+    color:#ccc;
+    max-width:950px;
+    margin:20px auto 0;
+    font-size:16px;
+}
+
+.buttons {
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:13px;
+    margin-top:28px;
+}
+
+.btn {
+    display:inline-block;
+    padding:11px 23px;
+    background:var(--red);
+    color:white;
+    border:1px solid var(--red);
+    border-radius:3px;
+    font-weight:bold;
+    text-decoration:none;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn:hover { background:#a80f15; }
+
+.btn-outline {
+    color:var(--gold);
+    background:transparent;
+    border-color:var(--gold);
+}
+
+.btn-outline:hover {
+    color:#111;
+    background:var(--gold);
+}
+
+.container {
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding-left:4%;
+    padding-right:4%;
+}
+
+section.content { padding:55px 0; }
+
+.section-title {
+    font-size:clamp(26px,3vw,36px);
+    line-height:1.4;
+    margin-bottom:10px;
+}
+
+.section-title span { color:var(--red); }
+
+.section-intro {
+    color:var(--muted);
+    max-width:1000px;
+    margin-bottom:28px;
+}
+
+.about-box {
+    width:100%;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-left:4px solid var(--red);
+    border-radius:4px;
+    padding:28px;
+}
+
+.about-box p {
+    color:#d0d0d0;
+    margin-bottom:14px;
+}
+
+.about-box p:last-child { margin-bottom:0; }
+
+.facts {
+    background:#171010;
+    border-top:1px solid #392020;
+    border-bottom:1px solid #392020;
+    padding:28px 4%;
+}
+
+.facts-grid {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:20px;
+    width:100%;
+}
+
+.fact { text-align:center; padding:10px; }
+
+.fact strong {
+    display:block;
+    color:var(--gold);
+    font-size:clamp(23px,3vw,32px);
+}
+
+.fact span { color:var(--muted); font-size:14px; }
+
+.grid {
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:20px;
+    width:100%;
+}
+
+.card {
+    min-width:0;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:4px;
+    padding:24px;
+    transition:.2s;
+}
+
+.card:hover {
+    border-color:var(--red);
+    transform:translateY(-3px);
+}
+
+.card-number {
+    color:var(--red);
+    font-size:28px;
+    font-weight:bold;
+}
+
+.card h3 {
+    color:var(--gold);
+    margin:8px 0;
+    font-size:19px;
+}
+
+.card p { color:var(--muted); font-size:14px; }
+
+.resource-link {
+    display:block;
+    width:100%;
+    padding:19px 22px;
+    margin-bottom:13px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:4px;
+    text-decoration:none;
+}
+
+.resource-link:hover { border-color:var(--gold); }
+.resource-link strong { color:var(--gold); }
+
+.resource-link span {
+    display:block;
+    color:var(--muted);
+    font-size:14px;
+}
+
+.notice {
+    width:100%;
+    background:#17150f;
+    border:1px solid #514222;
+    padding:20px;
+    margin-top:25px;
+    color:#d5c9aa;
+    font-size:14px;
+}
+
+.chapter-tools {
+    display:flex;
+    width:100%;
+    gap:15px;
+    margin:25px 0;
+}
+
+.chapter-tools input,
+.chapter-tools select {
+    min-width:0;
+    flex:1;
+    padding:14px 16px;
+    color:white;
+    background:#171717;
+    border:1px solid #414141;
+    border-radius:3px;
+    font-size:14px;
+    outline:none;
+}
+
+.chapter-tools input:focus,
+.chapter-tools select:focus { border-color:var(--gold); }
+
+.chapter-tools select option {
+    color:white;
+    background:#171717;
+}
+
+.directory-count {
+    color:var(--gold);
+    font-size:14px;
+    margin-bottom:18px;
+}
+
+.chapter-grid {
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:20px;
+    width:100%;
+}
+
+.chapter-card {
+    min-width:0;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-top:3px solid var(--red);
+    border-radius:4px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    transition:border-color .2s,transform .2s;
+}
+
+.chapter-card:hover {
+    border-color:var(--gold);
+    transform:translateY(-3px);
+}
+
+.chapter-label {
+    color:var(--red);
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.chapter-card h3 {
+    color:var(--text);
+    font-size:18px;
+    line-height:1.5;
+    margin:12px 0;
+}
+
+.section-range {
+    color:var(--gold);
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.chapter-description {
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.8;
+    flex:1;
+}
+
+.chapter-card a {
+    display:inline-block;
+    margin-top:18px;
+    color:var(--gold);
+    text-decoration:none;
+    font-size:13px;
+}
+
+.chapter-card a:hover { text-decoration:underline; }
+
+.empty-result {
+    display:none;
+    padding:25px;
+    color:var(--muted);
+    border:1px dashed var(--border);
+    text-align:center;
+}
+
+footer {
+    text-align:center;
+    background:#101010;
+    border-top:2px solid var(--red);
+    padding:30px 20px;
+    color:#aaa;
+    font-size:13px;
+}
+
+footer strong { color:var(--gold); }
+
+@media (min-width:1600px) {
+    .container { padding-left:3%; padding-right:3%; }
+
+    .grid,.chapter-grid {
+        grid-template-columns:repeat(5,minmax(0,1fr));
+        gap:22px;
+    }
+
+    .chapter-card { padding:25px; }
+}
+
+@media (max-width:1100px) {
+    .container { padding-left:3%; padding-right:3%; }
+
+    .grid,.chapter-grid {
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+}
+
+@media (max-width:700px) {
+    .container { padding-left:18px; padding-right:18px; }
+
+    .grid,.chapter-grid,.facts-grid {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:13px;
+    }
+
+    .hero { min-height:auto; padding:55px 18px; }
+    .hero h1 { letter-spacing:3px; }
+
+    .chapter-card,.card { padding:17px; }
+    .about-box { padding:20px; }
+    section.content { padding:42px 0; }
+    .chapter-tools { flex-direction:column; }
+
+    .chapter-tools input,.chapter-tools select {
+        width:100%;
+        flex:auto;
+    }
+}
+
+@media (max-width:480px) {
+    .grid,.chapter-grid,.facts-grid { grid-template-columns:1fr; }
+
+    header { padding:20px 12px; }
+
+    .tagline { font-size:10px; letter-spacing:2px; }
+
+    nav { gap:9px 15px; padding:12px; }
+    nav a { font-size:13px; }
+
+    .hero-label { letter-spacing:1px; font-size:10px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">BHARAT KANOON VIDHI HUB</div>
+    <div class="tagline">INDIAN LAW • LEGAL KNOWLEDGE • JUSTICE</div>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About IEA</a>
+    <a href="#features">Key Features</a>
+    <a href="#importance">Importance</a>
+    <a href="#resources">Legal Resources</a>
+    <a href="#chapters">Chapters & Sections</a>
+</nav>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="hero-label">HISTORICAL INDIAN LAW OF EVIDENCE</div>
+    <h1>IEA</h1>
+    <h2>Indian Evidence Act, 1872</h2>
+
+    <p>
+        Explore India's former law of evidence through an educational
+        guide to relevancy of facts, admissions, confessions, oral
+        and documentary evidence, burden of proof, estoppel and
+        examination of witnesses.
+    </p>
+
+    <div class="buttons">
+        <a class="btn" href="#about">Explore IEA</a>
+        <a class="btn btn-outline" href="#chapters">Browse Chapters</a>
+    </div>
+</section>
+
+<section class="content" id="about">
+<div class="container">
+    <h2 class="section-title">About <span>Indian Evidence Act</span></h2>
+    <p class="section-intro">
+        Understanding India's former legislation governing evidence.
+    </p>
+
+    <div class="about-box">
+        <p>
+            The <strong>Indian Evidence Act, 1872 (IEA)</strong>
+            was the principal legislation governing rules of evidence
+            in Indian judicial proceedings within its scope. It
+            established principles for determining the relevancy and
+            proof of facts in legal proceedings.
+        </p>
+
+        <p>
+            The Act was enacted as Act No. 1 of 1872 and came into
+            force on 1 September 1872. Its provisions addressed
+            relevancy of facts, admissions, confessions, oral evidence,
+            documentary evidence, burden of proof, estoppel and witnesses.
+        </p>
+
+        <p>
+            The Bharatiya Sakshya Adhiniyam, 2023 (BSA), Act No. 47
+            of 2023, replaced the Indian Evidence Act with effect from
+            1 July 2024, subject to applicable repeal, savings and
+            transitional provisions.
+        </p>
+
+        <p>
+            Bharat Kanoon Vidhi Hub provides this educational overview
+            to help students, researchers and readers understand the
+            historical structure of the Indian Evidence Act and
+            navigate its chapters and sections.
+        </p>
+    </div>
+</div>
+</section>
+
+<section class="facts">
+<div class="container facts-grid">
+    <div class="fact">
+        <strong>1872</strong>
+        <span>Year of enactment</span>
+    </div>
+    <div class="fact">
+        <strong>3</strong>
+        <span>Parts in the Act</span>
+    </div>
+    <div class="fact">
+        <strong>11</strong>
+        <span>Chapters in the Act</span>
+    </div>
+</div>
+</section>
+
+<section class="content" id="features">
+<div class="container">
+    <h2 class="section-title">Key Areas of <span>IEA</span></h2>
+    <p class="section-intro">
+        Major subjects covered by the former Indian law of evidence.
+    </p>
+
+    <div class="grid">
+        <article class="card">
+            <div class="card-number">01</div>
+            <h3>Relevancy of Facts</h3>
+            <p>Historical rules on facts in issue, relevant facts, connected transactions, motive, conduct and surrounding circumstances.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">02</div>
+            <h3>Admissions & Confessions</h3>
+            <p>Provisions concerning admissions, confessions, statements and their relevance in judicial proceedings.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">03</div>
+            <h3>Oral Evidence</h3>
+            <p>Rules concerning proof of facts by witnesses and the requirement that oral evidence generally be direct.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">04</div>
+            <h3>Documentary Evidence</h3>
+            <p>Historical rules on primary and secondary evidence, proof of document contents and documentary presumptions.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">05</div>
+            <h3>Burden of Proof</h3>
+            <p>Principles concerning the burden of proof, the person on whom it lies and statutory presumptions.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">06</div>
+            <h3>Witnesses</h3>
+            <p>Rules on competency of witnesses, privileges, examination, cross-examination and re-examination.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">07</div>
+            <h3>Expert Opinions</h3>
+            <p>Provisions concerning expert opinions and other opinions recognised as relevant under the historical Act.</p>
+        </article>
+
+        <article class="card">
+            <div class="card-number">08</div>
+            <h3>Estoppel</h3>
+            <p>Principles concerning estoppel and circumstances in which a person may be prevented from denying a represented fact.</p>
+        </article>
+    </div>
+</div>
+</section>
+
+<section class="content" id="importance">
+<div class="container">
+    <h2 class="section-title">Why Study the <span>IEA?</span></h2>
+
+    <div class="about-box">
+        <p>
+            Evidence law establishes rules for proving and evaluating
+            facts in judicial proceedings. The Indian Evidence Act
+            played a central role in determining the relevance and
+            admissibility of evidence in courts.
+        </p>
+
+        <p>
+            Studying the historical Act is useful for law students,
+            advocates, researchers and readers examining older cases,
+            legal principles and the development of evidence law.
+        </p>
+
+        <p>
+            The Indian Evidence Act should be studied alongside its
+            successor, the Bharatiya Sakshya Adhiniyam, 2023 (BSA),
+            the Bharatiya Nyaya Sanhita, 2023 (BNS), and the
+            Bharatiya Nagarik Suraksha Sanhita, 2023 (BNSS).
+            The applicable legislation depends on the relevant dates
+            and the governing repeal-and-savings provisions.
+        </p>
+    </div>
+</div>
+</section>
+
+<section class="content" id="resources">
+<div class="container">
+    <h2 class="section-title">Legal <span>Resources</span></h2>
+    <p class="section-intro">
+        Explore historical and current evidence and criminal law legislation.
+    </p>
+
+    <a class="resource-link"
+       href="bns-read.html">
+        <strong>Bharatiya Nyaya Sanhita (BNS) - 2023</strong>
+        <span>The Bharatiya Nyaya Sanhita, 2023, defines criminal offences and prescribes punishments under India's substantive criminal law framework. It addresses offences against individuals, property, public order, and the state, replacing the Indian Penal Code, 1860, subject to applicable legal provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="bnss-read.html">
+        <strong>Bharatiya Nagarik Suraksha Sanhita (BNSS) - 2023</strong>
+        <span>The Bharatiya Nagarik Suraksha Sanhita, 2023, establishes the procedural framework for criminal justice in India. It governs police investigations, arrests, bail, trials, inquiries, appeals, and related judicial processes, replacing the Code of Criminal Procedure, 1973, subject to applicable legal provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="bsa-read.html">
+        <strong>Bharatiya Sakshya Adhiniyam (BSA) - 2023</strong>
+        <span>The Bharatiya Sakshya Adhiniyam, 2023, establishes the legal framework governing evidence in judicial proceedings. It addresses the relevancy and admissibility of facts, documentary evidence, electronic records, witness testimony, and proof of facts, replacing the Indian Evidence Act, 1872, subject to applicable legal provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="ipc-read.html">
+        <strong>Indian Penal Code (IPC) - 1860</strong>
+        <span>The Indian Penal Code, 1860, was India's principal substantive criminal law legislation, defining numerous offences and prescribing their punishments. It covered offences involving the human body, property, public tranquillity, and other matters. It was replaced by the Bharatiya Nyaya Sanhita, 2023, subject to applicable transitional provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="crpc-read.html">
+        <strong>Code of Criminal Procedure (CrPC) - 1973</strong>
+        <span>The Code of Criminal Procedure, 1973, established the procedural framework for administering criminal justice in India. It governed investigations, arrests, bail, inquiries, trials, appeals, and revisions. It was replaced by the Bharatiya Nagarik Suraksha Sanhita, 2023, subject to applicable transitional provisions.</span>
+    </a>
+
+    <a class="resource-link"
+       href="iea-read.html">
+        <strong>Indian Evidence Act (IEA) - 1872</strong>
+        <span>The Indian Evidence Act, 1872, established the legal framework governing the admissibility and relevancy of evidence in Indian judicial proceedings. It addressed facts in issue, documentary evidence, witness examination, presumptions, and proof of facts. It was replaced by the Bharatiya Sakshya Adhiniyam, 2023, subject to applicable transitional provisions.</span>
+    </a>
+
+    <div class="notice">
+        <strong>Legal Disclaimer:</strong>
+        This website is for general educational and informational
+        purposes only and does not constitute legal advice.
+        The Indian Evidence Act is historical legislation. Verify
+        the applicable statutory text, repeal-and-savings provisions,
+        amendments and judicial decisions before relying on any section.
+    </div>
+</div>
+</section>
+
+<section class="content" id="chapters">
+<div class="container">
+
+    <h2 class="section-title">IEA <span>Chapters & Sections</span></h2>
+
+    <p class="section-intro">
+        Browse the 11 chapters of the Indian Evidence Act, 1872.
+        Search chapter titles, section ranges and subjects.
+        Descriptions are educational summaries.
+    </p>
+
+    <div class="chapter-tools">
+        <input id="chapterSearch"
+               type="search"
+               placeholder="Search chapter, section or subject..."
+               aria-label="Search Indian Evidence Act chapters">
+
+        <select id="chapterFilter" aria-label="Filter chapters">
+            <option value="all">All chapters</option>
+            <option value="1">Chapters 1–3</option>
+            <option value="2">Chapters 4–6</option>
+            <option value="3">Chapters 7–9</option>
+            <option value="4">Chapters 10–11</option>
+        </select>
+    </div>
+
+    <div class="directory-count" id="directoryCount" aria-live="polite">
+        Showing 11 chapters
+    </div>
+
+    <div class="chapter-grid" id="chapterGrid"></div>
+
+    <div class="empty-result" id="emptyResult">
+        No matching chapters found. Try another search.
+    </div>
+
+    <div class="notice">
+        <strong>Legal accuracy notice:</strong>
+        This directory is an educational navigation aid.
+        The Act was amended over time, and some provisions were
+        repealed or modified. Confirm chapter headings, section
+        ranges and the relevant historical statutory text against
+        an authoritative version before relying on it.
+    </div>
+
+    <div class="buttons">
+        <a class="btn"
+           href="indian-evidence-act-read.html">
+            Read Full Indian Evidence Act
+        </a>
+        <a class="btn btn-outline" href="#home">Back to Top</a>
+    </div>
+</div>
+</section>
+
+</main>
+
+<footer>
+    <strong>BHARAT KANOON VIDHI HUB</strong>
+    <p>Knowledge of Law • Awareness of Rights • Access to Justice</p>
+    <p>© 2026 Bharat Kanoon Vidhi Hub. Educational use.</p>
+</footer>
+
+<script>
+const chapters = [
+    {
+        n:1, group:1, label:"CHAPTER I",
+        title:"Preliminary",
+        range:"Sections 1–4",
+        description:"Introduces the Act, its short title, extent, commencement, interpretation and explanations of presumptions."
+    },
+    {
+        n:2, group:1, label:"CHAPTER II",
+        title:"Of the Relevancy of Facts",
+        range:"Sections 5–55",
+        description:"Covers facts in issue, relevant facts, admissions, confessions, statements, judgments, opinions, character and other matters relevant to proceedings."
+    },
+    {
+        n:3, group:1, label:"CHAPTER III",
+        title:"Facts Which Need Not Be Proved",
+        range:"Sections 56–58",
+        description:"Addresses facts of which courts take judicial notice and facts admitted by parties that need not ordinarily be proved."
+    },
+    {
+        n:4, group:2, label:"CHAPTER IV",
+        title:"Of Oral Evidence",
+        range:"Sections 59–60",
+        description:"Covers proof of facts by oral evidence and the requirement that oral evidence generally be direct."
+    },
+    {
+        n:5, group:2, label:"CHAPTER V",
+        title:"Of Documentary Evidence",
+        range:"Sections 61–90A",
+        description:"Addresses proof of documentary contents, primary and secondary evidence, proof of signatures and handwriting, and presumptions concerning documents."
+    },
+    {
+        n:6, group:2, label:"CHAPTER VI",
+        title:"Of the Exclusion of Oral Evidence by Documentary Evidence",
+        range:"Sections 91–100",
+        description:"Covers rules concerning documentary terms, oral agreements and the interpretation of documents in specified circumstances."
+    },
+    {
+        n:7, group:3, label:"CHAPTER VII",
+        title:"Of the Burden of Proof",
+        range:"Sections 101–114A",
+        description:"Explains the burden of proof, the persons on whom it lies, presumptions and specified evidentiary rules."
+    },
+    {
+        n:8, group:3, label:"CHAPTER VIII",
+        title:"Estoppel",
+        range:"Sections 115–117",
+        description:"Addresses estoppel, including specified relationships involving parties, tenants, licensees and other persons."
+    },
+    {
+        n:9, group:3, label:"CHAPTER IX",
+        title:"Of Witnesses",
+        range:"Sections 118–134",
+        description:"Covers competency of witnesses, privileged communications, accomplice evidence and the number of witnesses required for proof."
+    },
+    {
+        n:10, group:4, label:"CHAPTER X",
+        title:"Of the Examination of Witnesses",
+        range:"Sections 135–166",
+        description:"Addresses order and kinds of examination, cross-examination, leading questions, refreshing memory, corroboration and improper questions."
+    },
+    {
+        n:11, group:4, label:"CHAPTER XI",
+        title:"Of Improper Admission and Rejection of Evidence",
+        range:"Section 167",
+        description:"Addresses the effect of improper admission or rejection of evidence on a decision in proceedings, subject to the statutory rule."
+    }
+];
+
+const chapterGrid = document.getElementById("chapterGrid");
+const searchInput = document.getElementById("chapterSearch");
+const filterSelect = document.getElementById("chapterFilter");
+const directoryCount = document.getElementById("directoryCount");
+const emptyResult = document.getElementById("emptyResult");
+
+function renderChapters() {
+    chapterGrid.innerHTML = chapters.map(chapter => `
+        <article class="chapter-card"
+                 data-chapter="${chapter.n}"
+                 data-group="${chapter.group}">
+            <span class="chapter-label">${chapter.label}</span>
+
+            <h3>${chapter.title}</h3>
+
+            <p class="section-range">${chapter.range}</p>
+
+            <p class="chapter-description">${chapter.description}</p>
+
+            <a href="indian-evidence-act-read.html">
+                Read Act ↗
+            </a>
+        </article>
+    `).join("");
+
+    filterChapters();
+}
+
+function filterChapters() {
+    const query = searchInput.value.trim().toLowerCase();
+    const filter = filterSelect.value;
+    let visible = 0;
+
+    document.querySelectorAll(".chapter-card").forEach(card => {
+        const group = card.dataset.group;
+        const content = card.textContent.toLowerCase();
+
+        const matchesGroup = filter === "all" || group === filter;
+        const matchesSearch = content.includes(query);
+        const show = matchesGroup && matchesSearch;
+
+        card.style.display = show ? "flex" : "none";
+
+        if (show) visible++;
+    });
+
+    directoryCount.textContent =
+        `Showing ${visible} of ${chapters.length} chapters`;
+
+    emptyResult.style.display = visible === 0 ? "block" : "none";
+}
+
+searchInput.addEventListener("input", filterChapters);
+filterSelect.addEventListener("change", filterChapters);
+
+renderChapters();
+</script>
+
+</body>
+</html>
