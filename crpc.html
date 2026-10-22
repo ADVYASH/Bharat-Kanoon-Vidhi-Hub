@@ -474,6 +474,24 @@ footer strong { color: var(--gold); }
     <a href="#importance">Importance</a>
     <a href="#resources">Legal Resources</a>
     <a href="#chapters">Chapters & Sections</a>
+    <a href="pdf/crpc.pdf" target="_blank" class="download-btn">Download PDF</a>
+
+<style>
+.download-btn {
+    display: inline-block;
+    background-color: #e60000;
+    color: #ffffff;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #b30000;
+}
+</style>
 </nav>
 
 <main>
@@ -745,7 +763,7 @@ footer strong { color: var(--gold); }
 
     <div class="buttons">
         <a class="btn"
-           href="crpc-read.html">
+           href="pdf/crpc.pdf" target="_blank">
             Read Full CrPC Act
         </a>
         <a class="btn btn-outline" href="#home">Back to Top</a>
@@ -1017,10 +1035,6 @@ function renderChapters() {
             <p class="section-range">${chapter.range}</p>
 
             <p class="chapter-description">${chapter.description}</p>
-
-            <a href="crpc-read.html">
-                Read Act ↗
-            </a>
         </article>
     `).join("");
 
