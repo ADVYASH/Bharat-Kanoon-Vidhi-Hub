@@ -1,0 +1,1026 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bare Acts Library | Bharat Kanoon Vidhi Hub</title>
+
+<style>
+:root {
+    --bg: #090909;
+    --panel: #141414;
+    --panel2: #1b1b1b;
+    --red: #e50914;
+    --red-dark: #a80009;
+    --white: #f5f5f5;
+    --muted: #a3a3a3;
+    --border: #303030;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background: #101010;
+    border-bottom: 2px solid var(--red);
+    padding: 20px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    max-width: 1450px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+.brand span {
+    color: var(--red);
+}
+
+.brand small {
+    display: block;
+    color: #aaa;
+    font-size: 11px;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+.header-tag {
+    color: #ddd;
+    font-size: 13px;
+    border: 1px solid #393939;
+    padding: 7px 12px;
+    border-radius: 5px;
+}
+
+.hero {
+    padding: 65px 20px 45px;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at top, #3a090b 0%, #151010 38%, #090909 75%);
+    border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+    font-size: clamp(30px, 5vw, 52px);
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.hero h1 span {
+    color: var(--red);
+}
+
+.hero p {
+    color: #c2c2c2;
+    max-width: 760px;
+    margin: auto;
+    font-size: 15px;
+}
+
+.hero-label {
+    display: inline-block;
+    color: #ff777d;
+    border: 1px solid #692025;
+    background: #250b0d;
+    border-radius: 30px;
+    padding: 6px 15px;
+    font-size: 12px;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+}
+
+.container {
+    width: 92%;
+    max-width: 1450px;
+    margin: 35px auto 60px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    padding: 17px 20px;
+    border-radius: 7px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 27px;
+    color: white;
+}
+
+.stat span {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.toolbar {
+    background: var(--panel);
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.toolbar h2 {
+    font-size: 19px;
+    margin-bottom: 14px;
+}
+
+.search-row {
+    display: flex;
+    gap: 10px;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+}
+
+.search-box span {
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    color: #aaa;
+    font-size: 18px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 14px 15px 14px 43px;
+    background: #080808;
+    border: 1px solid #444;
+    border-radius: 6px;
+    outline: none;
+    color: white;
+    font-size: 15px;
+}
+
+#searchInput:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 2px #e5091425;
+}
+
+button, select {
+    font-family: inherit;
+}
+
+.search-btn, .reset-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.search-btn {
+    background: var(--red);
+    color: white;
+}
+
+.search-btn:hover, .download-btn:hover {
+    background: var(--red-dark);
+}
+
+.reset-btn {
+    background: #292929;
+    color: white;
+    border: 1px solid #444;
+}
+
+.reset-btn:hover {
+    background: #393939;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 17px;
+}
+
+.filter-btn {
+    padding: 8px 13px;
+    border: 1px solid #393939;
+    border-radius: 5px;
+    background: #1b1b1b;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--red);
+    color: white;
+    border-color: var(--red);
+}
+
+.results-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 27px 0 17px;
+    flex-wrap: wrap;
+}
+
+.results-bar h2 {
+    font-size: 23px;
+}
+
+#resultCount {
+    color: #ff666d;
+    font-size: 13px;
+}
+
+.sort-select {
+    background: #171717;
+    color: white;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.acts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.act-card {
+    background: linear-gradient(145deg, #191919, #101010);
+    border: 1px solid #303030;
+    border-radius: 9px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.act-card:hover {
+    border-color: var(--red);
+    transform: translateY(-3px);
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 13px;
+}
+
+.act-number {
+    font-size: 12px;
+    color: #ff777d;
+    font-weight: bold;
+}
+
+.act-category {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #bbb;
+    border: 1px solid #383838;
+    padding: 4px 7px;
+    border-radius: 4px;
+}
+
+.act-card h3 {
+    font-size: 17px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+}
+
+.act-card p {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 18px;
+    flex: 1;
+}
+
+.status {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 10px;
+    color: #ffb7b7;
+    background: #321012;
+    border: 1px solid #5a2528;
+    padding: 4px 7px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.download-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: var(--red);
+    color: white;
+    padding: 11px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.download-btn span {
+    margin-right: 6px;
+}
+
+.no-results {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    border: 1px dashed #444;
+    border-radius: 8px;
+    color: #aaa;
+    margin-top: 20px;
+}
+
+.no-results h3 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.note {
+    background: #171313;
+    border: 1px solid #492326;
+    border-left: 4px solid var(--red);
+    border-radius: 6px;
+    padding: 18px;
+    margin-top: 35px;
+    font-size: 13px;
+    color: #c8c8c8;
+}
+
+.note strong {
+    color: #ff777d;
+}
+
+footer {
+    border-top: 1px solid #333;
+    background: #101010;
+    padding: 28px 5%;
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+}
+
+footer strong {
+    color: white;
+}
+
+footer span {
+    color: var(--red);
+}
+
+footer p + p {
+    margin-top: 6px;
+}
+
+.back-top {
+    display: inline-block;
+    margin-top: 14px;
+    color: white;
+    background: #252525;
+    border: 1px solid #444;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+    .acts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 15px 4%;
+    }
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .header-tag {
+        display: none;
+    }
+
+    .hero {
+        padding: 45px 18px 35px;
+    }
+
+    .container {
+        width: 94%;
+        margin-top: 22px;
+    }
+
+    .stats {
+        gap: 8px;
+    }
+
+    .stat {
+        padding: 12px 9px;
+    }
+
+    .stat strong {
+        font-size: 21px;
+    }
+
+    .stat span {
+        font-size: 9px;
+    }
+
+    .toolbar {
+        padding: 15px;
+    }
+
+    .search-row {
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        flex-basis: 100%;
+    }
+
+    .search-btn, .reset-btn {
+        flex: 1;
+    }
+
+    .acts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .act-card {
+        padding: 17px;
+    }
+
+    .results-bar h2 {
+        font-size: 19px;
+    }
+}
+
+@media print {
+    header {
+        position: static;
+    }
+
+    .toolbar, .download-btn, .back-top, .sort-select {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .act-card, .stat {
+        background: white;
+        color: black;
+        border: 1px solid #999;
+        break-inside: avoid;
+    }
+
+    .act-card h3, .stat strong {
+        color: black;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header id="top">
+    <div class="header-inner">
+        <div class="brand">
+            BHARAT <span>KANOON</span>
+            <small>VIDHI HUB · LEGAL RESOURCE CENTRE</small>
+        </div>
+        <div class="header-tag">BARE ACTS DOWNLOAD LIBRARY</div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-label">INDIAN LEGAL RESOURCE LIBRARY</div>
+    <h1>Bare Acts <span>Library</span></h1>
+    <p>
+        Explore and download important Indian Bare Acts covering criminal law,
+        constitutional law, civil law, family law, corporate law, taxation,
+        labour law and other legal subjects.
+    </p>
+</section>
+
+<main class="container">
+
+    <section class="stats">
+        <div class="stat">
+            <strong id="totalActs">100</strong>
+            <span>Listed Entries</span>
+        </div>
+        <div class="stat">
+            <strong id="visibleActs">100</strong>
+            <span>Matching Results</span>
+        </div>
+        <div class="stat">
+            <strong>08</strong>
+            <span>Legal Categories</span>
+        </div>
+    </section>
+
+    <section class="toolbar">
+        <h2>Search Bare Acts</h2>
+
+        <div class="search-row">
+            <div class="search-box">
+                <span>⌕</span>
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search by Act name, abbreviation, year or keyword..."
+                    aria-label="Search Bare Acts"
+                    autocomplete="off"
+                >
+            </div>
+            <button class="search-btn" id="searchBtn" type="button">
+                Search
+            </button>
+            <button class="reset-btn" id="resetBtn" type="button">
+                Reset
+            </button>
+        </div>
+
+        <div class="filters" id="filters">
+            <button class="filter-btn active" data-category="All">All Acts</button>
+            <button class="filter-btn" data-category="Criminal Law">Criminal Law</button>
+            <button class="filter-btn" data-category="Constitutional & Civil">Constitutional & Civil</button>
+            <button class="filter-btn" data-category="Family Law">Family Law</button>
+            <button class="filter-btn" data-category="Property & Land">Property & Land</button>
+            <button class="filter-btn" data-category="Corporate & Banking">Corporate & Banking</button>
+            <button class="filter-btn" data-category="Labour & Employment">Labour & Employment</button>
+            <button class="filter-btn" data-category="Taxation & Economic">Taxation & Economic</button>
+            <button class="filter-btn" data-category="Cyber & Regulatory">Cyber & Regulatory</button>
+            
+<button class="filter-btn" data-category="Administrative & Governance">Administrative & Governance</button>
+<button class="filter-btn" data-category="Education & Social Welfare">Education & Social Welfare</button>
+<button class="filter-btn" data-category="Health & Food Safety">Health & Food Safety</button>
+<button class="filter-btn" data-category="Agriculture & Environment">Agriculture & Environment</button>
+<button class="filter-btn" data-category="Transport & Energy">Transport & Energy</button>
+<button class="filter-btn" data-category="Insurance & Specialized">Insurance & Specialized</button>
+<button class="filter-btn" data-category="Elections & Citizenship">Elections & Citizenship</button>
+
+        </div>
+    </section>
+
+    <div class="results-bar">
+        <div>
+            <h2>Available Bare Acts</h2>
+            <div id="resultCount">Showing 100 entries</div>
+        </div>
+
+        <select class="sort-select" id="sortSelect" aria-label="Sort Bare Acts">
+            <option value="serial">Sort: Serial Number</option>
+            <option value="az">Sort: A to Z</option>
+            <option value="za">Sort: Z to A</option>
+        </select>
+    </div>
+
+    <section class="acts-grid" id="actsGrid" aria-live="polite"></section>
+
+    <section class="no-results" id="noResults">
+        <h3>No Bare Acts Found</h3>
+        <p>Try another Act name, abbreviation, year or category.</p>
+        <button class="reset-btn" type="button" onclick="resetSearch()" style="margin-top:18px">
+            Show All Acts
+        </button>
+    </section>
+
+    <section class="note">
+        <strong>Legal information notice:</strong>
+        This library is a reference index and is not an official government
+        publication. Always verify the applicable Act, amendments, commencement
+        notifications and current legal status. The BNS, BNSS and BSA came into
+        force on 1 July 2024. The IPC, CrPC and Indian Evidence Act are retained
+        here for historical research and comparison. Some entries in this
+        curated list repeat the same Act under different subject categories.
+        Download links work when the corresponding PDF files are placed in the
+        designated folder.
+    </section>
+
+</main>
+
+<footer>
+    <p><strong>BHARAT <span>KANOON</span> VIDHI HUB</strong></p>
+    <p>Indian Bare Acts · Legal Research · Statutory Reference Library</p>
+    <p>For educational and legal research purposes.</p>
+    <a href="#top" class="back-top">↑ Back to Top</a>
+</footer>
+
+<script>
+const acts = [
+    // 1. Criminal law and procedure
+    {n:1, name:"Bharatiya Nyaya Sanhita (BNS), 2023", c:"Criminal Law", f:"bns.pdf", d:"India's principal substantive criminal law covering offences and punishments."},
+    {n:2, name:"Bharatiya Nagarik Suraksha Sanhita (BNSS), 2023", c:"Criminal Law", f:"bnss.pdf", d:"Criminal procedure, investigation, inquiry, trial and related processes."},
+    {n:3, name:"Bharatiya Sakshya Adhiniyam (BSA), 2023", c:"Criminal Law", f:"bsa.pdf", d:"Rules concerning evidence and its admissibility in judicial proceedings."},
+    {n:4, name:"Indian Penal Code (IPC), 1860", c:"Criminal Law", f:"ipc.pdf", d:"Historical criminal code retained for research and comparison.", old:true},
+    {n:5, name:"Code of Criminal Procedure (CrPC), 1973", c:"Criminal Law", f:"crpc.pdf", d:"Former framework for criminal procedure, investigation and trials.", old:true},
+    {n:6, name:"Indian Evidence Act, 1872", c:"Criminal Law", f:"iea.pdf", d:"Former statutory framework governing evidence in judicial proceedings.", old:true},
+    {n:7, name:"Protection of Children from Sexual Offences Act, 2012 (POCSO)", c:"Criminal Law", f:"pocso.pdf", d:"Protection of children against sexual offences."},
+    {n:8, name:"Juvenile Justice (Care and Protection of Children) Act, 2015", c:"Criminal Law", f:"juvenile-justice-act.pdf", d:"Law relating to children in conflict with law and children in need of care."},
+    {n:9, name:"Prevention of Corruption Act, 1988", c:"Criminal Law", f:"prevention-of-corruption-act.pdf", d:"Offences relating to corruption and public servants."},
+    {n:10, name:"Unlawful Activities (Prevention) Act, 1967", c:"Criminal Law", f:"uapa.pdf", d:"Law addressing unlawful activities and specified terrorist activities."},
+    {n:11, name:"Narcotic Drugs and Psychotropic Substances Act, 1985", c:"Criminal Law", f:"ndps-act.pdf", d:"Regulation and offences concerning narcotic drugs and psychotropic substances."},
+    {n:12, name:"Prevention of Money Laundering Act, 2002", c:"Criminal Law", f:"pmla.pdf", d:"Legal framework addressing money laundering and proceeds of crime."},
+    {n:13, name:"Arms Act, 1959", c:"Criminal Law", f:"arms-act.pdf", d:"Regulation of arms and ammunition."},
+    {n:14, name:"Explosives Act, 1884", c:"Criminal Law", f:"explosives-act.pdf", d:"Law regulating explosives and related safety requirements."},
+    {n:15, name:"Probation of Offenders Act, 1958", c:"Criminal Law", f:"probation-of-offenders-act.pdf", d:"Provides for release on probation or after admonition in eligible cases."},
+
+    // 2. Constitutional and civil law
+    {n:16, name:"Constitution of India", c:"Constitutional & Civil", f:"constitution-of-india.pdf", d:"The supreme law establishing India's governmental framework and fundamental rights."},
+    {n:17, name:"Code of Civil Procedure, 1908 (CPC)", c:"Constitutional & Civil", f:"cpc.pdf", d:"Procedural framework for civil litigation and court proceedings."},
+    {n:18, name:"Limitation Act, 1963", c:"Constitutional & Civil", f:"limitation-act.pdf", d:"Time limits for suits, appeals and applications."},
+    {n:19, name:"Specific Relief Act, 1963", c:"Constitutional & Civil", f:"specific-relief-act.pdf", d:"Remedies including specific performance and injunctions."},
+    {n:20, name:"Indian Contract Act, 1872", c:"Constitutional & Civil", f:"indian-contract-act.pdf", d:"General principles governing contracts and contractual obligations."},
+    {n:21, name:"Transfer of Property Act, 1882", c:"Constitutional & Civil", f:"transfer-of-property-act.pdf", d:"Legal rules concerning transfers of property."},
+    {n:22, name:"Registration Act, 1908", c:"Constitutional & Civil", f:"registration-act.pdf", d:"Registration of specified documents and instruments."},
+    {n:23, name:"Indian Easements Act, 1882", c:"Constitutional & Civil", f:"indian-easements-act.pdf", d:"Rights of easement over another person's property."},
+    {n:24, name:"Partition Act, 1893", c:"Constitutional & Civil", f:"partition-act.pdf", d:"Certain legal rules concerning partition of property."},
+    {n:25, name:"Sale of Goods Act, 1930", c:"Constitutional & Civil", f:"sale-of-goods-act.pdf", d:"Legal principles relating to contracts for the sale of goods."},
+    {n:26, name:"Negotiable Instruments Act, 1881", c:"Constitutional & Civil", f:"negotiable-instruments-act.pdf", d:"Law concerning negotiable instruments, including cheque-related provisions."},
+    {n:27, name:"Arbitration and Conciliation Act, 1996", c:"Constitutional & Civil", f:"arbitration-and-conciliation-act.pdf", d:"Framework for arbitration, conciliation and enforcement of awards."},
+    {n:28, name:"Commercial Courts Act, 2015", c:"Constitutional & Civil", f:"commercial-courts-act.pdf", d:"Establishment and jurisdiction of commercial courts."},
+    {n:29, name:"Legal Services Authorities Act, 1987", c:"Constitutional & Civil", f:"legal-services-authorities-act.pdf", d:"Legal services institutions and statutory legal aid mechanisms."},
+    {n:30, name:"Court-fees Act, 1870", c:"Constitutional & Civil", f:"court-fees-act.pdf", d:"Court fees in jurisdictions where this Act applies."},
+
+    // 3. Family and personal laws
+    {n:31, name:"Hindu Marriage Act, 1955", c:"Family Law", f:"hindu-marriage-act.pdf", d:"Marriage and matrimonial remedies under Hindu personal law."},
+    {n:32, name:"Hindu Succession Act, 1956", c:"Family Law", f:"hindu-succession-act.pdf", d:"Inheritance and succession under Hindu law."},
+    {n:33, name:"Hindu Adoptions and Maintenance Act, 1956", c:"Family Law", f:"hindu-adoptions-and-maintenance-act.pdf", d:"Adoption and maintenance under Hindu personal law."},
+    {n:34, name:"Hindu Minority and Guardianship Act, 1956", c:"Family Law", f:"hindu-minority-and-guardianship-act.pdf", d:"Rules relating to minority and guardianship under Hindu law."},
+    {n:35, name:"Special Marriage Act, 1954", c:"Family Law", f:"special-marriage-act.pdf", d:"Civil marriage and related matrimonial provisions."},
+    {n:36, name:"Indian Divorce Act, 1869", c:"Family Law", f:"indian-divorce-act.pdf", d:"Divorce and matrimonial relief under the applicable statutory framework."},
+    {n:37, name:"Guardians and Wards Act, 1890", c:"Family Law", f:"guardians-and-wards-act.pdf", d:"Court appointment and supervision of guardians of minors."},
+    {n:38, name:"Family Courts Act, 1984", c:"Family Law", f:"family-courts-act.pdf", d:"Establishment and jurisdiction of family courts."},
+    {n:39, name:"Protection of Women from Domestic Violence Act, 2005", c:"Family Law", f:"domestic-violence-act.pdf", d:"Civil protection and relief for women affected by domestic violence."},
+    {n:40, name:"Dowry Prohibition Act, 1961", c:"Family Law", f:"dowry-prohibition-act.pdf", d:"Prohibition of giving, taking and demanding dowry."},
+
+    // 4. Property, land and real estate
+    {n:41, name:"Real Estate (Regulation and Development) Act, 2016 (RERA)", c:"Property & Land", f:"rera.pdf", d:"Real estate regulation, project registration and homebuyer protections."},
+    {n:42, name:"Right to Fair Compensation and Transparency in Land Acquisition, Rehabilitation and Resettlement Act, 2013", c:"Property & Land", f:"land-acquisition-act-2013.pdf", d:"Land acquisition, compensation, rehabilitation and resettlement."},
+    {n:43, name:"Registration of Births and Deaths Act, 1969", c:"Property & Land", f:"registration-of-births-and-deaths-act.pdf", d:"Statutory registration of births and deaths."},
+    {n:44, name:"Indian Stamp Act, 1899", c:"Property & Land", f:"indian-stamp-act.pdf", d:"Stamp duties on instruments under the applicable law."},
+    {n:45, name:"Transfer of Property Act, 1882", c:"Property & Land", f:"transfer-of-property-act.pdf", d:"Property transfers, including sales, mortgages, leases and gifts."},
+    {n:46, name:"Specific Relief Act, 1963", c:"Property & Land", f:"specific-relief-act.pdf", d:"Specific civil remedies, including eligible property-related relief."},
+    {n:47, name:"Easements Act, 1882", c:"Property & Land", f:"easements-act.pdf", d:"Easements and related property rights."},
+    {n:48, name:"Public Premises (Eviction of Unauthorised Occupants) Act, 1971", c:"Property & Land", f:"public-premises-eviction-act.pdf", d:"Eviction and related procedures concerning public premises."},
+    {n:49, name:"SARFAESI Act, 2002", c:"Property & Land", f:"sarfaesi-act.pdf", d:"Enforcement of security interests and specified debt recovery mechanisms."},
+    {n:50, name:"Prohibition of Benami Property Transactions Act, 1988", c:"Property & Land", f:"benami-property-act.pdf", d:"Prohibition and consequences of benami property transactions."},
+
+    // 5. Corporate, banking and commercial law
+    {n:51, name:"Companies Act, 2013", c:"Corporate & Banking", f:"companies-act.pdf", d:"Company incorporation, governance, management and statutory compliance."},
+    {n:52, name:"Limited Liability Partnership Act, 2008", c:"Corporate & Banking", f:"llp-act.pdf", d:"Formation, operation and regulation of limited liability partnerships."},
+    {n:53, name:"Insolvency and Bankruptcy Code, 2016 (IBC)", c:"Corporate & Banking", f:"ibc.pdf", d:"Insolvency resolution and bankruptcy framework for eligible entities."},
+    {n:54, name:"Competition Act, 2002", c:"Corporate & Banking", f:"competition-act.pdf", d:"Competition regulation and prohibition of specified anti-competitive practices."},
+    {n:55, name:"Consumer Protection Act, 2019", c:"Corporate & Banking", f:"consumer-protection-act.pdf", d:"Consumer rights, remedies, commissions and consumer dispute resolution."},
+    {n:56, name:"Indian Partnership Act, 1932", c:"Corporate & Banking", f:"indian-partnership-act.pdf", d:"Rights and duties of partners and regulation of partnerships."},
+    {n:57, name:"Banking Regulation Act, 1949", c:"Corporate & Banking", f:"banking-regulation-act.pdf", d:"Regulatory framework for banking companies."},
+    {n:58, name:"Reserve Bank of India Act, 1934", c:"Corporate & Banking", f:"rbi-act.pdf", d:"Statutory framework for the Reserve Bank of India."},
+    {n:59, name:"Negotiable Instruments Act, 1881", c:"Corporate & Banking", f:"negotiable-instruments-act.pdf", d:"Negotiable instruments and specified commercial payment obligations."},
+    {n:60, name:"Securities and Exchange Board of India Act, 1992", c:"Corporate & Banking", f:"sebi-act.pdf", d:"Powers and functions of the securities market regulator."},
+    {n:61, name:"Depositories Act, 1996", c:"Corporate & Banking", f:"depositories-act.pdf", d:"Legal framework for depositories and securities held in dematerialised form."},
+    {n:62, name:"Factoring Regulation Act, 2011", c:"Corporate & Banking", f:"factoring-regulation-act.pdf", d:"Regulation of factoring businesses and assignment of receivables."},
+    {n:63, name:"Micro, Small and Medium Enterprises Development Act, 2006", c:"Corporate & Banking", f:"msmed-act.pdf", d:"Development of MSMEs and statutory provisions on delayed payments."},
+    {n:64, name:"Foreign Exchange Management Act, 1999 (FEMA)", c:"Corporate & Banking", f:"fema.pdf", d:"Foreign exchange transactions and cross-border payment regulation."},
+    {n:65, name:"Payment and Settlement Systems Act, 2007", c:"Corporate & Banking", f:"payment-and-settlement-systems-act.pdf", d:"Regulation and supervision of payment systems in India."},
+
+    // 6. Labour and employment law
+    {n:66, name:"Code on Wages, 2019", c:"Labour & Employment", f:"code-on-wages-2019.pdf", d:"Wages, minimum wages, payment of wages and related provisions."},
+    {n:67, name:"Industrial Relations Code, 2020", c:"Labour & Employment", f:"industrial-relations-code-2020.pdf", d:"Industrial relations, trade unions and employment dispute provisions."},
+    {n:68, name:"Code on Social Security, 2020", c:"Labour & Employment", f:"code-on-social-security-2020.pdf", d:"Social security provisions for eligible workers and employees."},
+    {n:69, name:"Occupational Safety, Health and Working Conditions Code, 2020", c:"Labour & Employment", f:"osh-code-2020.pdf", d:"Workplace safety, health and working conditions."},
+    {n:70, name:"Employees' Provident Funds and Miscellaneous Provisions Act, 1952", c:"Labour & Employment", f:"epf-act.pdf", d:"Provident fund and related statutory employee benefit provisions."},
+    {n:71, name:"Employees' State Insurance Act, 1948", c:"Labour & Employment", f:"esi-act.pdf", d:"Social insurance and specified benefits for covered employees."},
+    {n:72, name:"Payment of Gratuity Act, 1972", c:"Labour & Employment", f:"payment-of-gratuity-act.pdf", d:"Statutory gratuity benefits for eligible employees."},
+    {n:73, name:"Maternity Benefit Act, 1961", c:"Labour & Employment", f:"maternity-benefit-act.pdf", d:"Maternity benefits and related employment protections."},
+    {n:74, name:"Apprentices Act, 1961", c:"Labour & Employment", f:"apprentices-act.pdf", d:"Regulation of apprenticeship training and obligations."},
+    {n:75, name:"Sexual Harassment of Women at Workplace Act, 2013", c:"Labour & Employment", f:"posh-act.pdf", d:"Prevention, prohibition and redressal of workplace sexual harassment."},
+
+    // 7. Taxation and economic laws
+    {n:76, name:"Income-tax Act, 1961", c:"Taxation & Economic", f:"income-tax-act-1961.pdf", d:"Historical and applicable tax-year reference; verify replacement legislation and commencement.", old:true},
+    {n:77, name:"Central Goods and Services Tax Act, 2017 (CGST)", c:"Taxation & Economic", f:"cgst-act.pdf", d:"Central GST framework for covered supplies of goods and services."},
+    {n:78, name:"Integrated Goods and Services Tax Act, 2017 (IGST)", c:"Taxation & Economic", f:"igst-act.pdf", d:"Integrated GST provisions, including inter-State supplies."},
+    {n:79, name:"Customs Act, 1962", c:"Taxation & Economic", f:"customs-act.pdf", d:"Customs law governing imports, exports and customs procedures."},
+    {n:80, name:"Central Sales Tax Act, 1956", c:"Taxation & Economic", f:"central-sales-tax-act.pdf", d:"Central sales tax framework, subject to current applicability."},
+    {n:81, name:"Black Money (Undisclosed Foreign Income and Assets) and Imposition of Tax Act, 2015", c:"Taxation & Economic", f:"black-money-act.pdf", d:"Tax provisions relating to specified undisclosed foreign income and assets."},
+    {n:82, name:"Prohibition of Benami Property Transactions Act, 1988", c:"Taxation & Economic", f:"benami-property-act.pdf", d:"Prohibitions and enforcement provisions for benami property transactions."},
+    {n:83, name:"Fugitive Economic Offenders Act, 2018", c:"Taxation & Economic", f:"fugitive-economic-offenders-act.pdf", d:"Specified proceedings concerning fugitive economic offenders."},
+    {n:84, name:"Foreign Contribution (Regulation) Act, 2010 (FCRA)", c:"Taxation & Economic", f:"fcra.pdf", d:"Regulation of foreign contributions and related activities."},
+    {n:85, name:"Essential Commodities Act, 1955", c:"Taxation & Economic", f:"essential-commodities-act.pdf", d:"Control of specified essential commodities and related measures."},
+
+    // 8. Cyber, human rights and regulatory laws
+    {n:86, name:"Information Technology Act, 2000 (IT Act)", c:"Cyber & Regulatory", f:"it-act.pdf", d:"Electronic records, digital signatures and specified cyber offences."},
+    {n:87, name:"Digital Personal Data Protection Act, 2023 (DPDP)", c:"Cyber & Regulatory", f:"dpdp-act.pdf", d:"Statutory framework for digital personal data protection; check commencement."},
+    {n:88, name:"Right to Information Act, 2005 (RTI)", c:"Cyber & Regulatory", f:"rti-act.pdf", d:"Access to information held by covered public authorities."},
+    {n:89, name:"Protection of Human Rights Act, 1993", c:"Cyber & Regulatory", f:"protection-of-human-rights-act.pdf", d:"National and State Human Rights Commissions and related provisions."},
+    {n:90, name:"Environment (Protection) Act, 1986", c:"Cyber & Regulatory", f:"environment-protection-act.pdf", d:"Environmental protection and central government powers under the Act."},
+    {n:91, name:"Wild Life (Protection) Act, 1972", c:"Cyber & Regulatory", f:"wildlife-protection-act.pdf", d:"Protection of wild animals, birds and plants under the statute."},
+    {n:92, name:"Air (Prevention and Control of Pollution) Act, 1981", c:"Cyber & Regulatory", f:"air-pollution-act.pdf", d:"Prevention and control of air pollution."},
+    {n:93, name:"Water (Prevention and Control of Pollution) Act, 1974", c:"Cyber & Regulatory", f:"water-pollution-act.pdf", d:"Prevention and control of water pollution."},
+    {n:94, name:"Copyright Act, 1957", c:"Cyber & Regulatory", f:"copyright-act.pdf", d:"Copyright protection and related rights and remedies."},
+    {n:95, name:"Trade Marks Act, 1999", c:"Cyber & Regulatory", f:"trade-marks-act.pdf", d:"Registration and protection of trade marks."},
+    {n:96, name:"Patents Act, 1970", c:"Cyber & Regulatory", f:"patents-act.pdf", d:"Patent protection, grant and related statutory provisions."},
+    {n:97, name:"Designs Act, 2000", c:"Cyber & Regulatory", f:"designs-act.pdf", d:"Registration and protection of industrial designs."},
+    {n:98, name:"Motor Vehicles Act, 1988", c:"Cyber & Regulatory", f:"motor-vehicles-act.pdf", d:"Motor vehicle licensing, registration, traffic and liability provisions."},
+    {n:99, name:"Right of Children to Free and Compulsory Education Act, 2009", c:"Cyber & Regulatory", f:"right-to-education-act.pdf", d:"Free and compulsory elementary education for eligible children."},
+    {n:100, name:"Representation of the People Act, 1951", c:"Cyber & Regulatory", f:"representation-of-the-people-act.pdf", d:"Election qualifications, disqualifications and specified electoral offences."},
+
+    
+    // 9. Criminal justice and public order
+    {n:101,name:"Probation of Offenders Act, 1958",c:"Criminal Law",f:"probation-of-offenders-act.pdf",d:"Probation and related treatment of eligible offenders."},
+    {n:102,name:"Extradition Act, 1962",c:"Criminal Law",f:"extradition-act.pdf",d:"Extradition of persons under the applicable legal framework."},
+    {n:103,name:"Prisoners Act, 1900",c:"Criminal Law",f:"prisoners-act-1900.pdf",d:"Statutory provisions relating to prisoners; verify applicable amendments."},
+    {n:104,name:"Identification of Prisoners Act, 1920",c:"Criminal Law",f:"identification-of-prisoners-act-1920.pdf",d:"Historical legislation concerning identification of specified persons; verify current status."},
+    {n:105,name:"Prisoners (Attendance in Courts) Act, 1955",c:"Criminal Law",f:"prisoners-attendance-in-courts-act.pdf",d:"Attendance of prisoners before courts under statutory procedures."},
+    {n:106,name:"Transfer of Prisoners Act, 1950",c:"Criminal Law",f:"transfer-of-prisoners-act.pdf",d:"Transfer of prisoners between specified jurisdictions."},
+    {n:107,name:"Whistle Blowers Protection Act, 2014",c:"Criminal Law",f:"whistle-blowers-protection-act.pdf",d:"Legislation concerning disclosures of corruption and related misconduct; verify commencement."},
+    {n:108,name:"National Investigation Agency Act, 2008",c:"Criminal Law",f:"nia-act.pdf",d:"Establishment and powers of the National Investigation Agency."},
+    {n:109,name:"Delhi Special Police Establishment Act, 1946",c:"Criminal Law",f:"dspe-act.pdf",d:"Statutory framework for the Delhi Special Police Establishment."},
+    {n:110,name:"Criminal Law Amendment Act, 1908",c:"Criminal Law",f:"criminal-law-amendment-act-1908.pdf",d:"Historical criminal law legislation; check amendments and present applicability."},
+    {n:111,name:"Criminal Law Amendment Act, 1932",c:"Criminal Law",f:"criminal-law-amendment-act-1932.pdf",d:"Historical criminal law amendment legislation."},
+    {n:112,name:"Prevention of Insults to National Honour Act, 1971",c:"Criminal Law",f:"prevention-of-insults-to-national-honour-act.pdf",d:"Protection of national symbols and specified expressions of national honour."},
+    {n:113,name:"Religious Institutions (Prevention of Misuse) Act, 1988",c:"Criminal Law",f:"religious-institutions-prevention-of-misuse-act.pdf",d:"Prevention of specified misuse of religious institutions."},
+    {n:114,name:"Places of Worship (Special Provisions) Act, 1991",c:"Criminal Law",f:"places-of-worship-act.pdf",d:"Statutory provisions concerning the religious character of places of worship."},
+    {n:115,name:"Protection of Civil Rights Act, 1955",c:"Criminal Law",f:"protection-of-civil-rights-act.pdf",d:"Penalties and protections relating to the practice of untouchability."},
+
+    // 10. Administrative and governance law
+    {n:116,name:"Administrative Tribunals Act, 1985",c:"Administrative & Governance",f:"administrative-tribunals-act.pdf",d:"Administrative tribunals and adjudication of specified service matters."},
+    {n:117,name:"Central Vigilance Commission Act, 2003",c:"Administrative & Governance",f:"central-vigilance-commission-act.pdf",d:"Statutory status and functions of the Central Vigilance Commission."},
+    {n:118,name:"Lokpal and Lokayuktas Act, 2013",c:"Administrative & Governance",f:"lokpal-and-lokayuktas-act.pdf",d:"Establishment of Lokpal and framework for Lokayuktas."},
+    {n:119,name:"Official Secrets Act, 1923",c:"Administrative & Governance",f:"official-secrets-act.pdf",d:"Provisions concerning specified official secrets and related offences."},
+    {n:120,name:"General Clauses Act, 1897",c:"Administrative & Governance",f:"general-clauses-act.pdf",d:"General rules for interpretation of Central legislation."},
+    {n:121,name:"Commissions of Inquiry Act, 1952",c:"Administrative & Governance",f:"commissions-of-inquiry-act.pdf",d:"Appointment and powers of commissions of inquiry."},
+    {n:122,name:"Public Records Act, 1993",c:"Administrative & Governance",f:"public-records-act.pdf",d:"Management, preservation and control of public records."},
+    {n:123,name:"Public Liability Insurance Act, 1991",c:"Administrative & Governance",f:"public-liability-insurance-act.pdf",d:"Immediate relief relating to specified accidents involving hazardous substances."},
+    {n:124,name:"Government of Union Territories Act, 1963",c:"Administrative & Governance",f:"government-of-union-territories-act.pdf",d:"Governance framework for specified Union Territories."},
+    {n:125,name:"Advocates Act, 1961",c:"Administrative & Governance",f:"advocates-act.pdf",d:"Legal profession, Bar Councils and enrolment of advocates."},
+    {n:126,name:"Notaries Act, 1952",c:"Administrative & Governance",f:"notaries-act.pdf",d:"Appointment and regulation of notaries."},
+    {n:127,name:"Legal Metrology Act, 2009",c:"Administrative & Governance",f:"legal-metrology-act.pdf",d:"Standards of weights and measures and related regulation."},
+    {n:128,name:"Census Act, 1948",c:"Administrative & Governance",f:"census-act.pdf",d:"Statutory framework for conducting censuses."},
+    {n:129,name:"Delimitation Act, 2002",c:"Administrative & Governance",f:"delimitation-act-2002.pdf",d:"Delimitation of constituencies under the applicable framework."},
+    {n:130,name:"National Green Tribunal Act, 2010",c:"Administrative & Governance",f:"national-green-tribunal-act.pdf",d:"Establishment and jurisdiction of the National Green Tribunal."},
+
+    // 11. Education and social welfare
+    {n:131,name:"University Grants Commission Act, 1956",c:"Education & Social Welfare",f:"ugc-act.pdf",d:"Coordination and maintenance of standards in university education."},
+    {n:132,name:"All India Council for Technical Education Act, 1987",c:"Education & Social Welfare",f:"aicte-act.pdf",d:"Statutory framework for technical education regulation and development."},
+    {n:133,name:"National Council for Teacher Education Act, 1993",c:"Education & Social Welfare",f:"ncte-act.pdf",d:"Coordination and standards for teacher education."},
+    {n:134,name:"National Medical Commission Act, 2019",c:"Education & Social Welfare",f:"national-medical-commission-act.pdf",d:"Regulation of medical education and the medical profession."},
+    {n:135,name:"Indian Nursing Council Act, 1947",c:"Education & Social Welfare",f:"indian-nursing-council-act.pdf",d:"Nursing education standards and professional registration framework."},
+    {n:136,name:"Rehabilitation Council of India Act, 1992",c:"Education & Social Welfare",f:"rehabilitation-council-of-india-act.pdf",d:"Regulation of rehabilitation professionals and training standards."},
+    {n:137,name:"National Trust Act, 1999",c:"Education & Social Welfare",f:"national-trust-act.pdf",d:"Welfare and support framework for specified disabilities."},
+    {n:138,name:"Rights of Persons with Disabilities Act, 2016",c:"Education & Social Welfare",f:"rights-of-persons-with-disabilities-act.pdf",d:"Rights, accessibility and protections for persons with disabilities."},
+    {n:139,name:"National Food Security Act, 2013",c:"Education & Social Welfare",f:"national-food-security-act.pdf",d:"Food and nutritional security and eligible entitlements."},
+    {n:140,name:"Maintenance and Welfare of Parents and Senior Citizens Act, 2007",c:"Education & Social Welfare",f:"parents-and-senior-citizens-act.pdf",d:"Maintenance and welfare provisions for parents and senior citizens."},
+    {n:141,name:"Child and Adolescent Labour (Prohibition and Regulation) Act, 1986",c:"Education & Social Welfare",f:"child-and-adolescent-labour-act.pdf",d:"Prohibition and regulation of specified child and adolescent employment."},
+    {n:142,name:"Bonded Labour System (Abolition) Act, 1976",c:"Education & Social Welfare",f:"bonded-labour-system-abolition-act.pdf",d:"Abolition of bonded labour and related obligations."},
+    {n:143,name:"Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989",c:"Education & Social Welfare",f:"sc-st-prevention-of-atrocities-act.pdf",d:"Protection against specified offences and atrocities."},
+    {n:144,name:"Prohibition of Employment as Manual Scavengers and their Rehabilitation Act, 2013",c:"Education & Social Welfare",f:"manual-scavengers-rehabilitation-act.pdf",d:"Prohibition of specified manual scavenging practices and rehabilitation measures."},
+    {n:145,name:"National Commission for Minorities Act, 1992",c:"Education & Social Welfare",f:"national-commission-for-minorities-act.pdf",d:"Establishment and functions of the National Commission for Minorities."},
+
+    // 12. Health, medicine and food safety
+    {n:146,name:"Drugs and Cosmetics Act, 1940",c:"Health & Food Safety",f:"drugs-and-cosmetics-act.pdf",d:"Regulation of drugs and cosmetics under the applicable statutory framework."},
+    {n:147,name:"Drugs and Magic Remedies (Objectionable Advertisements) Act, 1954",c:"Health & Food Safety",f:"drugs-and-magic-remedies-act.pdf",d:"Restrictions on specified advertisements concerning drugs and remedies."},
+    {n:148,name:"Pharmacy Act, 1948",c:"Health & Food Safety",f:"pharmacy-act.pdf",d:"Regulation of the pharmacy profession and related qualifications."},
+    {n:149,name:"Food Safety and Standards Act, 2006",c:"Health & Food Safety",f:"food-safety-and-standards-act.pdf",d:"Food safety standards and regulation of food-related activities."},
+    {n:150,name:"Epidemic Diseases Act, 1897",c:"Health & Food Safety",f:"epidemic-diseases-act.pdf",d:"Special measures and powers relating to dangerous epidemic diseases."},
+    {n:151,name:"Mental Healthcare Act, 2017",c:"Health & Food Safety",f:"mental-healthcare-act.pdf",d:"Mental healthcare rights and statutory protections."},
+    {n:152,name:"Transplantation of Human Organs and Tissues Act, 1994",c:"Health & Food Safety",f:"transplantation-of-human-organs-and-tissues-act.pdf",d:"Regulation of human organ and tissue removal, storage and transplantation."},
+    {n:153,name:"Medical Termination of Pregnancy Act, 1971",c:"Health & Food Safety",f:"medical-termination-of-pregnancy-act.pdf",d:"Legal framework governing medical termination of pregnancy."},
+    {n:154,name:"Pre-Conception and Pre-Natal Diagnostic Techniques (Prohibition of Sex Selection) Act, 1994",c:"Health & Food Safety",f:"pcpndt-act.pdf",d:"Regulation of specified diagnostic techniques and prohibition of sex selection."},
+    {n:155,name:"Clinical Establishments (Registration and Regulation) Act, 2010",c:"Health & Food Safety",f:"clinical-establishments-act.pdf",d:"Registration and regulation of clinical establishments where applicable."},
+
+    // 13. Agriculture, animals and food commodities
+    {n:156,name:"Seeds Act, 1966",c:"Agriculture & Environment",f:"seeds-act.pdf",d:"Quality regulation of specified seeds."},
+    {n:157,name:"Insecticides Act, 1968",c:"Agriculture & Environment",f:"insecticides-act.pdf",d:"Regulation of insecticides and related safety requirements."},
+    {n:158,name:"Protection of Plant Varieties and Farmers' Rights Act, 2001",c:"Agriculture & Environment",f:"plant-varieties-and-farmers-rights-act.pdf",d:"Protection of plant varieties and statutory farmers' rights."},
+    {n:159,name:"Agricultural Produce (Grading and Marking) Act, 1937",c:"Agriculture & Environment",f:"agricultural-produce-grading-and-marking-act.pdf",d:"Grading and marking standards for agricultural produce."},
+    {n:160,name:"Tea Act, 1953",c:"Agriculture & Environment",f:"tea-act.pdf",d:"Statutory framework for development and regulation of the tea industry."},
+    {n:161,name:"Coffee Act, 1942",c:"Agriculture & Environment",f:"coffee-act.pdf",d:"Regulation and development of the coffee industry."},
+    {n:162,name:"Rubber Act, 1947",c:"Agriculture & Environment",f:"rubber-act.pdf",d:"Statutory framework for the rubber industry."},
+    {n:163,name:"Coconut Development Board Act, 1979",c:"Agriculture & Environment",f:"coconut-development-board-act.pdf",d:"Establishment and functions of the Coconut Development Board."},
+    {n:164,name:"Livestock Importation Act, 1898",c:"Agriculture & Environment",f:"livestock-importation-act.pdf",d:"Regulation of livestock importation under applicable provisions."},
+    {n:165,name:"Prevention of Cruelty to Animals Act, 1960",c:"Agriculture & Environment",f:"prevention-of-cruelty-to-animals-act.pdf",d:"Prevention of unnecessary pain or suffering to animals."},
+    {n:166,name:"Biological Diversity Act, 2002",c:"Agriculture & Environment",f:"biological-diversity-act.pdf",d:"Conservation of biological diversity and regulation of access and benefit sharing."},
+    {n:167,name:"Van (Sanrakshan Evam Samvardhan) Adhiniyam, 1980 (formerly Forest Conservation Act)",c:"Agriculture & Environment",f:"van-sanrakshan-evam-samvardhan-adhiniyam.pdf",d:"Forest land diversion and related statutory requirements; verify current title."},
+    {n:168,name:"Indian Forest Act, 1927",c:"Agriculture & Environment",f:"indian-forest-act.pdf",d:"Forest administration and specified forest produce and offences."},
+    {n:169,name:"National Dairy Development Board Act, 1987",c:"Agriculture & Environment",f:"national-dairy-development-board-act.pdf",d:"Statutory framework for the National Dairy Development Board."},
+    {n:170,name:"Warehousing (Development and Regulation) Act, 2007",c:"Agriculture & Environment",f:"warehousing-development-and-regulation-act.pdf",d:"Regulation of warehouses and negotiable warehouse receipts."},
+
+    // 14. Transport, infrastructure and energy
+    {n:171,name:"Railways Act, 1989",c:"Transport & Energy",f:"railways-act.pdf",d:"Railway operations, passenger matters and railway-related offences."},
+    {n:172,name:"Metro Railways (Construction of Works) Act, 1978",c:"Transport & Energy",f:"metro-railways-construction-act.pdf",d:"Statutory provisions concerning construction of metro railway works."},
+    {n:173,name:"Metro Railways (Operation and Maintenance) Act, 2002",c:"Transport & Energy",f:"metro-railways-operation-maintenance-act.pdf",d:"Operation and maintenance framework for covered metro railways."},
+    {n:174,name:"National Highways Act, 1956",c:"Transport & Energy",f:"national-highways-act.pdf",d:"Declaration, development and related provisions for national highways."},
+    {n:175,name:"Control of National Highways (Land and Traffic) Act, 2002",c:"Transport & Energy",f:"control-of-national-highways-land-and-traffic-act.pdf",d:"Control of highway land and traffic under the Act."},
+    {n:176,name:"Airports Authority of India Act, 1994",c:"Transport & Energy",f:"airports-authority-of-india-act.pdf",d:"Establishment and functions of the Airports Authority of India."},
+    {n:177,name:"Aircraft Act, 1934",c:"Transport & Energy",f:"aircraft-act.pdf",d:"Regulation of aircraft and related aviation matters."},
+    {n:178,name:"Carriage by Road Act, 2007",c:"Transport & Energy",f:"carriage-by-road-act.pdf",d:"Regulation of common carriers and carriage of goods by road."},
+    {n:179,name:"Inland Vessels Act, 2021",c:"Transport & Energy",f:"inland-vessels-act.pdf",d:"Safety, registration and regulation of inland vessels."},
+    {n:180,name:"Electricity Act, 2003",c:"Transport & Energy",f:"electricity-act.pdf",d:"Electricity generation, transmission, distribution and regulatory framework."},
+    {n:181,name:"Energy Conservation Act, 2001",c:"Transport & Energy",f:"energy-conservation-act.pdf",d:"Energy efficiency and conservation measures."},
+    {n:182,name:"Petroleum Act, 1934",c:"Transport & Energy",f:"petroleum-act.pdf",d:"Import, transport, storage and handling of petroleum."},
+    {n:183,name:"Oilfields (Regulation and Development) Act, 1948",c:"Transport & Energy",f:"oilfields-regulation-and-development-act.pdf",d:"Regulation and development of oilfields under the statute."},
+    {n:184,name:"Mines and Minerals (Development and Regulation) Act, 1957",c:"Transport & Energy",f:"mines-and-minerals-development-regulation-act.pdf",d:"Development and regulation of mines and minerals."},
+    {n:185,name:"Coal Mines (Special Provisions) Act, 2015",c:"Transport & Energy",f:"coal-mines-special-provisions-act.pdf",d:"Special provisions concerning allocation of specified coal mines."},
+
+    // 15. Insurance, intellectual property and specialized commercial laws
+    {n:186,name:"Insurance Act, 1938",c:"Insurance & Specialized",f:"insurance-act.pdf",d:"Regulation of insurance business under the applicable framework."},
+    {n:187,name:"Life Insurance Corporation Act, 1956",c:"Insurance & Specialized",f:"life-insurance-corporation-act.pdf",d:"Establishment and statutory framework of the Life Insurance Corporation."},
+    {n:188,name:"General Insurance Business (Nationalisation) Act, 1972",c:"Insurance & Specialized",f:"general-insurance-business-nationalisation-act.pdf",d:"Statutory framework relating to nationalisation of general insurance business."},
+    {n:189,name:"Insurance Regulatory and Development Authority Act, 1999",c:"Insurance & Specialized",f:"irdai-act.pdf",d:"Establishment and functions of the insurance regulator."},
+    {n:190,name:"Geographical Indications of Goods (Registration and Protection) Act, 1999",c:"Insurance & Specialized",f:"geographical-indications-act.pdf",d:"Registration and protection of geographical indications for goods."},
+    {n:191,name:"Semiconductor Integrated Circuits Layout-Design Act, 2000",c:"Insurance & Specialized",f:"semiconductor-integrated-circuits-layout-design-act.pdf",d:"Protection of eligible semiconductor integrated circuit layout-designs."},
+    {n:192,name:"Protection of Plant Varieties and Farmers' Rights Act, 2001",c:"Insurance & Specialized",f:"plant-varieties-and-farmers-rights-act.pdf",d:"Plant variety protection; also listed under agriculture."},
+    {n:193,name:"Chit Funds Act, 1982",c:"Insurance & Specialized",f:"chit-funds-act.pdf",d:"Regulation of chit funds under the applicable statutory framework."},
+    {n:194,name:"Prize Chits and Money Circulation Schemes (Banning) Act, 1978",c:"Insurance & Specialized",f:"prize-chits-and-money-circulation-schemes-act.pdf",d:"Prohibition of specified prize chit and money circulation schemes."},
+    {n:195,name:"Banning of Unregulated Deposit Schemes Act, 2019",c:"Insurance & Specialized",f:"banning-of-unregulated-deposit-schemes-act.pdf",d:"Prohibition of unregulated deposit schemes and related enforcement."},
+
+    // 16. Elections, international relations and other laws
+    {n:196,name:"Presidential and Vice-Presidential Elections Act, 1952",c:"Elections & Citizenship",f:"presidential-and-vice-presidential-elections-act.pdf",d:"Procedures for elections to the offices of President and Vice-President."},
+    {n:197,name:"Parliament (Prevention of Disqualification) Act, 1959",c:"Elections & Citizenship",f:"parliament-prevention-of-disqualification-act.pdf",d:"Specified offices of profit and parliamentary disqualification exceptions."},
+    {n:198,name:"Citizenship Act, 1955",c:"Elections & Citizenship",f:"citizenship-act.pdf",d:"Acquisition and determination of Indian citizenship under the Act."},
+    {n:199,name:"Foreigners Act, 1946",c:"Elections & Citizenship",f:"foreigners-act.pdf",d:"Legal provisions concerning foreigners in India."},
+    {n:200,name:"Passports Act, 1967",c:"Elections & Citizenship",f:"passports-act.pdf",d:"Issue and regulation of passports and related travel documents."}
+
+];
+
+const grid = document.getElementById("actsGrid");
+const searchInput = document.getElementById("searchInput");
+const resultCount = document.getElementById("resultCount");
+const visibleActs = document.getElementById("visibleActs");
+const noResults = document.getElementById("noResults");
+const sortSelect = document.getElementById("sortSelect");
+
+let activeCategory = "All";
+
+function renderActs() {
+    const query = searchInput.value.trim().toLowerCase();
+
+    let filtered = acts.filter(act => {
+        const matchesCategory =
+            activeCategory === "All" || act.c === activeCategory;
+
+        const searchableText = [
+            act.name,
+            act.c,
+            act.n,
+            act.d,
+            act.f,
+            act.old ? "historical repealed former old law" : "current reference"
+        ].join(" ").toLowerCase();
+
+        return matchesCategory && searchableText.includes(query);
+    });
+
+    if (sortSelect.value === "az") {
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortSelect.value === "za") {
+        filtered.sort((a, b) => b.name.localeCompare(a.name));
+    } else {
+        filtered.sort((a, b) => a.n - b.n);
+    }
+
+    grid.innerHTML = filtered.map(act => `
+        <article class="act-card">
+            <div class="card-top">
+                <span class="act-number">ACT NO. ${act.n}</span>
+                <span class="act-category">${escapeHTML(act.c)}</span>
+            </div>
+
+            <h3>${escapeHTML(act.name)}</h3>
+
+            <p>${escapeHTML(act.d)}</p>
+
+            ${act.old
+                ? '<span class="status">Historical / Verify Legal Status</span>'
+                : '<span class="status">PDF Reference</span>'
+            }
+
+            <a
+                class="download-btn"
+                href="bareacts/${act.n}.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+            >
+                <span>↓</span> Download Bare Act PDF
+            </a>
+        </article>
+    `).join("");
+
+    const count = filtered.length;
+
+    resultCount.textContent =
+        `Showing ${count} of ${acts.length} entries`;
+
+    visibleActs.textContent = count;
+
+    noResults.style.display = count === 0 ? "block" : "none";
+    grid.style.display = count === 0 ? "none" : "grid";
+}
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
+}
+
+function resetSearch() {
+    searchInput.value = "";
+    activeCategory = "All";
+    sortSelect.value = "serial";
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.classList.toggle(
+            "active",
+            btn.dataset.category === "All"
+        );
+    });
+
+    renderActs();
+}
+
+document.getElementById("searchBtn").addEventListener("click", renderActs);
+
+searchInput.addEventListener("input", renderActs);
+
+searchInput.addEventListener("keydown", event => {
+    if (event.key === "Enter") renderActs();
+});
+
+document.getElementById("resetBtn").addEventListener("click", resetSearch);
+
+sortSelect.addEventListener("change", renderActs);
+
+document.querySelectorAll(".filter-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        activeCategory = button.dataset.category;
+
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.classList.toggle("active", btn === button);
+        });
+
+        renderActs();
+    });
+});
+
+renderActs();
+</script>
+
+</body>
+</html>
