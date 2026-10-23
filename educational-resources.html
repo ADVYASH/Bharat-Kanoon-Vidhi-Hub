@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Educational Resources | Bharat Kannon Vidhi Hub</title>
+<title>Educational Resources | Bharat Kanoon Vidhi Hub</title>
 
 <style>
 :root {
@@ -396,10 +395,159 @@ footer {
     }
 }
 
+/* WEBSITE INTRODUCTION */
+.website-description {
+    display: block;
+    margin: 0 0 28px;
+    padding: 25px;
+    background: rgba(18, 18, 18, 0.90);
+    border: 1px solid #303030;
+    border-left: 5px solid #e50914;
+    border-radius: 7px;
+}
+
+.website-description h2 {
+    color: #e50914;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.website-description p {
+    color: #d0d0d0;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 12px;
+}
+
+.website-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* Hide the introduction after a category is selected */
+.website-description.hidden {
+    display: none;
+}
+
+/* PASSWORD PROTECTION SCREEN */
+#passwordGate {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #080808;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.password-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px 28px;
+    text-align: center;
+    background: #141414;
+    border: 1px solid #333;
+    border-top: 4px solid #e50914;
+    border-radius: 12px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+}
+
+.password-card h1 {
+    color: #e50914;
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.password-card p {
+    color: #bbb;
+    margin-bottom: 22px;
+}
+
+.password-card input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #080808;
+    color: white;
+    font-size: 17px;
+    text-align: center;
+    outline: none;
+}
+
+.password-card input:focus {
+    border-color: #e50914;
+}
+
+.password-card button {
+    width: 100%;
+    padding: 13px;
+    background: #e50914;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.password-card button:hover {
+    background: #b90009;
+}
+
+#passwordError {
+    display: none;
+    color: #ff5252;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+body:not(.site-unlocked) > :not(#passwordGate) {
+    display: none !important;
+}
+
+#passwordGate.gate-hidden {
+    display: none;
+}
 </style>
 </head>
 
 <body>
+
+<!-- WEBSITE PASSWORD GATE -->
+<div id="passwordGate">
+    <div class="password-card">
+
+        <h1>18+ ACCESS</h1>
+
+        <p>
+            Enter your password to access the website.
+            Access is restricted to adults aged 18 and above.
+        </p>
+
+        <form id="passwordForm">
+            <input
+                type="password"
+                id="sitePassword"
+                placeholder="Enter password"
+                aria-label="Website password"
+                autocomplete="current-password"
+                required
+                autofocus
+            >
+
+            <button type="submit">UNLOCK WEBSITE</button>
+
+            <p id="passwordError" role="alert">
+                Incorrect password. Please try again.
+            </p>
+        </form>
+
+    </div>
+</div>
 
 <div class="wallpaper-layer wallpaper-one"></div>
 <div class="wallpaper-layer wallpaper-two"></div>
@@ -408,7 +556,7 @@ footer {
 <header>
     <div class="header-inner">
         <div class="brand">
-            BHARAT <span>KANNON</span> VIDHI HUB
+            BHARAT <span>KANOON</span> VIDHI HUB
         </div>
 
         <a class="home-link" href="index.html" target="_blank"
@@ -430,7 +578,7 @@ footer {
     <h2 class="section-title">Browse Categories</h2>
 
     <nav class="category-buttons" aria-label="Educational resource categories">
-        <button class="category-btn active" onclick="showCategory('category1', this)">01 Teen</button>
+        <button class="category-btn" onclick="showCategory('category1', this)">01 Teen</button>
         <button class="category-btn" onclick="showCategory('category2', this)">02 Underground</button>
         <button class="category-btn" onclick="showCategory('category3', this)">03 Korean</button>
         <button class="category-btn" onclick="showCategory('category4', this)">04 Thai</button>
@@ -462,508 +610,594 @@ footer {
         <button class="category-btn" onclick="showCategory('category30', this)">30 _________</button>
     </nav>
 
-    
-<div id="category1" class="category-box active">
+<!-- WEBSITE INTRODUCTION -->
+<div id="websiteDescription" class="website-description" style="text-align: center;">
 
+    <h2 style="text-align: center;">
+        About Our 18+ Adult Entertainment Library
+    </h2>
+
+    <p style="text-align: center;">
+        Welcome to our 18+ Adult Entertainment Library, a categorized
+        directory designed exclusively for adults aged 18 years and above.
+        The platform brings together information about adult filmography,
+        adult entertainment websites, video platforms, photo galleries,
+        performer profiles, and other age-restricted entertainment resources
+        in one convenient location.
+    </p>
+
+    <p style="text-align: center;">
+        Our filmography section focuses on organizing information about
+        adult films, performers, productions, release details, and related
+        entertainment resources. Visitors can explore available listings
+        and discover information about different productions and platforms
+        through a structured collection of categories, titles, descriptions,
+        and external links.
+    </p>
+
+    <p style="text-align: center;">
+        The website also features directories of adult video platforms,
+        entertainment websites, photography collections, and galleries
+        containing lawfully published adult material. Each resource can
+        be presented through an organized card featuring an image, title,
+        description, and external link to help visitors understand the
+        resource before visiting its original website.
+    </p>
+
+    <p style="text-align: center;">
+        Additional categories may include adult entertainment news,
+        performer biographies, film databases, production information,
+        authorized photo collections, and publicly available promotional
+        material. The purpose of these categories is to make relevant
+        information easier to discover while maintaining a consistent
+        and user-friendly browsing experience.
+    </p>
+
+    <p style="text-align: center;">
+        This library is intended strictly for adults aged 18 and above.
+        Visitors must comply with applicable laws, age restrictions,
+        platform rules, and privacy requirements. We support lawful,
+        consensual, and properly authorized adult content and do not
+        promote stolen photographs, non-consensual intimate imagery,
+        or private material published without the subject's permission.
+    </p>
+
+    <p style="text-align: center;">
+        Our objective is to provide a structured directory for discovering
+        adult filmography, entertainment websites, authorized photo
+        galleries, and related resources. With organized categories,
+        descriptive listings, and convenient navigation, the platform
+        aims to make browsing easier for eligible adult visitors across
+        desktop computers, tablets, and mobile devices.
+    </p>
+
+</div>
+
+<!-- CATEGORY 1 -->
+<div id="category1" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Teen
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Teen</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/1.png"
-                 alt="General education study resources">
+            <img src="educationalresourcesimages/1.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3>TEENXY</h3>
             <p>Collection of teens who love to suck cocks and get fucked! Watch youngsters fuck!</p>
-
-            <a class="open-resource"
-               href="https://pornsok.com/"
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="https://pornsok.com/" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3>IcePornTV</h3>
             <p>IcePorn.TV, a hundreds hd porn videos and free porno daily added will give you pleasant moments. You can watch the best quality porno videos from our Porn</p>
-
-            <a class="open-resource"
-               href="https://iceporn.tv/"
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="https://iceporn.tv/" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
 </div>
 
-
-<div id="category2" class="category-box active">
-
+<!-- CATEGORY 2 -->
+<div id="category2" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 2</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-<div id="category3" class="category-box active">
-
+<!-- CATEGORY 3 -->
+<div id="category3" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 3</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-<div id="category4" class="category-box active">
-
+<!-- CATEGORY 4 -->
+<div id="category4" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 4</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-<div id="category5" class="category-box active">
-
+<!-- CATEGORY 5 -->
+<div id="category5" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 5</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-
-
-
-<div id="category6" class="category-box active">
-
+<!-- CATEGORY 6 -->
+<div id="category6" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 6</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-
-
-<div id="category7" class="category-box active">
-
+<!-- CATEGORY 7 -->
+<div id="category7" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 7</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-
-
-
-<div id="category8" class="category-box active">
-
+<!-- CATEGORY 8 -->
+<div id="category8" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 8</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-
-<div id="category9" class="category-box active">
-
+<!-- CATEGORY 9 -->
+<div id="category9" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 9</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-<div id="category10" class="category-box active">
-
+<!-- CATEGORY 10 -->
+<div id="category10" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 10</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-<div id="category4" class="category-box active">
-
+<!-- CATEGORY 11 -->
+<div id="category11" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 11</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-<div id="category5" class="category-box active">
-
+<!-- CATEGORY 12 -->
+<div id="category12" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 12</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-
-
-
-<div id="category6" class="category-box active">
-
+<!-- CATEGORY 13 -->
+<div id="category13" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 13</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-
-
-<div id="category7" class="category-box active">
-
+<!-- CATEGORY 14 -->
+<div id="category14" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 14</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-
-
-
-<div id="category8" class="category-box active">
-
+<!-- CATEGORY 15 -->
+<div id="category15" class="category-box">
     <div class="category-heading">
-        <h2 style="text-align: center; color: red; font-size: 48px;">
-            Underground
-        </h2>
+        <h2 style="text-align: center; color: red; font-size: 48px;">Underground</h2>
     </div>
-
     <div class="resource-card">
         <div class="resource-image">
-            <img src="educationalresourcesimages/2.png"
-                 alt="Academic learning guide">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
         </div>
-
         <div class="resource-content">
             <h3></h3>
             <p></p>
-
-            <a class="open-resource"
-               href=""
-               target="_blank"
-               rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
         </div>
     </div>
+</div>
+
+<!-- CATEGORY 16 -->
+<div id="category16" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 16</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 17 -->
+<div id="category17" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 17</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 18 -->
+<div id="category18" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 18</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 19 -->
+<div id="category19" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 19</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 20 -->
+<div id="category20" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 20</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 21 -->
+<div id="category21" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 21</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 22 -->
+<div id="category22" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 22</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 23 -->
+<div id="category23" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 23</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 24 -->
+<div id="category24" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 24</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 25 -->
+<div id="category25" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 25</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 26 -->
+<div id="category26" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 26</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 27 -->
+<div id="category27" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 27</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 28 -->
+<div id="category28" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 28</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 29 -->
+<div id="category29" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 29</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CATEGORY 30 -->
+<div id="category30" class="category-box">
+    <div class="category-heading">
+        <h2 style="text-align: center; color: red; font-size: 48px;">Category 30</h2>
+    </div>
+    <div class="resource-card">
+        <div class="resource-image">
+            <img src="educationalresourcesimages/2.png" alt="Academic learning guide">
+        </div>
+        <div class="resource-content">
+            <h3></h3>
+            <p></p>
+            <a class="open-resource" href="" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+        </div>
+    </div>
+</div>
 
 </div>
 </main>
 
 <footer>
-    <p><strong>Owned by Yash Kumar</strong> | Bharat Kannon Vidhi Hub</p>
+    <p><strong>Owned by Yash Kumar</strong> | Bharat Kanoon Vidhi Hub</p>
     <p>Legal Knowledge and Education for Everyone.</p>
 </footer>
 
@@ -1072,6 +1306,57 @@ function showCategory(categoryId, clickedButton) {
     startSlideshow();
 })();
 
+function showCategory(categoryId, clickedButton) {
+
+    // HIDE THE WEBSITE INTRODUCTION
+    document.getElementById("websiteDescription").classList.add("hidden");
+
+    // Hide all categories
+    document.querySelectorAll(".category-box").forEach(function(category) {
+        category.classList.remove("active");
+    });
+
+    // Remove active state from all buttons
+    document.querySelectorAll(".category-btn").forEach(function(button) {
+        button.classList.remove("active");
+    });
+
+    // Show the selected category
+    const selectedCategory = document.getElementById(categoryId);
+
+    if (selectedCategory) {
+        selectedCategory.classList.add("active");
+    }
+
+    // Highlight the selected button
+    if (clickedButton) {
+        clickedButton.classList.add("active");
+    }
+}
+
+(function () {
+    const correctPassword = "@#@^@@";
+
+    const form = document.getElementById("passwordForm");
+    const input = document.getElementById("sitePassword");
+    const error = document.getElementById("passwordError");
+    const gate = document.getElementById("passwordGate");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (input.value === correctPassword) {
+            document.body.classList.add("site-unlocked");
+            gate.classList.add("gate-hidden");
+            input.value = "";
+            error.style.display = "none";
+        } else {
+            error.style.display = "block";
+            input.value = "";
+            input.focus();
+        }
+    });
+})();
 </script>
 
 </body>
