@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Educational Resources | Bharat Kannon Vidhi Hub</title>
+
+<style>
+:root {
+    --red: #e50914;
+    --black: #080808;
+    --panel: #141414;
+    --border: #303030;
+    --white: #ffffff;
+    --muted: #bdbdbd;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header {
+    background: #101010;
+    border-bottom: 2px solid var(--red);
+    padding: 16px 24px;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.brand {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.brand span {
+    color: var(--red);
+}
+
+.home-link {
+    background: var(--red);
+    padding: 9px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.container {
+    width: 100%;
+    padding: 24px;
+}
+
+.hero {
+    text-align: center;
+    padding: 25px 10px 30px;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.hero h1 span {
+    color: var(--red);
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 850px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 21px;
+    margin: 15px 0;
+    border-left: 4px solid var(--red);
+    padding-left: 12px;
+}
+
+.category-buttons {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 9px;
+    margin-bottom: 28px;
+}
+
+.category-btn {
+    background: #171717;
+    color: white;
+    border: 1px solid #383838;
+    border-radius: 5px;
+    padding: 11px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    min-height: 44px;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: var(--red);
+    border-color: var(--red);
+}
+
+.category-box {
+    display: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+    margin-bottom: 30px;
+}
+
+.category-box.active {
+    display: grid;
+}
+
+.category-heading {
+    grid-column: 1 / -1;
+    background: #111;
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    padding: 18px;
+    margin-bottom: 2px;
+}
+
+.category-heading h2 {
+    font-size: 25px;
+    margin-bottom: 6px;
+}
+
+.category-heading p {
+    color: var(--muted);
+}
+
+.resource-card {
+    min-width: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.resource-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--red);
+}
+
+.resource-image {
+    display: block;
+    background: #202020;
+    overflow: hidden;
+}
+
+.resource-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 0.25s;
+}
+
+.resource-card:hover .resource-image img {
+    transform: scale(1.035);
+}
+
+.resource-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.resource-content h3 {
+    font-size: 17px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.resource-content p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    flex: 1;
+}
+
+.open-resource {
+    display: block;
+    text-align: center;
+    background: var(--red);
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.open-resource:hover {
+    background: #b90009;
+}
+
+.empty-message {
+    color: var(--muted);
+    padding: 30px;
+    text-align: center;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+footer {
+    border-top: 1px solid #333;
+    padding: 24px 15px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 25px;
+}
+
+footer strong {
+    color: var(--red);
+}
+
+@media (min-width: 1600px) {
+    .category-buttons {
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+    }
+
+    .category-box {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1100px) {
+    .category-buttons {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .category-box {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .container {
+        padding: 14px;
+    }
+
+    .category-buttons {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .category-btn {
+        padding: 9px 4px;
+        font-size: 11px;
+    }
+
+    .category-box {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .category-heading {
+        padding: 13px;
+    }
+
+    .category-heading h2 {
+        font-size: 21px;
+    }
+
+    .resource-content {
+        padding: 10px;
+    }
+
+    .resource-content h3 {
+        font-size: 14px;
+    }
+
+    .resource-content p {
+        font-size: 12px;
+    }
+
+    .open-resource {
+        font-size: 12px;
+        padding: 8px 5px;
+    }
+}
+
+@media (max-width: 390px) {
+    .category-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .category-box {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ===== WALLPAPER SLIDESHOW BACKGROUND ===== */
+
+html {
+    min-height: 100%;
+    background: #080808;
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    background: transparent;
+    color: #ffffff;
+}
+
+/* Both image layers remain fixed behind the website */
+
+.wallpaper-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+    pointer-events: none;
+    will-change: opacity;
+}
+
+.wallpaper-layer.visible {
+    opacity: 1;
+}
+
+/* Dark overlay keeps text readable */
+
+.wallpaper-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.66);
+}
+
+/* Allow the wallpaper to show through the existing panels */
+
+header {
+    background: rgba(10, 10, 10, 0.82);
+    backdrop-filter: blur(5px);
+}
+
+.category-heading,
+.resource-card {
+    background: rgba(18, 18, 18, 0.88);
+    backdrop-filter: blur(3px);
+}
+
+.category-btn {
+    background: rgba(23, 23, 23, 0.90);
+}
+
+footer {
+    background: rgba(8, 8, 8, 0.78);
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+    .wallpaper-layer {
+        transition: none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wallpaper-layer wallpaper-one"></div>
+<div class="wallpaper-layer wallpaper-two"></div>
+<div class="wallpaper-overlay"></div>
+
+<header>
+    <div class="header-inner">
+        <div class="brand">
+            BHARAT <span>KANNON</span> VIDHI HUB
+        </div>
+
+        <a class="home-link" href="index.html" target="_blank"
+           rel="noopener noreferrer">HOME</a>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <h1>Educational <span>Resources</span></h1>
+        <p>
+            Explore educational materials, learning guides, study notes,
+            reference documents, legal resources, technology guides and
+            other learning materials in one organized library.
+        </p>
+    </section>
+
+    <h2 class="section-title">Browse Categories</h2>
+
+    <nav class="category-buttons" aria-label="Educational resource categories">
+        <button class="category-btn active" onclick="showCategory('category1', this)">01 General Education</button>
+        <button class="category-btn" onclick="showCategory('category2', this)">02 Law & Legal Studies</button>
+        <button class="category-btn" onclick="showCategory('category3', this)">03 Business & Commerce</button>
+        <button class="category-btn" onclick="showCategory('category4', this)">04 Technology</button>
+        <button class="category-btn" onclick="showCategory('category5', this)">05 Science</button>
+        <button class="category-btn" onclick="showCategory('category6', this)">06 Mathematics</button>
+        <button class="category-btn" onclick="showCategory('category7', this)">07 History</button>
+        <button class="category-btn" onclick="showCategory('category8', this)">08 Geography</button>
+        <button class="category-btn" onclick="showCategory('category9', this)">09 Political Science</button>
+        <button class="category-btn" onclick="showCategory('category10', this)">10 Economics</button>
+        <button class="category-btn" onclick="showCategory('category11', this)">11 English Language</button>
+        <button class="category-btn" onclick="showCategory('category12', this)">12 Hindi Language</button>
+        <button class="category-btn" onclick="showCategory('category13', this)">13 Literature</button>
+        <button class="category-btn" onclick="showCategory('category14', this)">14 Psychology</button>
+        <button class="category-btn" onclick="showCategory('category15', this)">15 Sociology</button>
+        <button class="category-btn" onclick="showCategory('category16', this)">16 Philosophy</button>
+        <button class="category-btn" onclick="showCategory('category17', this)">17 Environment</button>
+        <button class="category-btn" onclick="showCategory('category18', this)">18 Computer Science</button>
+        <button class="category-btn" onclick="showCategory('category19', this)">19 Programming</button>
+        <button class="category-btn" onclick="showCategory('category20', this)">20 Artificial Intelligence</button>
+        <button class="category-btn" onclick="showCategory('category21', this)">21 Cyber Security</button>
+        <button class="category-btn" onclick="showCategory('category22', this)">22 Entrepreneurship</button>
+        <button class="category-btn" onclick="showCategory('category23', this)">23 Management</button>
+        <button class="category-btn" onclick="showCategory('category24', this)">24 Accounting & Finance</button>
+        <button class="category-btn" onclick="showCategory('category25', this)">25 Marketing</button>
+        <button class="category-btn" onclick="showCategory('category26', this)">26 Competitive Exams</button>
+        <button class="category-btn" onclick="showCategory('category27', this)">27 Government Exams</button>
+        <button class="category-btn" onclick="showCategory('category28', this)">28 Current Affairs</button>
+        <button class="category-btn" onclick="showCategory('category29', this)">29 Research & Projects</button>
+        <button class="category-btn" onclick="showCategory('category30', this)">30 Miscellaneous</button>
+    </nav>
+
+    <div id="category1" class="category-box active">
+
+        <div class="category-heading">
+            <h2>General Education</h2>
+            <p>Study materials, learning guides, academic notes and resources for students.</p>
+        </div>
+
+        <div class="resource-card">
+            <a class="resource-image" href="educationalresourcesimages/landscapecate1img1.png" target="_blank" rel="noopener noreferrer">
+                <img src="educationalresourcesimages/landscapecate1img1.png" alt="General education study resources">
+            </a>
+            <div class="resource-content">
+                <h3>General Study Resources</h3>
+                <p>Educational material for building knowledge, improving study habits and understanding essential academic subjects.</p>
+                <a class="open-resource" href="educationalresourcesimages/landscapecate1img1.png" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            </div>
+        </div>
+
+        <div class="resource-card">
+            <a class="resource-image" href="educationalresourcesimages/landscapecate1img2.png" target="_blank" rel="noopener noreferrer">
+                <img src="educationalresourcesimages/landscapecate1img2.png" alt="Academic learning guide">
+            </a>
+            <div class="resource-content">
+                <h3>Academic Learning Guide</h3>
+                <p>Reference material to help learners organize their studies and revise important academic concepts.</p>
+                <a class="open-resource" href="educationalresourcesimages/landscapecate1img2.png" target="_blank" rel="noopener noreferrer">OPEN RESOURCE ↗</a>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    <p><strong>Owned by Yash Kumar</strong> | Bharat Kannon Vidhi Hub</p>
+    <p>Legal Knowledge and Education for Everyone.</p>
+</footer>
+
+<script>
+function showCategory(categoryId, clickedButton) {
+    // Hide all category sections.
+    document.querySelectorAll(".category-box").forEach(function(category) {
+        category.classList.remove("active");
+    });
+
+    // Remove the selected state from all buttons.
+    document.querySelectorAll(".category-btn").forEach(function(button) {
+        button.classList.remove("active");
+    });
+
+    // Show only the selected category.
+    const selectedCategory = document.getElementById(categoryId);
+
+    if (selectedCategory) {
+        selectedCategory.classList.add("active");
+    }
+
+    // Highlight the clicked button.
+    if (clickedButton) {
+        clickedButton.classList.add("active");
+    }
+}
+
+
+/* ===== AUTOMATIC WALLPAPER SLIDESHOW ===== */
+
+(function () {
+    const folder = "wallpaper/";
+    const totalImages = 100;
+    const changeEvery = 1500;
+
+    const firstLayer = document.querySelector(".wallpaper-one");
+    const secondLayer = document.querySelector(".wallpaper-two");
+
+    let currentImage = 1;
+    let showingFirst = true;
+
+    function imagePath(number) {
+        return folder + number + ".jpg";
+    }
+
+    function preloadImage(number) {
+        return new Promise(function (resolve) {
+            const image = new Image();
+
+            image.onload = function () {
+                resolve(imagePath(number));
+            };
+
+            image.onerror = function () {
+                resolve(null);
+            };
+
+            image.src = imagePath(number);
+        });
+    }
+
+    async function displayNextWallpaper() {
+        let checked = 0;
+        let nextPath = null;
+
+        while (checked < totalImages && !nextPath) {
+            currentImage++;
+
+            if (currentImage > totalImages) {
+                currentImage = 1;
+            }
+
+            nextPath = await preloadImage(currentImage);
+            checked++;
+        }
+
+        if (!nextPath) {
+            return;
+        }
+
+        const incoming = showingFirst ? secondLayer : firstLayer;
+        const outgoing = showingFirst ? firstLayer : secondLayer;
+
+        incoming.style.backgroundImage = 'url("' + nextPath + '")';
+        incoming.classList.add("visible");
+        outgoing.classList.remove("visible");
+
+        showingFirst = !showingFirst;
+    }
+
+    async function startSlideshow() {
+        const initialPath = await preloadImage(1);
+
+        if (!initialPath) {
+            console.warn("Wallpaper image wallpaper/1.jpg could not be loaded.");
+            return;
+        }
+
+        firstLayer.style.backgroundImage = 'url("' + initialPath + '")';
+        firstLayer.classList.add("visible");
+
+        setInterval(displayNextWallpaper, changeEvery);
+    }
+
+    startSlideshow();
+})();
+
+</script>
+
+</body>
+</html>
