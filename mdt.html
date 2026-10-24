@@ -1,0 +1,627 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LexDesk | Advocate Workspace</title>
+<style>
+:root{
+  --bg:#0b0b0d;
+  --sidebar:#101012;
+  --surface:#151518;
+  --surface2:#1b1b20;
+  --line:#303036;
+  --red:#d71935;
+  --red-light:#ff5368;
+  --text:#f4f1f2;
+  --muted:#a09ca5;
+  --green:#6cd6a1;
+  --amber:#f0c36b;
+  --blue:#91b9ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+font:14px/1.5 Inter,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,
+textarea:focus-visible{outline:2px solid var(--red-light);outline-offset:2px}
+.app{display:grid;grid-template-columns:245px minmax(0,1fr);min-height:100vh}
+.sidebar{background:var(--sidebar);border-right:1px solid var(--line);
+padding:23px 15px;display:flex;flex-direction:column;gap:25px}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px}
+.brandmark{width:42px;height:45px;border:1px solid var(--red);
+display:grid;place-items:center;color:var(--red);font-family:Georgia,serif;
+font-size:27px}
+.brand h1{font-size:17px;letter-spacing:2px;margin:0}
+.brand p{font-size:9px;color:var(--muted);letter-spacing:1.5px;margin:3px 0}
+.nav-group-label{font-size:9px;color:#797680;letter-spacing:1.8px;
+padding:0 12px;margin-bottom:8px}
+.nav-item{width:100%;display:flex;align-items:center;gap:12px;
+padding:11px 12px;background:none;border:1px solid transparent;
+color:#b8b4bd;text-align:left;margin:2px 0;border-radius:4px}
+.nav-item .ico{width:19px;text-align:center;font-size:16px}
+.nav-item:hover{background:#211519;color:white}
+.nav-item.active{background:#291318;color:white;border-color:#4b222b}
+.nav-item.active .ico{color:var(--red-light)}
+.sidebar-bottom{margin-top:auto;border-top:1px solid var(--line);padding:17px 8px 0}
+.profile{display:flex;align-items:center;gap:10px}
+.avatar{width:34px;height:34px;background:#32171e;color:#ff9aa6;
+display:grid;place-items:center;border-radius:50%;font-weight:bold}
+.profile b{display:block;font-size:12px}
+.profile small{color:var(--muted);font-size:10px}
+.workspace{min-width:0}
+.topbar{height:69px;border-bottom:1px solid var(--line);padding:0 30px;
+display:flex;align-items:center;justify-content:space-between;gap:14px;
+background:#0d0d0f}
+.crumb{color:var(--muted);font-size:12px}
+.crumb strong{color:var(--text);font-weight:500}
+.top-actions{display:flex;align-items:center;gap:9px}
+.local-label{font-size:9px;letter-spacing:1px;border:1px solid #493039;
+color:#f58b99;padding:7px 9px}
+main{padding:28px 30px;max-width:1600px;margin:auto}
+.page{display:none}.page.active{display:block}
+.page-head{display:flex;align-items:flex-start;justify-content:space-between;
+gap:15px;flex-wrap:wrap;margin-bottom:25px}
+.eyebrow{font-size:10px;letter-spacing:2px;color:var(--red-light);
+text-transform:uppercase;margin-bottom:8px}
+h2{font-size:27px;font-weight:550;letter-spacing:-.6px;margin:0}
+.page-head p{margin:7px 0 0;color:var(--muted);font-size:12px}
+.btn{border:1px solid var(--line);background:var(--surface2);color:var(--text);
+padding:9px 13px;border-radius:3px;font-size:12px}
+.btn:hover{border-color:#8a3443}
+.btn-primary{background:var(--red);border-color:var(--red);color:white}
+.btn-primary:hover{background:#b7122a}
+.btn-quiet{background:transparent}
+.btn-danger{color:#ff8291;border-color:#63313a}
+.btn-sm{padding:6px 9px;font-size:11px}
+.toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+border:1px solid var(--line);margin-bottom:22px;background:var(--surface)}
+.stat{padding:19px 20px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat-label{font-size:10px;letter-spacing:1px;color:var(--muted)}
+.stat-value{font-size:29px;letter-spacing:-1px;margin:9px 0 4px}
+.stat-foot{font-size:10px;color:#85818b}
+.split{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(250px,.9fr);
+gap:18px}
+.panel{border:1px solid var(--line);background:var(--surface);min-width:0;
+margin-bottom:18px}
+.panel-head{display:flex;align-items:center;justify-content:space-between;
+gap:12px;padding:15px 17px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.panel-head h3{font-size:12px;letter-spacing:.8px;margin:0;font-weight:600}
+.panel-head small{color:var(--muted);font-size:10px}
+.panel-body{padding:17px}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:650px}
+th{text-align:left;padding:12px 14px;color:#a7a2ad;background:#19191d;
+font-size:9px;letter-spacing:1px;font-weight:600;white-space:nowrap}
+td{padding:13px 14px;border-top:1px solid #29292f;font-size:12px;
+vertical-align:top}
+tbody tr:hover{background:#1b1519}
+.ref{color:#ff7d8d;font-weight:600}
+.secondary{color:var(--muted);font-size:10px;margin-top:4px}
+.status{display:inline-block;padding:4px 7px;font-size:10px;
+border:1px solid #5b4b2c;color:var(--amber);background:#272116;
+white-space:nowrap}
+.status.Active{color:#f28b99;border-color:#69313c;background:#29141a}
+.status.Disposed,.status.Completed{color:var(--green);border-color:#28553e;background:#14241b}
+.status.Pending{color:var(--blue);border-color:#354b71;background:#172033}
+.status.Stayed{color:#d2b2f4;border-color:#58416d;background:#241a2c}
+.empty{text-align:center;color:var(--muted);padding:30px!important}
+input,select,textarea{width:100%;background:#0c0c0e;color:var(--text);
+border:1px solid #39363e;padding:10px 11px;border-radius:3px;min-width:0}
+input::placeholder,textarea::placeholder{color:#77737c}
+textarea{min-height:100px;resize:vertical}
+.field label{display:block;color:#c6c1cb;font-size:11px;margin-bottom:7px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field.full{grid-column:1/-1}
+.section-title{grid-column:1/-1;border-bottom:1px solid var(--line);
+padding:8px 0 9px;color:var(--red-light);font-size:10px;letter-spacing:1.5px}
+.form-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.search{max-width:300px}
+.list-item{padding:13px 0;border-bottom:1px solid var(--line)}
+.list-item:last-child{border-bottom:0}
+.list-item strong{font-size:12px;font-weight:550}
+.list-item p{font-size:11px;color:var(--muted);margin:5px 0 0;white-space:pre-wrap}
+.date-box{border-left:2px solid var(--red);padding:2px 0 2px 12px}
+.date-box b{font-size:12px}.date-box small{display:block;color:var(--muted);font-size:10px}
+.day-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));
+border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.day-name{font-size:10px;text-align:center;color:var(--muted);
+padding:9px 2px;background:#19191d;border-right:1px solid var(--line)}
+.day{min-height:90px;padding:7px;border-right:1px solid var(--line);
+border-bottom:1px solid var(--line);background:var(--surface);overflow:hidden}
+.day.today{box-shadow:inset 0 0 0 1px var(--red)}
+.day.muted{opacity:.35}
+.day-num{font-size:10px;color:#c9c4cc}
+.event{margin-top:6px;padding:4px;background:#31151c;border-left:2px solid var(--red);
+font-size:9px;overflow-wrap:anywhere;cursor:pointer}
+.event:hover{background:#4a1b26}
+.metric-row{display:flex;justify-content:space-between;gap:12px;
+padding:11px 0;border-bottom:1px solid var(--line);font-size:12px}
+.metric-row:last-child{border:0}
+.info-note{padding:12px;border:1px solid var(--line);color:var(--muted);
+font-size:11px;line-height:1.7;background:#101013}
+.modal{display:none;position:fixed;inset:0;z-index:50;background:#000b;
+align-items:center;justify-content:center;padding:18px}
+.modal.open{display:flex}
+.modal-box{width:min(760px,100%);max-height:90vh;overflow:auto;
+background:#141416;border:1px solid #494047;box-shadow:0 20px 80px #000b}
+.modal-head{display:flex;justify-content:space-between;align-items:center;
+padding:18px;border-bottom:1px solid var(--line)}
+.modal-head h3{margin:0;font-size:15px}
+.modal-content{padding:20px}
+#toast{display:none;position:fixed;bottom:20px;right:20px;z-index:100;
+background:#261218;border:1px solid var(--red);padding:13px 17px;
+max-width:90vw}
+@media(max-width:1050px){
+ .app{grid-template-columns:205px minmax(0,1fr)}
+ main{padding:22px 18px}.topbar{padding:0 18px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stat:nth-child(2){border-right:0}
+ .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+ .split{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+ .app{display:block}.sidebar{padding:13px;gap:15px;border-right:0;
+ border-bottom:1px solid var(--line)}
+ .brand{padding:0 5px}.brandmark{width:35px;height:37px;font-size:22px}
+ .nav-group-label{display:none}
+ .sidebar nav{display:flex;gap:5px;overflow-x:auto}
+ .nav-item{white-space:nowrap;width:auto;padding:9px;font-size:11px}
+ .nav-item .ico{display:none}.sidebar-bottom{display:none}
+ .topbar{height:auto;min-height:57px;padding:11px 14px}
+ .local-label{display:none}main{padding:18px 12px}
+ h2{font-size:23px}.form-grid{grid-template-columns:1fr}
+ .field.full,.section-title{grid-column:auto}
+ .day{min-height:65px;padding:4px}.event{font-size:8px;padding:3px}
+ .day-grid{font-size:10px}
+}
+@media print{
+ .sidebar,.topbar,.no-print,.btn{display:none!important}
+ .app{display:block}.workspace{display:block}main{padding:0}
+ body,.panel{background:white!important;color:black!important}
+ .page{display:none!important}.page.active{display:block!important}
+ th{background:#eee;color:black}td{color:black}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brandmark">§</div>
+    <div><h1>LEXDESK</h1><p>ADVOCATE WORKSPACE</p></div>
+  </div>
+
+  <nav>
+    <div class="nav-group-label">WORKSPACE</div>
+    <button class="nav-item active" data-page="overview"><span class="ico">▦</span>Overview</button>
+    <button class="nav-item" data-page="cases"><span class="ico">▤</span>Case Docket</button>
+    <button class="nav-item" data-page="calendar"><span class="ico">▦</span>Hearing Calendar</button>
+    <div class="nav-group-label" style="margin-top:20px">CASE MATERIALS</div>
+    <button class="nav-item" data-page="orders"><span class="ico">§</span>Orders & Judgments</button>
+    <button class="nav-item" data-page="documents"><span class="ico">▧</span>Documents</button>
+    <button class="nav-item" data-page="research"><span class="ico">⌕</span>Legal Research</button>
+    <div class="nav-group-label" style="margin-top:20px">PRACTICE</div>
+    <button class="nav-item" data-page="tasks"><span class="ico">☷</span>Tasks & Deadlines</button>
+    <button class="nav-item" data-page="settings"><span class="ico">⚙</span>Data & Backup</button>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <div class="profile">
+      <div class="avatar">A</div>
+      <div><b>Advocate Workspace</b><small>Local practice records</small></div>
+    </div>
+  </div>
+</aside>
+
+<div class="workspace">
+<header class="topbar">
+  <div class="crumb">LexDesk <span style="color:#555"> / </span> <strong id="breadcrumb">Overview</strong></div>
+  <div class="top-actions">
+    <span class="local-label">LOCAL WORKSPACE</span>
+    <button class="btn btn-sm" onclick="backup()">Export backup</button>
+    <button class="btn btn-sm btn-primary" onclick="openCaseForm()">+ New matter</button>
+  </div>
+</header>
+
+<main>
+<!-- OVERVIEW -->
+<section class="page active" id="overview">
+  <div class="page-head">
+    <div><div class="eyebrow">Practice overview</div><h2>Your legal desk.</h2>
+    <p>A structured workspace for matters, court dates and case materials.</p></div>
+    <div class="toolbar"><button class="btn" onclick="showPage('calendar')">Open calendar →</button></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-label">REGISTERED MATTERS</div><div class="stat-value" id="statCases">0</div><div class="stat-foot">All docket entries</div></div>
+    <div class="stat"><div class="stat-label">ACTIVE MATTERS</div><div class="stat-value" id="statActive">0</div><div class="stat-foot">Ongoing proceedings</div></div>
+    <div class="stat"><div class="stat-label">UPCOMING HEARINGS</div><div class="stat-value" id="statHearings">0</div><div class="stat-foot">Future dates recorded</div></div>
+    <div class="stat"><div class="stat-label">OPEN TASKS</div><div class="stat-value" id="statTasks">0</div><div class="stat-foot">Outstanding work items</div></div>
+  </div>
+  <div class="split">
+    <div>
+      <div class="panel">
+        <div class="panel-head"><h3>UPCOMING COURT DATES</h3><button class="btn btn-sm" onclick="showPage('calendar')">Full calendar</button></div>
+        <div class="panel-body" id="upcomingList"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>RECENTLY UPDATED MATTERS</h3><button class="btn btn-sm" onclick="showPage('cases')">View docket</button></div>
+        <div class="table-wrap"><table><thead><tr><th>FILE REFERENCE</th><th>MATTER</th><th>COURT</th><th>STATUS</th><th></th></tr></thead><tbody id="recentCases"></tbody></table></div>
+      </div>
+    </div>
+    <div>
+      <div class="panel">
+        <div class="panel-head"><h3>WORK QUEUE</h3><button class="btn btn-sm" onclick="showPage('tasks')">All tasks</button></div>
+        <div class="panel-body" id="workQueue"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>QUICK ACCESS</h3></div>
+        <div class="panel-body">
+          <button class="btn" style="width:100%;text-align:left;margin-bottom:8px" onclick="openCaseForm()">＋ &nbsp; Register a court matter</button>
+          <button class="btn" style="width:100%;text-align:left;margin-bottom:8px" onclick="openRecordForm('hearing')">＋ &nbsp; Record a hearing</button>
+          <button class="btn" style="width:100%;text-align:left;margin-bottom:8px" onclick="openRecordForm('order')">＋ &nbsp; Add an order or judgment</button>
+          <button class="btn" style="width:100%;text-align:left" onclick="openRecordForm('task')">＋ &nbsp; Create a task</button>
+        </div>
+      </div>
+      <div class="info-note">This is a private local prototype. Court listings and legal deadlines must be verified independently.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE DOCKET -->
+<section class="page" id="cases">
+  <div class="page-head"><div><div class="eyebrow">Matter management</div><h2>Case docket</h2><p>Your structured register of court matters.</p></div><button class="btn btn-primary" onclick="openCaseForm()">+ Register matter</button></div>
+  <div class="panel">
+    <div class="panel-head"><h3>ALL MATTERS</h3><div class="toolbar"><input id="caseSearch" class="search" placeholder="Search file, party, CNR..." oninput="renderCases()"><select id="caseStatusFilter" style="width:auto" onchange="renderCases()"><option value="">All statuses</option><option>Active</option><option>Pending</option><option>Stayed</option><option>Disposed</option></select></div></div>
+    <div class="table-wrap"><table><thead><tr><th>INTERNAL FILE / CNR</th><th>PARTIES / CLIENT</th><th>COURT / CASE TYPE</th><th>NEXT HEARING</th><th>STATUS</th><th>ACTIONS</th></tr></thead><tbody id="caseRows"></tbody></table></div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section class="page" id="calendar">
+  <div class="page-head"><div><div class="eyebrow">Court diary</div><h2>Hearing calendar</h2><p>Review scheduled hearings and record proceedings.</p></div><button class="btn btn-primary" onclick="openRecordForm('hearing')">+ Add hearing</button></div>
+  <div class="panel">
+    <div class="panel-head"><div class="toolbar"><button class="btn btn-sm" onclick="shiftMonth(-1)">←</button><h3 id="monthLabel">MONTH</h3><button class="btn btn-sm" onclick="shiftMonth(1)">→</button></div><button class="btn btn-sm" onclick="goToday()">Today</button></div>
+    <div class="day-grid" id="calendarGrid"></div>
+  </div>
+  <div class="panel"><div class="panel-head"><h3>HEARING REGISTER</h3><span class="secondary">Select an entry to edit or delete it.</span></div><div class="table-wrap"><table><thead><tr><th>DATE</th><th>CASE</th><th>PURPOSE</th><th>OUTCOME / ORDER</th><th>NEXT DATE</th><th>ACTION</th></tr></thead><tbody id="hearingRows"></tbody></table></div></div>
+</section>
+
+<!-- ORDERS -->
+<section class="page" id="orders">
+  <div class="page-head"><div><div class="eyebrow">Judicial record</div><h2>Orders & judgments</h2><p>Maintain a register of interim orders, judgments and directions.</p></div><button class="btn btn-primary" onclick="openRecordForm('order')">+ Record order</button></div>
+  <div class="panel"><div class="panel-head"><h3>JUDICIAL DOCUMENT REGISTER</h3><input id="orderSearch" class="search" placeholder="Search order, court, case..." oninput="renderOrders()"></div>
+  <div class="table-wrap"><table><thead><tr><th>DATE</th><th>CASE REFERENCE</th><th>DOCUMENT TYPE</th><th>DESCRIPTION / DIRECTIONS</th><th>CITATION / LINK</th><th>ACTIONS</th></tr></thead><tbody id="orderRows"></tbody></table></div></div>
+</section>
+
+<!-- DOCUMENTS -->
+<section class="page" id="documents">
+  <div class="page-head"><div><div class="eyebrow">Case materials</div><h2>Document register</h2><p>Index pleadings, filings, exhibits and supporting material.</p></div><button class="btn btn-primary" onclick="openRecordForm('document')">+ Add document</button></div>
+  <div class="panel"><div class="panel-head"><h3>DOCUMENT INDEX</h3><input id="docSearch" class="search" placeholder="Search document or case..." oninput="renderDocuments()"></div>
+  <div class="table-wrap"><table><thead><tr><th>DOCUMENT</th><th>CASE</th><th>CATEGORY</th><th>DATE</th><th>REFERENCE / LOCATION</th><th>ACTIONS</th></tr></thead><tbody id="docRows"></tbody></table></div></div>
+  <div class="info-note">The document register stores metadata and optional links or file locations. It does not upload, encrypt, or securely store the actual document. Use an appropriately secured document repository for confidential files.</div>
+</section>
+
+<!-- RESEARCH -->
+<section class="page" id="research">
+  <div class="page-head"><div><div class="eyebrow">Legal knowledge</div><h2>Legal research library</h2><p>Organise authorities, statutes, citations and research notes.</p></div><button class="btn btn-primary" onclick="openRecordForm('research')">+ Add research</button></div>
+  <div class="panel"><div class="panel-head"><h3>SAVED AUTHORITIES & RESEARCH</h3><input id="researchSearch" class="search" placeholder="Search title, citation, topic..." oninput="renderResearch()"></div>
+  <div class="table-wrap"><table><thead><tr><th>TITLE / AUTHORITY</th><th>TYPE</th><th>CITATION / SECTION</th><th>TOPIC / NOTES</th><th>REFERENCE</th><th>ACTIONS</th></tr></thead><tbody id="researchRows"></tbody></table></div></div>
+  <div class="panel"><div class="panel-head"><h3>RESEARCH REMINDER</h3></div><div class="panel-body" style="color:var(--muted);font-size:12px">Verify judgments, citations, amendments, overruling history, and the current status of legislation using reliable primary sources before relying on them in court.</div></div>
+</section>
+
+<!-- TASKS -->
+<section class="page" id="tasks">
+  <div class="page-head"><div><div class="eyebrow">Practice administration</div><h2>Tasks & deadlines</h2><p>Track preparation, filing obligations and follow-up actions.</p></div><button class="btn btn-primary" onclick="openRecordForm('task')">+ Create task</button></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-label">OPEN TASKS</div><div class="stat-value" id="taskOpen">0</div></div>
+    <div class="stat"><div class="stat-label">DUE TODAY</div><div class="stat-value" id="taskToday">0</div></div>
+    <div class="stat"><div class="stat-label">OVERDUE</div><div class="stat-value" id="taskOverdue">0</div></div>
+    <div class="stat"><div class="stat-label">COMPLETED</div><div class="stat-value" id="taskCompleted">0</div></div>
+  </div>
+  <div class="panel"><div class="panel-head"><h3>TASK REGISTER</h3><div class="toolbar"><input id="taskSearch" class="search" placeholder="Search task or case..." oninput="renderTasks()"><select id="taskFilter" style="width:auto" onchange="renderTasks()"><option value="">All tasks</option><option>Open</option><option>Completed</option></select></div></div>
+  <div class="table-wrap"><table><thead><tr><th>DUE DATE</th><th>TASK / DETAILS</th><th>RELATED CASE</th><th>PRIORITY</th><th>STATUS</th><th>ACTIONS</th></tr></thead><tbody id="taskRows"></tbody></table></div></div>
+</section>
+
+<!-- SETTINGS -->
+<section class="page" id="settings">
+  <div class="page-head"><div><div class="eyebrow">Workspace administration</div><h2>Data & backup</h2><p>Manage your locally stored records.</p></div></div>
+  <div class="panel"><div class="panel-head"><h3>WORKSPACE SUMMARY</h3></div><div class="panel-body" id="dataSummary"></div></div>
+  <div class="panel"><div class="panel-head"><h3>BACKUP & RESTORE</h3></div><div class="panel-body">
+    <p style="color:var(--muted);font-size:12px">Export your records to a JSON file. Importing a backup replaces the current local workspace.</p>
+    <div class="toolbar"><button class="btn btn-primary" onclick="backup()">Export JSON backup</button><button class="btn" onclick="$('importFile').click()">Import backup</button><input id="importFile" type="file" accept=".json,application/json" hidden></div>
+  </div></div>
+  <div class="panel"><div class="panel-head"><h3>DELETE LOCAL RECORDS</h3></div><div class="panel-body"><p style="color:var(--muted);font-size:12px">This deletes all records saved by LexDesk in this browser. Export a backup first if needed.</p><button class="btn btn-danger" onclick="clearAll()">Delete all records</button></div></div>
+  <div class="info-note"><strong>Privacy notice:</strong> This prototype has no user authentication, encrypted storage, server-side access control or audit logs. Anyone with access to the browser profile may be able to access or alter local records. Do not use it as the sole repository for privileged communications, client identities, confidential pleadings or court documents.</div>
+</section>
+
+</main>
+</div>
+</div>
+
+<!-- REUSABLE RECORD EDITOR -->
+<div class="modal" id="editor" role="dialog" aria-modal="true" aria-labelledby="editorTitle">
+ <div class="modal-box">
+  <div class="modal-head"><h3 id="editorTitle">New record</h3><button class="btn btn-sm" onclick="closeEditor()">Close ✕</button></div>
+  <div class="modal-content"><form id="recordForm"><input id="recordId" type="hidden"><div class="form-grid" id="recordFields"></div>
+  <div class="form-actions"><button class="btn btn-primary" type="submit">Save record</button><button class="btn" type="button" onclick="closeEditor()">Cancel</button></div></form></div>
+ </div>
+</div>
+<div id="toast" role="status"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const DBKEY='lexdesk_workspace_v1';
+const today=()=>new Date().toLocaleDateString('en-CA');
+const uid=()=>crypto.randomUUID();
+const db={cases:[],hearings:[],orders:[],documents:[],research:[],tasks:[]};
+let calendarDate=new Date();
+let editorType='';
+let activePage='overview';
+
+const caseFields=[
+ ['fileNo','Internal file number','text',true],
+ ['courtNo','Court case number','text',false],
+ ['cnr','CNR number','text',false],
+ ['title','Matter title','text',true],
+ ['court','Court / forum','text',true],
+ ['type','Case type','select:Criminal|Civil|Family|Commercial|Constitutional / Writ|Consumer|Arbitration|Tribunal|Appeal / Revision|Other',true],
+ ['client','Client name','text',true],
+ ['petitioner','Petitioner / plaintiff','text',false],
+ ['respondent','Respondent / defendant','text',false],
+ ['role','Your role','select:Petitioner / plaintiff|Respondent / defendant|Applicant|Appellant|Complainant|Other',false],
+ ['filingDate','Filing date','date',false],
+ ['status','Case status','select:Active|Pending|Stayed|Disposed',true],
+ ['sections','Acts / sections / rules','textarea',false],
+ ['summary','Facts / relief sought','textarea',false],
+ ['notes','Procedural history / working notes','textarea',false]
+];
+
+const configs={
+ hearing:{label:'Hearing entry',collection:'hearings',fields:[
+  ['caseId','Related case','case',true],['date','Hearing date','date',true],
+  ['purpose','Purpose of hearing','text',false],['courtroom','Courtroom / bench','text',false],
+  ['outcome','Outcome / order summary','textarea',false],
+  ['nextDate','Next hearing date','date',false],['followup','Follow-up actions','textarea',false]
+ ]},
+ order:{label:'Order or judgment',collection:'orders',fields:[
+  ['caseId','Related case','case',true],['date','Order date','date',true],
+  ['kind','Document type','select:Interim order|Final judgment|Procedural order|Daily order|Decree|Notice|Other',true],
+  ['title','Title / subject','text',true],['citation','Citation / case reference','text',false],
+  ['directions','Summary of directions / findings','textarea',false],
+  ['reference','Document URL / file location','text',false]
+ ]},
+ document:{label:'Document entry',collection:'documents',fields:[
+  ['caseId','Related case','case',true],['title','Document title','text',true],
+  ['category','Category','select:Pleading|Application|Affidavit|Evidence|Order|Judgment|Notice|Correspondence|Other',true],
+  ['date','Document date','date',false],['reference','File location / URL / reference','text',false],
+  ['description','Description','textarea',false]
+ ]},
+ research:{label:'Research entry',collection:'research',fields:[
+  ['title','Case / authority / topic title','text',true],
+  ['kind','Research type','select:Judgment|Bare Act / Legislation|Rule / Regulation|Commentary|Article|Other',true],
+  ['citation','Citation / section','text',false],['topic','Legal topic','text',false],
+  ['notes','Principle / research notes','textarea',false],['reference','URL / source reference','text',false]
+ ]},
+ task:{label:'Task or deadline',collection:'tasks',fields:[
+  ['title','Task title','text',true],['caseId','Related case (optional)','case',false],
+  ['due','Due date','date',true],
+  ['priority','Priority','select:Low|Normal|High|Urgent',true],
+  ['status','Task status','select:Open|Completed',true],
+  ['owner','Assigned to','text',false],['details','Details / checklist','textarea',false]
+ ]}
+};
+
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function toast(s){$('toast').textContent=s;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2600);}
+function status(s){return `<span class="status ${esc(s)}">${esc(s||'—')}</span>`;}
+function caseById(id){return db.cases.find(c=>c.id===id);}
+function caseLabel(id){const c=caseById(id);return c?`${c.fileNo} · ${c.title}`:'General / unlinked';}
+function dateLabel(d){return d||'—';}
+function readStore(){
+ try{const x=JSON.parse(localStorage.getItem(DBKEY)||'{}');
+  for(const k in db)if(Array.isArray(x[k]))db[k]=x[k];
+ }catch{toast('Unable to read saved records.');}
+}
+function persist(){localStorage.setItem(DBKEY,JSON.stringify(db));}
+function showPage(id){
+ activePage=id;
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+ document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+ const btn=document.querySelector(`.nav-item[data-page="${id}"]`);
+ $('breadcrumb').textContent=btn?btn.textContent.trim():({overview:'Overview',cases:'Case docket',calendar:'Hearing calendar'}[id]||id);
+ window.scrollTo(0,0);
+}
+document.querySelectorAll('.nav-item').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+
+function openCaseForm(id=''){
+ const c=id?caseById(id):{};
+ if(id&&!c)return;
+ editorType='case';
+ $('editorTitle').textContent=id?'Edit court matter':'Register court matter';
+ $('recordId').value=id;
+ $('recordFields').innerHTML=caseFields.map(([key,label,type,required])=>fieldHTML(key,label,type,required,c[key]||'')).join('');
+ openEditor();
+}
+function fieldHTML(key,label,type,required,value=''){
+ const req=required?'required':'';
+ const val=esc(value);
+ if(type==='textarea')return `<div class="field full"><label for="fld_${key}">${esc(label)}${required?' *':''}</label><textarea id="fld_${key}" name="${key}" ${req}>${val}</textarea></div>`;
+ if(type==='case'){
+  return `<div class="field"><label for="fld_${key}">${esc(label)}${required?' *':''}</label><select id="fld_${key}" name="${key}" ${req}><option value="">${required?'Select case':'No linked case'}</option>${db.cases.map(c=>`<option value="${c.id}" ${value===c.id?'selected':''}>${esc(c.fileNo)} — ${esc(c.title)}</option>`).join('')}</select></div>`;
+ }
+ if(type.startsWith('select:')){
+  return `<div class="field"><label for="fld_${key}">${esc(label)}${required?' *':''}</label><select id="fld_${key}" name="${key}" ${req}><option value="">Select...</option>${type.slice(7).split('|').map(v=>`<option ${value===v?'selected':''}>${esc(v)}</option>`).join('')}</select></div>`;
+ }
+ return `<div class="field"><label for="fld_${key}">${esc(label)}${required?' *':''}</label><input id="fld_${key}" name="${key}" type="${type}" value="${val}" ${req}></div>`;
+}
+function openRecordForm(type,id=''){
+ editorType=type;
+ const cfg=configs[type],old=id?db[cfg.collection].find(x=>x.id===id):{};
+ if(id&&!old)return;
+ $('editorTitle').textContent=(id?'Edit ':'Add ')+cfg.label.toLowerCase();
+ $('recordId').value=id;
+ $('recordFields').innerHTML=cfg.fields.map(([key,label,kind,required])=>fieldHTML(key,label,kind,required,old[key]||'')).join('');
+ openEditor();
+}
+function openEditor(){
+ $('editor').classList.add('open');
+ document.body.style.overflow='hidden';
+ const first=$('recordFields').querySelector('input,select,textarea');
+ if(first)setTimeout(()=>first.focus(),50);
+}
+function closeEditor(){$('editor').classList.remove('open');document.body.style.overflow='';}
+$('editor').addEventListener('click',e=>{if(e.target===$('editor'))closeEditor();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeEditor();});
+
+$('recordForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const id=$('recordId').value;
+ if(editorType==='case'){
+  const record={};caseFields.forEach(([key])=>record[key]=$('recordForm').elements[key].value.trim());
+  if(db.cases.some(c=>c.fileNo.toLowerCase()===record.fileNo.toLowerCase()&&c.id!==id)){
+   toast('That internal file number already exists.');return;
+  }
+  if(id){const i=db.cases.findIndex(c=>c.id===id);if(i<0)return;db.cases[i]={...db.cases[i],...record,updatedAt:new Date().toISOString()};}
+  else db.cases.push({...record,id:uid(),createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()});
+ }else{
+  const cfg=configs[editorType],record={};
+  cfg.fields.forEach(([key])=>record[key]=$('recordForm').elements[key].value.trim());
+  if(record.caseId&&!caseById(record.caseId)){toast('Please select a valid case.');return;}
+  if(id){const i=db[cfg.collection].findIndex(x=>x.id===id);if(i<0)return;db[cfg.collection][i]={...db[cfg.collection][i],...record};}
+  else db[cfg.collection].push({...record,id:uid(),createdAt:new Date().toISOString()});
+ }
+ const dest=editorType==='case'?'cases':configs[editorType].collection==='hearings'?'calendar':
+ configs[editorType].collection==='orders'?'orders':configs[editorType].collection==='documents'?'documents':
+ configs[editorType].collection==='research'?'research':'tasks';
+ closeEditor();refreshAll();showPage(dest);toast('Record saved.');
+});
+
+function removeRecord(collection,id){
+ if(!confirm('Delete this record?'))return;
+ db[collection]=db[collection].filter(x=>x.id!==id);refreshAll();toast('Record deleted.');
+}
+function deleteCase(id){
+ if(!confirm('Delete this case and all its linked hearings, orders, documents and tasks?'))return;
+ db.cases=db.cases.filter(c=>c.id!==id);
+ for(const k of ['hearings','orders','documents','tasks'])db[k]=db[k].filter(x=>x.caseId!==id);
+ refreshAll();toast('Matter and linked records deleted.');
+}
+function nextHearing(id){
+ const h=db.hearings.filter(x=>x.caseId===id&&x.date>=today()).sort((a,b)=>a.date.localeCompare(b.date))[0];
+ return h?h.date:'—';
+}
+function renderCases(){
+ const q=($('caseSearch')?.value||'').toLowerCase();
+ const f=$('caseStatusFilter')?.value||'';
+ const list=[...db.cases].filter(c=>(!f||c.status===f)&&
+ ['fileNo','courtNo','cnr','title','court','client','petitioner','respondent','type'].some(k=>String(c[k]||'').toLowerCase().includes(q)));
+ $('caseRows').innerHTML=list.length?list.map(c=>`<tr>
+ <td><span class="ref">${esc(c.fileNo)}</span><div class="secondary">Court no.: ${esc(c.courtNo||'—')}<br>CNR: ${esc(c.cnr||'—')}</div></td>
+ <td>${esc(c.petitioner||'—')} v. ${esc(c.respondent||'—')}<div class="secondary">Client: ${esc(c.client)}</div></td>
+ <td>${esc(c.court)}<div class="secondary">${esc(c.type)}</div></td>
+ <td>${esc(nextHearing(c.id))}</td><td>${status(c.status)}</td>
+ <td><div class="toolbar"><button class="btn btn-sm" onclick="openCaseForm('${c.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="deleteCase('${c.id}')">Delete</button></div></td></tr>`).join(''):'<tr><td colspan="6" class="empty">No matters found. Register a new court matter to begin.</td></tr>';
+}
+function renderDashboard(){
+ const future=db.hearings.filter(h=>h.date>=today()).sort((a,b)=>a.date.localeCompare(b.date));
+ $('statCases').textContent=db.cases.length;
+ $('statActive').textContent=db.cases.filter(c=>c.status==='Active'||c.status==='Pending').length;
+ $('statHearings').textContent=future.length;
+ $('statTasks').textContent=db.tasks.filter(t=>t.status!=='Completed').length;
+ $('upcomingList').innerHTML=future.slice(0,6).map(h=>`<div class="list-item"><div class="date-box"><b>${esc(h.date)} · ${esc(h.purpose||'Court hearing')}</b><small>${esc(caseLabel(h.caseId))}</small><small>${esc(h.courtroom||caseById(h.caseId)?.court||'Court not specified')}</small></div></div>`).join('')||'<div class="empty">No upcoming hearings recorded.</div>';
+ $('recentCases').innerHTML=[...db.cases].reverse().slice(0,5).map(c=>`<tr><td class="ref">${esc(c.fileNo)}</td><td>${esc(c.title)}<div class="secondary">${esc(c.client)}</div></td><td>${esc(c.court)}</td><td>${status(c.status)}</td><td><button class="btn btn-sm" onclick="openCaseForm('${c.id}')">Edit</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">No matters registered.</td></tr>';
+ const tasks=db.tasks.filter(t=>t.status!=='Completed').sort((a,b)=>a.due.localeCompare(b.due)).slice(0,6);
+ $('workQueue').innerHTML=tasks.map(t=>`<div class="list-item"><strong>${esc(t.title)}</strong><p>${esc(t.due)} · ${esc(t.priority)} priority</p><p>${esc(t.caseId?caseLabel(t.caseId):'General task')}</p></div>`).join('')||'<div class="empty">Your work queue is clear.</div>';
+}
+function renderCalendar(){
+ const y=calendarDate.getFullYear(),m=calendarDate.getMonth();
+ $('monthLabel').textContent=calendarDate.toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+ const first=new Date(y,m,1),start=(first.getDay()+6)%7;
+ const days=new Date(y,m+1,0).getDate(),prev=new Date(y,m,0).getDate();
+ let html=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="day-name">${d}</div>`).join('');
+ for(let i=0;i<42;i++){
+  let n=i-start+1,dt,muted=false;
+  if(n<1){dt=new Date(y,m-1,prev+n);muted=true;}
+  else if(n>days){dt=new Date(y,m+1,n-days);muted=true;}
+  else dt=new Date(y,m,n);
+  const key=[dt.getFullYear(),String(dt.getMonth()+1).padStart(2,'0'),String(dt.getDate()).padStart(2,'0')].join('-');
+  const events=db.hearings.filter(h=>h.date===key);
+  html+=`<div class="day ${muted?'muted':''} ${key===today()?'today':''}"><div class="day-num">${dt.getDate()}</div>${events.slice(0,3).map(h=>`<div class="event" title="${esc(h.purpose)}" onclick="openRecordForm('hearing','${h.id}')">${esc(caseById(h.caseId)?.fileNo||'Hearing')} · ${esc(h.purpose||'Court')}</div>`).join('')}${events.length>3?`<div class="secondary">+${events.length-3} more</div>`:''}</div>`;
+ }
+ $('calendarGrid').innerHTML=html;
+}
+function shiftMonth(n){calendarDate=new Date(calendarDate.getFullYear(),calendarDate.getMonth()+n,1);renderCalendar();}
+function goToday(){calendarDate=new Date();renderCalendar();}
+function renderHearings(){
+ const a=[...db.hearings].sort((x,y)=>y.date.localeCompare(x.date));
+ $('hearingRows').innerHTML=a.map(h=>`<tr><td>${esc(h.date)}</td><td>${esc(caseLabel(h.caseId))}</td><td>${esc(h.purpose||'—')}</td><td>${esc(h.outcome||'—')}</td><td>${esc(h.nextDate||'—')}</td><td><div class="toolbar"><button class="btn btn-sm" onclick="openRecordForm('hearing','${h.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="removeRecord('hearings','${h.id}')">Delete</button></div></td></tr>`).join('')||'<tr><td colspan="6" class="empty">No hearing records.</td></tr>';
+}
+function renderOrders(){
+ const q=($('orderSearch')?.value||'').toLowerCase();
+ const a=db.orders.filter(x=>[x.title,x.citation,x.kind,x.directions,x.reference,caseLabel(x.caseId)].join(' ').toLowerCase().includes(q));
+ $('orderRows').innerHTML=a.map(x=>`<tr><td>${esc(x.date)}</td><td>${esc(caseLabel(x.caseId))}</td><td>${esc(x.kind)}</td><td><b>${esc(x.title)}</b><div class="secondary">${esc(x.directions||'')}</div></td><td>${x.reference?`<a style="color:#ff8291" href="${safeURL(x.reference)}" target="_blank" rel="noopener noreferrer">Open reference ↗</a>`:esc(x.citation||'—')}</td><td><div class="toolbar"><button class="btn btn-sm" onclick="openRecordForm('order','${x.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="removeRecord('orders','${x.id}')">Delete</button></div></td></tr>`).join('')||'<tr><td colspan="6" class="empty">No orders or judgments recorded.</td></tr>';
+}
+function renderDocuments(){
+ const q=($('docSearch')?.value||'').toLowerCase();
+ const a=db.documents.filter(x=>[x.title,x.category,x.reference,x.description,caseLabel(x.caseId)].join(' ').toLowerCase().includes(q));
+ $('docRows').innerHTML=a.map(x=>`<tr><td><b>${esc(x.title)}</b><div class="secondary">${esc(x.description||'')}</div></td><td>${esc(caseLabel(x.caseId))}</td><td>${esc(x.category)}</td><td>${esc(x.date||'—')}</td><td>${x.reference?`<a style="color:#ff8291" href="${safeURL(x.reference)}" target="_blank" rel="noopener noreferrer">Open reference ↗</a>`:'—'}</td><td><div class="toolbar"><button class="btn btn-sm" onclick="openRecordForm('document','${x.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="removeRecord('documents','${x.id}')">Delete</button></div></td></tr>`).join('')||'<tr><td colspan="6" class="empty">No documents indexed.</td></tr>';
+}
+function renderResearch(){
+ const q=($('researchSearch')?.value||'').toLowerCase();
+ const a=db.research.filter(x=>[x.title,x.kind,x.citation,x.topic,x.notes,x.reference].join(' ').toLowerCase().includes(q));
+ $('researchRows').innerHTML=a.map(x=>`<tr><td><b>${esc(x.title)}</b></td><td>${esc(x.kind)}</td><td>${esc(x.citation||'—')}</td><td>${esc(x.topic||'—')}<div class="secondary">${esc(x.notes||'')}</div></td><td>${x.reference?`<a style="color:#ff8291" href="${safeURL(x.reference)}" target="_blank" rel="noopener noreferrer">Open source ↗</a>`:'—'}</td><td><div class="toolbar"><button class="btn btn-sm" onclick="openRecordForm('research','${x.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="removeRecord('research','${x.id}')">Delete</button></div></td></tr>`).join('')||'<tr><td colspan="6" class="empty">No research saved.</td></tr>';
+}
+function safeURL(v){
+ try{const u=new URL(v,location.href);if(['http:','https:'].includes(u.protocol))return u.href;}catch{}
+ return '#';
+}
+function renderTasks(){
+ const q=($('taskSearch')?.value||'').toLowerCase(),f=$('taskFilter')?.value||'';
+ const a=db.tasks.filter(t=>(!f||t.status===f)&&[t.title,t.details,t.owner,caseLabel(t.caseId)].join(' ').toLowerCase().includes(q)).sort((x,y)=>x.due.localeCompare(y.due));
+ $('taskRows').innerHTML=a.map(t=>`<tr><td>${esc(t.due)}${t.status!=='Completed'&&t.due<today()?'<div class="secondary" style="color:#ff8291">Overdue</div>':''}</td><td><b>${esc(t.title)}</b><div class="secondary">${esc(t.details||'')} · ${esc(t.owner||'Unassigned')}</div></td><td>${esc(t.caseId?caseLabel(t.caseId):'General task')}</td><td>${esc(t.priority)}</td><td>${status(t.status)}</td><td><div class="toolbar"><button class="btn btn-sm" onclick="toggleTask('${t.id}')">${t.status==='Completed'?'Reopen':'Complete'}</button><button class="btn btn-sm" onclick="openRecordForm('task','${t.id}')">Edit</button><button class="btn btn-sm btn-danger" onclick="removeRecord('tasks','${t.id}')">Delete</button></div></td></tr>`).join('')||'<tr><td colspan="6" class="empty">No tasks found.</td></tr>';
+ const open=db.tasks.filter(t=>t.status!=='Completed');
+ $('taskOpen').textContent=open.length;
+ $('taskToday').textContent=open.filter(t=>t.due===today()).length;
+ $('taskOverdue').textContent=open.filter(t=>t.due<today()).length;
+ $('taskCompleted').textContent=db.tasks.filter(t=>t.status==='Completed').length;
+}
+function toggleTask(id){const t=db.tasks.find(x=>x.id===id);if(t)t.status=t.status==='Completed'?'Open':'Completed';refreshAll();}
+function refreshAll(){
+ persist();
+ renderDashboard();renderCases();renderCalendar();renderHearings();
+ renderOrders();renderDocuments();renderResearch();renderTasks();
+ $('dataSummary').innerHTML=Object.entries(db).map(([k,v])=>`<div class="metric-row"><span>${esc(k.charAt(0).toUpperCase()+k.slice(1))}</span><b>${v.length}</b></div>`).join('');
+}
+function backup(){
+ const blob=new Blob([JSON.stringify({app:'LexDesk',version:1,exportedAt:new Date().toISOString(),...db},null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='lexdesk-backup.json';a.click();URL.revokeObjectURL(url);
+}
+$('importFile').addEventListener('change',async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{
+  const x=JSON.parse(await file.text());
+  if(x.app!=='LexDesk'||!Object.keys(db).every(k=>Array.isArray(x[k])))throw Error('Invalid backup');
+  if(!confirm('Replace all current workspace records with this backup?'))return;
+  for(const k of Object.keys(db))db[k]=x[k];
+  refreshAll();toast('Backup restored.');
+ }catch{toast('Invalid or incompatible backup file.');}
+ finally{e.target.value='';}
+});
+function clearAll(){
+ if(!confirm('Permanently delete all LexDesk records from this browser?'))return;
+ for(const k of Object.keys(db))db[k]=[];
+ refreshAll();showPage('overview');toast('Workspace cleared.');
+}
+function printPage(){
+ window.print();
+}
+readStore();refreshAll();showPage('overview');
+</script>
+</body>
+</html>
