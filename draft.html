@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DraftDesk | Legal Drafting Library</title>
+<style>
+:root{--bg:#090a0e;--panel:#13151d;--panel2:#1b1e28;--line:#303440;--red:#e53945;--red2:#ff626c;--text:#f4f5f8;--muted:#a5a9b6;--gold:#e7c783}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 78% 0,#32121a 0,transparent 30%),var(--bg);color:var(--text);font:14px/1.55 Inter,Segoe UI,Arial,sans-serif}header{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:13px 4%;background:#0b0c11ed;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.brand{display:flex;gap:11px;align-items:center;font-weight:850}.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#ff6871,#a40017);display:grid;place-items:center;font-size:23px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1.6px;font-weight:500}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:9px;padding:10px 13px;cursor:pointer;font-weight:700}.btn:hover{border-color:var(--red2)}.btn.primary{background:linear-gradient(135deg,var(--red2),#b80d20);border-color:transparent}main{max-width:1600px;margin:auto;padding:28px 4% 45px}.hero{display:flex;justify-content:space-between;align-items:end;gap:22px;margin-bottom:25px}.eyebrow{color:var(--red2);font-size:11px;font-weight:800;letter-spacing:2.3px;text-transform:uppercase}.hero h1{font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-1.5px;margin:8px 0}.hero h1 span{color:var(--red2)}.hero p{color:var(--muted);max-width:750px;margin:0}.stat{border:1px solid var(--line);background:#15151c;padding:15px 20px;border-radius:13px;min-width:155px}.stat b{display:block;font-size:27px}.stat span{font-size:11px;color:var(--muted)}.workspace{display:grid;grid-template-columns:280px minmax(300px,.85fr) minmax(370px,1.15fr);gap:15px;align-items:start}.panel{min-width:0;background:linear-gradient(180deg,#151720,#101117);border:1px solid var(--line);border-radius:14px;overflow:hidden}.head{padding:16px 17px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}.head h2{font-size:14px;margin:0}.head span{font-size:10px;color:var(--muted)}.body{padding:15px}.search,input,textarea,select{width:100%;background:#0b0c11;border:1px solid #343744;border-radius:8px;color:var(--text);padding:11px;font:inherit;outline:none}.search{margin-bottom:12px}.search:focus,input:focus,textarea:focus,select:focus{border-color:var(--red2);box-shadow:0 0 0 3px #e5394518}.category-list{display:grid;gap:5px;max-height:65vh;overflow:auto;padding-right:3px}.cat{width:100%;text-align:left;display:flex;align-items:center;gap:9px;background:transparent;color:#d4d6df;border:1px solid transparent;border-radius:8px;padding:9px;cursor:pointer}.cat:hover{background:#1d2029}.cat.active{background:#35171e;border-color:#792a34;color:white}.num{width:27px;height:27px;display:grid;place-items:center;border-radius:7px;background:#252833;color:#b9bdc9;font-size:10px;flex-shrink:0}.cat.active .num{background:var(--red)}.cat .count{margin-left:auto;font-size:10px;color:#8f94a2}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:5px;min-width:0}.field.full{grid-column:1/-1}.field label{font-size:11px;color:#d1d3dc;font-weight:700}.field textarea{resize:vertical;min-height:75px}.field input,.field select,.field textarea{font-size:12px}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.template-label{font-size:10px;color:var(--red2);letter-spacing:1.3px;font-weight:800;margin:0 0 8px}.subselect{margin-bottom:13px}.hint{font-size:10px;color:var(--muted);margin-top:10px}.preview-wrap{padding:13px;background:#20222b}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}.toolbar span{font-size:10px;color:#c1c4ce}.paper{background:white;color:#171717;min-height:750px;padding:44px 45px 50px;box-shadow:0 10px 30px #0005;font-family:"Times New Roman",serif;font-size:14px;line-height:1.7;overflow-wrap:anywhere}.paper .mast{text-align:center;color:#666;font:10px Arial,sans-serif;letter-spacing:1px}.paper h2{text-align:center;font-size:17px;text-transform:uppercase;text-decoration:underline;margin:20px 0}.paper p{margin:10px 0;text-align:justify}.paper h3{font-size:14px;margin:20px 0 5px}.paper .sign{margin-top:40px;text-align:right;white-space:pre-line}.paper .disclaimer{font:10px/1.4 Arial,sans-serif;color:#666;border-top:1px solid #ddd;padding-top:9px;margin-top:35px}.notice{margin-top:16px;padding:12px 14px;background:#211b10;border:1px solid #604b24;color:#e9d6a7;border-radius:10px;font-size:11px}.below{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:16px}.tile{border:1px solid var(--line);background:#12141b;border-radius:12px;padding:16px}.tile b{display:block;margin-bottom:5px}.tile span{font-size:11px;color:var(--muted)}footer{border-top:1px solid var(--line);padding:20px 4%;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px}
+@media(max-width:1120px){.workspace{grid-template-columns:250px 1fr}.preview-panel{grid-column:1/-1}.paper{min-height:600px}}@media(max-width:720px){header{padding:11px 4%}.hero{display:block}.stat{display:inline-block;margin-top:15px}.workspace{grid-template-columns:1fr}.preview-panel{grid-column:auto}.field-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.below{grid-template-columns:1fr}.paper{padding:27px 20px;min-height:550px}.category-list{max-height:340px}}
+@page{size:A4;margin:0}
+@media print{
+  html,body{background:#fff!important;color:#000!important;margin:0!important;padding:0!important;width:100%!important}
+  header,main>.hero,.library-panel,.form-panel,.notice,.below,footer,.toolbar,.head{display:none!important}
+  main{display:block!important;max-width:none!important;margin:0!important;padding:0!important}
+  .workspace{display:block!important;margin:0!important;padding:0!important}
+  .preview-panel{display:block!important;border:0!important;border-radius:0!important;overflow:visible!important;background:#fff!important}
+  .preview-wrap{display:block!important;padding:0!important;margin:0!important;background:#fff!important}
+  .paper{display:block!important;box-shadow:none!important;border:0!important;margin:0!important;padding:18mm!important;min-height:0!important;width:100%!important;color:#111!important;background:#fff!important;font-size:12pt!important;line-height:1.55!important;overflow:visible!important}
+  .paper h2{break-after:avoid}
+  .paper h3{break-after:avoid}
+  .paper p{orphans:3;widows:3}
+}
+
+
+</style></head>
+<body>
+<header><div class="brand"><div class="logo">§</div><div>DraftDesk <small>BHARAT KANOON VIDHI HUB</small></div></div><div style="display:flex;gap:8px"><button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">Draft Studio</button><button class="btn primary" onclick="generateDraft()">✦ Generate Draft</button></div></header>
+<main><section class="hero"><div><div class="eyebrow">Indian legal drafting library</div><h1>One library. <span>652+ draft formats.</span></h1><p>Choose from 30 legal categories, select a draft format, enter matter details and generate an editable first draft with a print-ready preview.</p></div><div class="stat"><b>|  DRAFT  |</b></div></section>
+<section class="workspace" id="workspace">
+<aside class="panel library-panel"><div class="head"><h2>Draft categories</h2><span>STEP 01</span></div><div class="body"><input class="search" id="catSearch" placeholder="⌕ Search categories..." oninput="renderCategories()"><div class="category-list" id="categoryList"></div></div></aside>
+<section class="panel form-panel"><div class="head"><h2>Draft information</h2><span>STEP 02</span></div><div class="body">
+<p class="template-label" id="selectedCategory">CIVIL LAW DRAFTING</p><div class="field subselect"><label for="draftSelect">Select draft format</label><select id="draftSelect" onchange="onDraftChange()"></select></div>
+<div class="field-grid">
+<div class="field"><label for="docTitle">Document title</label><input id="docTitle"></div><div class="field"><label for="date">Date</label><input id="date" type="date"></div>
+<div class="field"><label for="court">Court / Authority / Forum</label><input id="court" placeholder="Name of court or authority"></div><div class="field"><label for="caseNo">Case / Reference number</label><input id="caseNo" placeholder="If applicable"></div>
+<div class="field"><label for="partyA">Petitioner / Applicant / Sender</label><input id="partyA" placeholder="Full name / entity"></div><div class="field"><label for="partyB">Respondent / Recipient</label><input id="partyB" placeholder="Full name / entity"></div>
+<div class="field full"><label for="address">Addresses and party details</label><textarea id="address" placeholder="Addresses, status, contact or party descriptions"></textarea></div>
+<div class="field full"><label for="subject">Subject / Relief / Purpose</label><input id="subject" placeholder="Short description of the matter"></div>
+<div class="field full"><label for="facts">Facts and chronology</label><textarea id="facts" rows="5" placeholder="Enter numbered facts, dates, events, communications and relevant background"></textarea></div>
+<div class="field full"><label for="grounds">Grounds / legal basis / clauses</label><textarea id="grounds" rows="4" placeholder="Enter grounds, contractual clauses or applicable provisions only after verification"></textarea></div>
+<div class="field full"><label for="prayer">Prayer / request / proposed terms</label><textarea id="prayer" rows="3" placeholder="State precisely what is requested or agreed"></textarea></div>
+<div class="field full"><label for="documents">Documents / annexures / evidence</label><textarea id="documents" placeholder="List documents, dates, annexure labels and other supporting records"></textarea></div>
+<div class="field"><label for="advocate">Advocate / Prepared by</label><input id="advocate" placeholder="Name and enrolment details, if applicable"></div><div class="field"><label for="place">Place</label><input id="place" placeholder="City, State"></div>
+<div class="field full"><label for="extra">Additional paragraphs / special instructions</label><textarea id="extra" placeholder="Any additional clause or fact-specific information"></textarea></div>
+</div><div class="actions"><button class="btn primary" onclick="generateDraft()">✦ Generate draft</button><button class="btn" onclick="clearForm()">Clear form</button></div><p class="hint">This browser-based drafting tool generates a structured preliminary document
+  based on the information provided by the user. It does not independently
+  verify facts, determine the applicability or accuracy of legal provisions,
+  or certify compliance with current laws, court rules, filing procedures,
+  or jurisdictional requirements. All drafts should be carefully reviewed
+  and verified by a qualified legal professional before use or filing.</p></div></section>
+<section class="panel preview-panel"><div class="head"><h2>Editable document preview</h2><span id="status">● READY</span></div><div class="preview-wrap"><div class="toolbar"><span>PREVIEW · CLICK DOCUMENT TEXT TO EDIT</span><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn" onclick="copyDraft()">Copy</button><button class="btn" onclick="downloadDraft()">Download TXT</button><button class="btn" onclick="downloadDraftHTML()">Save HTML</button><button class="btn primary" onclick="printDraft()">Print / Save PDF</button></div></div><article class="paper" id="paper" contenteditable="true"><div class="mast">BHARAT KANOON VIDHI HUB · DRAFTING WORKSPACE</div><h2>Draft document</h2><p>Select a category and draft format, enter the matter details, then click <b>Generate draft</b>.</p><p>The generated content is an editable starting structure. Replace all placeholders, check every fact and verify the law and forum-specific requirements.</p><div class="disclaimer">WORKING DRAFT ONLY — Review current law, limitation, jurisdiction, court/authority rules, stamp duty, registration, verification, annexures and service requirements before use.</div></article></div></section>
+</section>
+<div class="notice"><b>Legal-use warning:</b> This library follows the categories and draft names in your supplied list. Generated wording is a general first-draft scaffold, not a complete professionally vetted precedent or legal advice. Court forms and legal requirements vary; criminal-law templates especially require checking the applicable BNS, BNSS and BSA framework, transitional provisions and proceeding date.</div>
+<section class="below"><div class="tile"><b>01 / 30 categories</b><span>Civil, criminal, writ, family, property, corporate and specialist legal areas.</span></div><div class="tile"><b>02 / Editable output</b><span>Use the preview as a working document and make edits before export.</span></div><div class="tile"><b>03 / Print-ready A4</b><span>Print from your browser or select Save as PDF in the print dialog.</span></div></section></main>
+<footer><span>© 2026 DraftDesk · Bharat Kanoon Vidhi Hub</span><span>Legal knowledge for everyone · General drafting aid only</span></footer>
+<script>
+const categories = [{"name": "Civil Law Drafting", "items": ["Plaint", "Written Statement", "Replication", "Rejoinder", "Counterclaim", "Set-off Pleading", "Civil Suit for Recovery of Money", "Suit for Permanent Injunction", "Suit for Temporary Injunction", "Suit for Specific Performance", "Suit for Declaration", "Suit for Cancellation of Document", "Suit for Damages", "Suit for Mandatory Injunction", "Suit for Possession", "Suit for Partition", "Suit for Mesne Profits", "Interlocutory Application", "Application for Amendment of Pleadings", "Application for Appointment of Local Commissioner"]}, {"name": "Criminal Law Drafting", "items": ["Criminal Complaint", "Police Complaint", "Application for Registration of FIR", "Application for Investigation", "Regular Bail Application", "Anticipatory Bail Application", "Interim Bail Application", "Default Bail Application", "Application for Discharge", "Application for Quashing of Criminal Proceedings", "Criminal Appeal", "Criminal Revision Petition", "Protest Petition", "Application for Cancellation of Bail", "Application for Exemption from Personal Appearance", "Application for Compounding of Offence", "Application for Return of Seized Property", "Application for Release of Vehicle", "Application for Suspension of Sentence", "Application for Condonation of Delay in Criminal Appeal"]}, {"name": "Agreement and Contract Drafting", "items": ["General Agreement", "Agreement to Sell", "Sale Agreement", "Rent Agreement", "Lease Agreement", "Leave and Licence Agreement", "Partnership Deed", "Memorandum of Understanding (MoU)", "Non-Disclosure Agreement (NDA)", "Service Agreement", "Employment Agreement", "Consultancy Agreement", "Freelance Agreement", "Franchise Agreement", "Distribution Agreement", "Supply Agreement", "Vendor Agreement", "Loan Agreement", "Guarantee Agreement", "Indemnity Agreement", "Settlement Agreement", "Commission Agreement", "Agency Agreement", "Joint Venture Agreement", "Termination of Contract Agreement"]}, {"name": "Writ and Constitutional Drafting", "items": ["Writ Petition under Article 226", "Writ Petition under Article 32", "Habeas Corpus Petition", "Mandamus Petition", "Certiorari Petition", "Prohibition Petition", "Quo Warranto Petition", "Public Interest Litigation (PIL)", "Counter-Affidavit in Writ Petition", "Rejoinder Affidavit", "Interim Relief Application", "Stay Application", "Application for Early Hearing", "Application for Impleadment", "Application for Intervention", "Application for Amendment of Writ Petition", "Review Petition", "Contempt Petition", "Transfer Petition", "Special Leave Petition"]}, {"name": "Family Law Drafting", "items": ["Divorce Petition", "Mutual Consent Divorce Petition", "Reply to Divorce Petition", "Written Statement in Matrimonial Proceedings", "Restitution of Conjugal Rights Petition", "Judicial Separation Petition", "Maintenance Application", "Interim Maintenance Application", "Child Custody Petition", "Visitation Rights Application", "Guardianship Petition", "Domestic Violence Complaint", "Application for Protection Order", "Application for Residence Order", "Application for Monetary Relief", "Dowry Harassment Complaint", "Petition for Nullity of Marriage", "Application for Execution of Maintenance Order", "Application for Modification of Custody Order", "Matrimonial Settlement Agreement"]}, {"name": "Legal Notices and Replies", "items": ["General Legal Notice", "Reply to Legal Notice", "Demand Notice", "Notice for Recovery of Money", "Breach of Contract Notice", "Notice for Termination of Contract", "Eviction Notice", "Rent Arrears Notice", "Notice for Refund of Advance", "Notice for Defective Goods", "Notice for Deficiency in Service", "Cheque Dishonour Notice", "Employment Termination Notice", "Notice for Defamation", "Notice for Trespass", "Notice for Property Dispute", "Notice for Outstanding Invoice", "Notice for Non-Payment of Loan", "Notice for Cancellation of Agreement", "Notice for Compliance with Contractual Obligations"]}, {"name": "Property and Real Estate Drafting", "items": ["Sale Deed", "Gift Deed", "Lease Deed", "Mortgage Deed", "Partition Deed", "Relinquishment Deed", "Release Deed", "Exchange Deed", "Conveyance Deed", "Possession Letter", "Property Handover Letter", "Agreement to Sell Property", "Rent Agreement", "Property Management Agreement", "Builder-Buyer Agreement", "Joint Development Agreement", "Rectification Deed", "Cancellation Deed", "Easement Agreement", "Family Settlement Deed", "Property Verification Request", "Application for Mutation", "Objection to Mutation", "Application for Demarcation", "Notice for Encroachment"]}, {"name": "Affidavit and Declaration Drafting", "items": ["General Affidavit", "Name Change Affidavit", "Date of Birth Affidavit", "Address Proof Affidavit", "Single Status Affidavit", "Marriage Affidavit", "Income Affidavit", "Property Ownership Affidavit", "No Objection Affidavit", "Relationship Affidavit", "Legal Heir Affidavit", "Identity Correction Affidavit", "Lost Document Affidavit", "Lost Passport Affidavit", "Lost Marksheets Affidavit", "Non-Employment Affidavit", "Non-Creamy Layer Declaration", "Gap Year Affidavit", "Indemnity Affidavit", "Undertaking Affidavit", "Self-Declaration", "Declaration of Truth", "Affidavit of Evidence", "Affidavit in Support of Application", "Affidavit of Service"]}, {"name": "Corporate and Business Drafting", "items": ["Memorandum of Association", "Articles of Association", "Board Resolution", "Shareholders' Agreement", "Share Purchase Agreement", "Share Subscription Agreement", "Joint Venture Agreement", "Founders' Agreement", "Business Transfer Agreement", "Asset Purchase Agreement", "Business Partnership Deed", "Director Appointment Letter", "Director Resignation Letter", "Share Transfer Documents", "Shareholder Meeting Notice", "Board Meeting Notice", "Minutes of Board Meeting", "Minutes of General Meeting", "Corporate Authorisation Letter", "Registered Office Change Documents", "Business Dissolution Agreement", "Corporate Indemnity Agreement", "Vendor Contract", "Corporate Compliance Declaration", "Company Legal Notice"]}, {"name": "Labour and Employment Drafting", "items": ["Job Offer Letter", "Appointment Letter", "Employment Agreement", "Confidentiality Agreement", "Employee Warning Letter", "Show-Cause Notice", "Reply to Show-Cause Notice", "Suspension Letter", "Termination Letter", "Resignation Letter", "Relieving Letter", "Experience Certificate", "Salary Revision Letter", "Promotion Letter", "Transfer Letter", "Employee Grievance Complaint", "Labour Commissioner Complaint", "Unpaid Salary Demand Notice", "Retrenchment Communication", "Domestic Enquiry Notice", "Charge-Sheet in Disciplinary Proceedings", "Reply to Charge-Sheet", "Workplace Harassment Complaint", "Full and Final Settlement Letter", "Employment Dispute Claim"]}, {"name": "Consumer and Commercial Disputes", "items": ["Consumer Complaint", "Reply to Consumer Complaint", "Consumer Appeal", "Application for Interim Relief", "Complaint for Defective Product", "Complaint for Deficiency in Service", "Complaint for Unfair Trade Practice", "Complaint for Misleading Advertisement", "Refund Demand Notice", "E-commerce Grievance", "Chargeback Request", "Insurance Service Complaint", "Banking Service Complaint", "Commercial Recovery Suit", "Commercial Written Statement", "Commercial Suit for Damages", "Application for Summary Judgment", "Application for Pre-Institution Mediation", "Commercial Arbitration Notice", "Application for Execution of Consumer Order", "Appeal against Consumer Commission Order", "Complaint to Consumer Helpline"]}, {"name": "Taxation and Regulatory Drafting", "items": ["Income Tax Notice Reply", "Income Tax Appeal", "Income Tax Rectification Application", "Request for Stay of Tax Demand", "GST Show-Cause Notice Reply", "GST Registration Clarification", "GST Registration Revocation Application", "GST Refund Application", "GST Refund Appeal", "GST Assessment Reply", "GST Demand Appeal", "Application for Correction of GST Details", "TDS Mismatch Rectification Request", "Tax Penalty Appeal", "Application for Condonation of Delay", "Reply to Regulatory Notice", "Representation to Tax Authority", "Application for Extension of Time", "Application for Refund of Excess Tax", "Appeal against Regulatory Order"]}, {"name": "Arbitration and Mediation Drafting", "items": ["Arbitration Notice", "Request for Arbitration", "Statement of Claim", "Statement of Defence", "Counterclaim in Arbitration", "Rejoinder in Arbitration", "Application for Appointment of Arbitrator", "Application for Interim Measures", "Application for Emergency Relief", "Application for Extension of Arbitral Mandate", "Challenge to Arbitrator", "Application for Setting Aside Arbitral Award", "Application for Enforcement of Arbitral Award", "Objection to Arbitral Award", "Mediation Request", "Mediation Settlement Agreement", "Conciliation Request", "Conciliation Settlement Agreement", "Dispute Resolution Clause", "Application for Referral to Arbitration"]}, {"name": "Appellate and Court Applications", "items": ["First Appeal", "Second Appeal", "Criminal Appeal", "Civil Revision Petition", "Criminal Revision Petition", "Review Petition", "Recall Application", "Restoration Application", "Condonation of Delay Application", "Stay Application", "Interim Application", "Transfer Petition", "Special Leave Petition", "Application for Leave to Appeal", "Application for Additional Evidence", "Application for Amendment", "Application for Substitution of Legal Representatives", "Application for Impleadment", "Application for Exemption from Filing Certified Copy", "Application for Early Hearing", "Application for Withdrawal of Case", "Application for Withdrawal of Appeal", "Application for Clarification of Order", "Application for Modification of Order", "Application for Extension of Time"]}, {"name": "General and Administrative Drafting", "items": ["General Application", "Representation to Government Department", "Complaint Letter", "Request Letter", "Permission Letter", "No Objection Certificate", "Authorisation Letter", "Power of Attorney", "Undertaking Letter", "Declaration Letter", "Resignation Letter", "Experience Letter", "Character Certificate Request", "Record Correction Application", "Document Verification Request", "Grievance Petition", "RTI Application", "First Appeal under RTI", "Second Appeal under RTI", "Application for Certified Copy", "Application for Inspection of Records", "Application for Extension of Deadline", "Application for Duplicate Certificate", "Application for Reconsideration", "Application for Administrative Review"]}, {"name": "Banking and Finance Drafting", "items": ["Loan Agreement", "Personal Loan Agreement", "Business Loan Agreement", "Loan Repayment Agreement", "Loan Restructuring Request", "Loan Settlement Proposal", "Debt Acknowledgment Letter", "Demand Promissory Note", "Guarantee Agreement", "Indemnity Bond", "Mortgage Agreement", "Hypothecation Agreement", "Pledge Agreement", "Bank Guarantee Request", "Letter of Credit Terms", "Bank Account Closure Request", "Bank Account Freeze Representation", "Banking Ombudsman Complaint", "Recovery Notice Reply", "Objection to Debt Recovery Proceedings", "Application for One-Time Settlement", "SARFAESI Notice Reply", "Objection under Section 13(3A) of the SARFAESI Act", "Application under Section 17 of the SARFAESI Act", "Debt Recovery Tribunal Application"]}, {"name": "Intellectual Property Drafting", "items": ["Trademark Application Support Documents", "Trademark Opposition", "Counter-Statement to Trademark Opposition", "Trademark Rectification Petition", "Trademark Infringement Notice", "Trademark Cease-and-Desist Notice", "Trademark Licence Agreement", "Trademark Assignment Agreement", "Copyright Licence Agreement", "Copyright Assignment Agreement", "Copyright Infringement Notice", "Copyright Takedown Request", "Patent Assignment Agreement", "Patent Licence Agreement", "Patent Infringement Notice", "Design Assignment Agreement", "Confidentiality Agreement", "Intellectual Property Ownership Declaration", "Software Licence Agreement", "Coexistence Agreement for Trademarks"]}, {"name": "Cybercrime and IT Law Drafting", "items": ["Cybercrime Complaint", "Online Financial Fraud Complaint", "UPI Fraud Complaint", "Credit Card Fraud Complaint", "Identity Theft Complaint", "Online Harassment Complaint", "Cyberstalking Complaint", "Social Media Impersonation Complaint", "Defamatory Content Removal Request", "Unauthorised Account Access Complaint", "Data Breach Notice", "Privacy Violation Complaint", "Intermediary Grievance", "Website Content Takedown Request", "Digital Evidence Preservation Request", "Cybercrime Police Representation", "Reply to Cybercrime Notice", "IT Services Agreement", "Website Terms and Conditions", "Privacy Policy", "Data Processing Agreement", "Software Development Agreement", "Cybersecurity Services Agreement", "Electronic Records Preservation Request", "Complaint concerning Online Marketplace Fraud"]}, {"name": "Insurance Claim Drafting", "items": ["Insurance Claim Application", "Insurance Claim Reconsideration Request", "Rejection of Claim Representation", "Health Insurance Claim Appeal", "Life Insurance Claim", "Motor Insurance Claim", "Property Insurance Claim", "Personal Accident Claim", "Third-Party Insurance Claim", "Insurance Ombudsman Complaint", "Reply to Insurance Investigation Notice", "Request for Surveyor Report", "Objection to Surveyor Assessment", "Demand Notice for Claim Settlement", "Insurance Grievance Complaint", "Request for Policy Correction", "Request for Policy Revival", "Insurance Policy Cancellation Request", "Application for Nominee Correction", "Complaint regarding Delay in Claim Settlement"]}, {"name": "Motor Accident Claim Drafting", "items": ["Motor Accident Compensation Petition", "Claim Petition before MACT", "Written Statement in MACT Proceedings", "Reply to Compensation Claim", "Application for Interim Compensation", "Application for Additional Compensation", "Application for Impleadment of Insurer", "Application for Production of Documents", "Application for Summoning Witnesses", "Affidavit of Evidence", "Application for Release of Compensation", "Application for Investment of Compensation", "Application for Withdrawal of Deposited Amount", "Claim for Permanent Disability Compensation", "Claim for Death Compensation", "Claim for Loss of Income", "Claim for Medical Expenses", "Application for Enhancement of Compensation", "Appeal against MACT Award", "Execution Petition for MACT Award"]}, {"name": "Negotiable Instruments Drafting", "items": ["Cheque Dishonour Legal Notice", "Reply to Cheque Dishonour Notice", "Complaint under Section 138 of the Negotiable Instruments Act", "Application for Condonation of Delay", "Application for Exemption from Personal Appearance", "Application for Compounding of Offence", "Application for Interim Compensation", "Reply to Complaint under Section 138", "Application for Summoning Bank Records", "Application for Production of Cheque", "Application for Summoning Witnesses", "Affidavit of Evidence", "Settlement Agreement in Cheque Bounce Case", "Application for Withdrawal after Settlement", "Criminal Appeal in Cheque Dishonour Matter", "Revision Petition in Cheque Dishonour Matter", "Demand Promissory Note", "Bill of Exchange", "Debt Acknowledgment", "Payment Settlement Undertaking"]}, {"name": "Succession, Will and Probate Drafting", "items": ["Last Will and Testament", "Codicil", "Revocation of Will", "Application for Probate", "Application for Letters of Administration", "Succession Certificate Petition", "Legal Heirship Declaration", "Family Settlement Agreement", "Estate Distribution Agreement", "Executor Appointment Document", "Renunciation of Executorship", "Affidavit of Legal Heirs", "Objection to Probate Petition", "Caveat in Probate Proceedings", "Petition for Intestate Succession Relief", "Application for Transmission of Shares", "Application for Release of Deceased's Bank Deposits", "Indemnity Bond for Deceased Deposits", "No Objection Affidavit by Legal Heirs", "Application for Correction of Succession Records"]}, {"name": "Education Law Drafting", "items": ["Student Grievance Complaint", "University Representation", "Examination Rechecking Application", "Revaluation Application", "Request for Duplicate Marksheet", "Request for Duplicate Degree", "Admission Cancellation Request", "Fee Refund Application", "Scholarship Grievance", "Complaint regarding Unfair Examination Practices", "Complaint regarding Ragging", "Complaint regarding Discrimination", "Representation against Disciplinary Action", "Show-Cause Reply for Student Misconduct", "Appeal against University Decision", "Application for Correction of Student Records", "Request for Migration Certificate", "Request for Transfer Certificate", "Complaint regarding Withholding of Documents", "Writ Petition concerning Educational Rights"]}, {"name": "Environmental Law Drafting", "items": ["Environmental Complaint", "Pollution Control Board Representation", "Air Pollution Complaint", "Water Pollution Complaint", "Noise Pollution Complaint", "Illegal Tree Felling Complaint", "Waste Disposal Violation Complaint", "Environmental Clearance Objection", "Representation against Illegal Construction", "Complaint concerning Industrial Pollution", "Application before National Green Tribunal", "Reply to Environmental Show-Cause Notice", "Appeal against Environmental Order", "Application for Environmental Compensation", "Request for Environmental Information", "Representation concerning Wetland Protection", "Complaint concerning Illegal Mining", "Objection to Development Project", "Application for Restoration of Damaged Environment", "Affidavit in Environmental Proceedings"]}, {"name": "Human Rights Drafting", "items": ["Human Rights Complaint", "Complaint to National Human Rights Commission", "Complaint to State Human Rights Commission", "Complaint concerning Custodial Violence", "Complaint concerning Illegal Detention", "Complaint concerning Police Misconduct", "Complaint concerning Prison Conditions", "Complaint concerning Discrimination", "Complaint concerning Denial of Dignity", "Complaint concerning Rights of Persons with Disabilities", "Complaint concerning Child Rights", "Complaint concerning Bonded Labour", "Complaint concerning Trafficking", "Representation for Victim Compensation", "Application for Legal Aid", "Complaint concerning Violation of Prisoner Rights", "Representation concerning Access to Public Services", "Writ Petition for Enforcement of Fundamental Rights", "Application for Protection of Vulnerable Witness", "Appeal against Human Rights Commission Recommendation, where legally available"]}, {"name": "Service and Administrative Law Drafting", "items": ["Service Matter Representation", "Departmental Appeal", "Review of Departmental Order", "Reply to Departmental Show-Cause Notice", "Charge-Sheet Reply", "Application against Suspension", "Appeal against Disciplinary Penalty", "Application for Promotion", "Representation for Seniority Correction", "Pay Fixation Representation", "Pension Claim Application", "Pension Revision Request", "Gratuity Claim", "Leave Encashment Claim", "Transfer Order Representation", "Application for Reinstatement", "Application before Central Administrative Tribunal", "Application before State Administrative Tribunal, where established", "Writ Petition concerning Service Rights", "Contempt Petition concerning Service Order"]}, {"name": "Election Law Drafting", "items": ["Election Complaint", "Representation to Election Commission", "Complaint regarding Electoral Roll", "Application for Voter Detail Correction", "Application for Inclusion in Electoral Roll", "Application for Deletion of Incorrect Electoral Entry", "Election Expenditure Representation", "Complaint concerning Electoral Malpractice", "Complaint concerning Model Code of Conduct", "Nomination Withdrawal Notice", "Election Agent Authorisation", "Objection to Nomination", "Election Petition", "Reply to Election Petition", "Application for Dismissal of Election Petition", "Application for Production of Election Records", "Application for Inspection of Ballot Records, where permitted", "Appeal or Challenge to Election Order, where available", "Affidavit for Candidate Nomination", "Representation concerning Election Counting Irregularities"]}, {"name": "Insolvency and Bankruptcy Drafting", "items": ["Demand Notice under the Insolvency and Bankruptcy Code", "Reply to Demand Notice", "Application by Financial Creditor", "Application by Operational Creditor", "Corporate Debtor's Reply", "Application by Corporate Applicant", "Personal Insolvency Application", "Application for Initiation of Insolvency Proceedings", "Claim Submission to Resolution Professional", "Proof of Debt Submission", "Objection to Resolution Plan", "Application for Approval of Resolution Plan", "Liquidation Application", "Application for Appointment or Replacement of Resolution Professional", "Application for Extension of Corporate Insolvency Resolution Process", "Application for Exclusion of Time", "Appeal before NCLAT", "Application before NCLT", "Application for Avoidance Transaction Relief", "Application concerning Insolvency Resolution Costs"]}, {"name": "Medical Negligence Drafting", "items": ["Medical Negligence Complaint", "Complaint to Medical Council", "Complaint to State Medical Council", "Complaint to National Medical Commission", "Consumer Complaint for Medical Negligence", "Medical Compensation Claim", "Legal Notice to Hospital", "Legal Notice to Doctor", "Request for Medical Records", "Request for Discharge Summary", "Complaint concerning Informed Consent", "Complaint concerning Wrong Diagnosis", "Complaint concerning Surgical Negligence", "Complaint concerning Medication Error", "Complaint concerning Hospital Infection", "Application for Independent Medical Examination", "Expert Medical Opinion Request", "Reply to Medical Negligence Notice", "Medical Settlement Agreement", "Affidavit of Medical Evidence"]}, {"name": "International Law and Cross-Border Contracts", "items": ["International Sale of Goods Agreement", "Cross-Border Service Agreement", "International Distribution Agreement", "International Joint Venture Agreement", "International Consultancy Agreement", "International Confidentiality Agreement", "International Licensing Agreement", "International Technology Transfer Agreement", "International Supply Agreement", "Cross-Border Loan Agreement", "International Arbitration Clause", "International Arbitration Request", "Enforcement of Foreign Arbitral Award Application", "Application concerning Recognition of Foreign Judgment", "International Commercial Settlement Agreement", "Cross-Border Debt Recovery Notice", "Foreign Document Authentication Request", "Apostille Request Documentation", "Power of Attorney for Overseas Use", "International Legal Assistance Request", "Application concerning Extradition Proceedings", "Application concerning Mutual Legal Assistance", "Cross-Border Data Transfer Agreement", "International Intellectual Property Licence", "International Dispute Resolution Agreement"]}];
+let activeCategory=0;
+const $=id=>document.getElementById(id);
+function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function renderCategories(){const q=$('catSearch').value.toLowerCase();$('categoryList').innerHTML=categories.map((c,i)=>({c,i})).filter(x=>x.c.name.toLowerCase().includes(q)||x.c.items.some(s=>s.toLowerCase().includes(q))).map(({c,i})=>`<button class="cat ${i===activeCategory?'active':''}" onclick="selectCategory(${i})"><span class="num">${String(i+1).padStart(2,'0')}</span><span>${esc(c.name)}</span><span class="count">${c.items.length}</span></button>`).join('')}
+function selectCategory(i){activeCategory=i;renderCategories();$('selectedCategory').textContent=categories[i].name.toUpperCase();$('draftSelect').innerHTML=categories[i].items.map((x,j)=>`<option value="${j}">${String(j+1).padStart(2,'0')} · ${esc(x)}</option>`).join('');$('docTitle').value=categories[i].items[0]||categories[i].name;onDraftChange()}
+function onDraftChange(){const item=categories[activeCategory].items[+$('draftSelect').value];$('docTitle').value=item||categories[activeCategory].name;generateDraft()}
+function para(text){return esc(text).replace(/\n+/g,'<br>')}
+function splitFacts(text){const rows=text.split(/\n+/).map(x=>x.trim()).filter(Boolean);return rows.length?rows.map((x,i)=>`<p>${i+1}. ${para(x)}</p>`).join(''):'<p>[Insert the relevant facts in chronological order, with dates and supporting details.]</p>'}
+function printDraft() {
+    const paper = document.getElementById("paper");
+
+    if (!paper) {
+        alert("Draft document not found. Please generate the draft first.");
+        return;
+    }
+
+    const printWindow = window.open(
+        "",
+        "_blank",
+        "width=900,height=700"
+    );
+
+    if (!printWindow) {
+        alert(
+            "Print window blocked! Allow pop-ups for this website, then click Print / Save PDF again."
+        );
+        return;
+    }
+
+    const title = document.getElementById("docTitle")?.value || "Legal Draft";
+
+    const printHTML = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${title.replace(/[&<>"']/g, c => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        }[c]))}</title>
+
+        <style>
+            @page {
+                size: A4;
+                margin: 18mm;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html, body {
+                margin: 0;
+                padding: 0;
+                background: #fff;
+                color: #111;
+                font-family: "Times New Roman", serif;
+                font-size: 12pt;
+                line-height: 1.6;
+            }
+
+            body {
+                padding: 20px;
+            }
+
+            .print-toolbar {
+                display: flex;
+                justify-content: center;
+                gap: 12px;
+                margin: 0 auto 25px;
+            }
+
+            .print-toolbar button {
+                padding: 12px 22px;
+                background: #b80d20;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+            .paper {
+                width: 100%;
+                margin: auto;
+                background: white;
+                overflow-wrap: anywhere;
+            }
+
+            .mast {
+                text-align: center;
+                font: 10px Arial, sans-serif;
+                color: #555;
+                letter-spacing: 1px;
+            }
+
+            h2 {
+                text-align: center;
+                font-size: 17pt;
+                text-transform: uppercase;
+                text-decoration: underline;
+                margin: 20px 0;
+            }
+
+            h3 {
+                font-size: 13pt;
+                margin-top: 20px;
+                margin-bottom: 6px;
+            }
+
+            p {
+                text-align: justify;
+                margin: 10px 0;
+                overflow-wrap: anywhere;
+            }
+
+            .sign {
+                margin-top: 40px;
+                text-align: right;
+                white-space: pre-line;
+            }
+
+            .disclaimer {
+                font: 9pt/1.4 Arial, sans-serif;
+                color: #555;
+                border-top: 1px solid #ccc;
+                padding-top: 9px;
+                margin-top: 30px;
+            }
+
+            @media print {
+                .print-toolbar {
+                    display: none !important;
+                }
+
+                html, body {
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                }
+
+                .paper {
+                    width: 100%;
+                }
+
+                h2, h3 {
+                    break-after: avoid;
+                }
+
+                p {
+                    orphans: 3;
+                    widows: 3;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="print-toolbar">
+            <button onclick="window.print()">Print / Save as PDF</button>
+            <button onclick="window.close()">Close</button>
+        </div>
+
+        <article class="paper">
+            ${paper.innerHTML}
+        </article>
+    </body>
+    </html>
+    `;
+
+    printWindow.document.open();
+    printWindow.document.write(printHTML);
+    printWindow.document.close();
+    printWindow.focus();
+}
+function generateDraft(){
+
+ const c=categories[activeCategory],type=c.items[+$('draftSelect').value]||c.name,title=$('docTitle').value||type,date=$('date').value||'[Date]',court=$('court').value||'[Court / competent authority, if applicable]',caseNo=$('caseNo').value||'[Case / reference number, if applicable]',a=$('partyA').value||'[Applicant / first party name]',b=$('partyB').value||'[Respondent / second party name]',address=$('address').value||'[Party addresses and descriptions]',subject=$('subject').value||type, facts=$('facts').value,grounds=$('grounds').value,prayer=$('prayer').value,docs=$('documents').value,adv=$('advocate').value,place=$('place').value||'[Place]',extra=$('extra').value;
+ const n=type.toLowerCase();let intro='The following draft is prepared from the details provided and is subject to review for the applicable law, facts and procedural requirements.';
+ if(/affidavit|declaration|undertaking|verification/.test(n))intro=`I, ${a}, do hereby solemnly affirm, declare and state as follows, subject to the applicable formalities and verification requirements:`;
+ else if(/agreement|deed|contract|memorandum|settlement|lease|licence|license|will|codicil|indemnity|guarantee/.test(n))intro=`This draft records proposed terms between ${a} and ${b}. The parties should confirm their capacity, complete terms, execution requirements and applicable law before signing.`;
+ else if(/notice|demand|cease-and-desist|reply to legal notice/.test(n))intro=`Under instructions from ${a}, this draft is addressed to ${b} concerning the matter described below. All facts and legal grounds must be verified before service.`;
+ else if(/complaint|grievance|representation|request|application|petition|appeal|revision|writ|suit|claim|plaint|statement|counterclaim|objection|protest/.test(n))intro=`The ${/reply|written statement|defence|defense|counter/.test(n)?'respondent / replying party':'applicant / petitioner'} respectfully submits this draft for consideration by ${court}. The final filing must conform to the applicable forum rules.`;
+ const courtBlock=/agreement|deed|contract|memorandum|lease|licence|license|will|undertaking|affidavit|notice|letter|request|complaint/.test(n)?'':`<p><b>BEFORE:</b> ${esc(court)}<br><b>CASE / REF. NO.:</b> ${esc(caseNo)}<br><b>IN THE MATTER OF:</b> ${esc(a)} v. ${esc(b)}</p>`;
+ let body=`<div class="mast">BHARAT KANOON VIDHI HUB · LEGAL DRAFTING</div><h2>${esc(title)}</h2><p><b>Date:</b> ${esc(date)} &nbsp;&nbsp; <b>Place:</b> ${esc(place)}</p>${courtBlock}<p><b>From / Applicant / First Party:</b> ${esc(a)}<br><b>To / Respondent / Second Party:</b> ${esc(b)}<br><b>Party details / address:</b><br>${para(address)}</p><p><b>Subject / Matter:</b> ${esc(subject)}</p><p>Sir/Madam,</p><p>${esc(intro)}</p><h3>1. Facts and Background</h3>${splitFacts(facts)}<h3>2. Grounds / Applicable Terms</h3><p>${grounds?para(grounds):'[Set out fact-supported grounds, contractual terms or statutory provisions after verifying their current applicability.]'}</p><h3>3. Request / Prayer / Proposed Terms</h3><p>${prayer?para(prayer):'[State the specific relief, action, response or terms sought. For court documents, ensure the prayer matches the pleadings and jurisdiction.]'}</p><h3>4. Documents / Annexures</h3><p>${docs?para(docs):'[List supporting documents and annexures, if any, with accurate dates and identifiers.]'}</p>${extra?`<h3>5. Additional Particulars</h3><p>${para(extra)}</p>`:''}<p>It is requested that the matter be considered in accordance with the applicable law and the verified facts set out above.</p><div class="sign">Signature: ____________________<br>${esc(adv||a)}<br>${adv?'Advocate / Prepared by':''}<br>Date: ${esc(date)}<br>Place: ${esc(place)}</div>
+ <div class="disclaimer">
+  <strong> BHARAT KANOON VIDHI HUB</strong>
+  <p>
+    This generated document is a drafting aid and does not constitute an
+    official court form, verified legal precedent, or legal advice. Verify
+    all facts, applicable statutory provisions, limitation periods,
+    jurisdiction, maintainability, affidavits, court fees, stamp duty,
+    registration, annexures, signatures, attestation, and service
+    requirements. Obtain qualified legal review before execution,
+    submission, or filing.
+  </p>
+</div>`;
+ $('paper').innerHTML=body;$('status').textContent='● DRAFT GENERATED';
+}
+function clearForm(){['court','caseNo','partyA','partyB','address','subject','facts','grounds','prayer','documents','advocate','place','extra'].forEach(id=>$(id).value='');$('date').value=new Date().toISOString().slice(0,10);generateDraft()}
+function copyDraft(){const text=$('paper').innerText;navigator.clipboard?.writeText(text).then(()=>{$('status').textContent='● COPIED'}).catch(()=>fallbackCopy(text));if(!navigator.clipboard)fallbackCopy(text)}
+function fallbackCopy(text){const x=document.createElement('textarea');x.value=text;document.body.appendChild(x);x.select();document.execCommand('copy');x.remove();$('status').textContent='● COPY ATTEMPTED'}
+function safeFilename(){
+  return (($('docTitle').value||'legal-draft').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''))||'legal-draft';
+}
+function saveBlob(blob, filename){
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function downloadDraft(){
+  saveBlob(new Blob([$('paper').innerText],{type:'text/plain;charset=utf-8'}),safeFilename()+'.txt');
+  $('status').textContent='● TEXT FILE READY';
+}
+function downloadDraftHTML(){
+  const content=$('paper').innerHTML;
+  const standalone='<!doctype html><html><head><meta charset="utf-8"><title>'+esc($('docTitle').value||'Legal Draft')+'</title><style>body{font-family:"Times New Roman",serif;line-height:1.6;color:#111;margin:18mm}h2{text-align:center;text-transform:uppercase;text-decoration:underline}p{text-align:justify}.mast{text-align:center;font:10px Arial,sans-serif;color:#666}.sign{text-align:right;white-space:pre-line;margin-top:40px}.disclaimer{font:10px Arial,sans-serif;color:#666;border-top:1px solid #ddd;padding-top:9px;margin-top:30px}@page{size:A4;margin:0}</style></head><body>'+content+'</body></html>';
+  saveBlob(new Blob([standalone],{type:'text/html;charset=utf-8'}),safeFilename()+'.html');
+  $('status').textContent='● HTML DOCUMENT READY';
+}
+$('date').value=new Date().toISOString().slice(0,10);selectCategory(0);
+</script></body></html>
