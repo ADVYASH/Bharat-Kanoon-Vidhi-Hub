@@ -565,6 +565,37 @@ main,
     }
 }
 
+
+/* ==========================================
+   PAGE 01 - CASE PENDOLEM DESIGN
+========================================== */
+
+#page01 .page-heading {
+    text-align: center;
+    padding-top: 8mm;
+}
+
+#page01 .page-heading h1 {
+    font-family: "Times New Roman", serif;
+    font-size: 22pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    color: #000;
+}
+
+#page01 .court-name {
+    font-family: "Times New Roman", serif;
+    font-size: 16pt;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 9mm;
+    margin-bottom: 0;
+    color: #000;
+}
+
 </style>
 </head>
 
@@ -626,20 +657,41 @@ main,
 
 <div id="printArea">
 
-    <!-- PAGE 01 -->
-    <div class="print-page" id="page01">
-        <div class="page-border"></div>
+    
+<!-- ==========================================
+     PAGE 01 - CASE PENDOLEM
+========================================== -->
 
-        <div class="page-heading">
-            <h1>Case Pendolem</h1>
-        </div>
+<div class="print-page" id="page01">
 
-        <div class="page-content" id="page01Content">
-            <!-- PAGE 01 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
-        </div>
+    <div class="page-border"></div>
 
-        <div class="page-number">01</div>
+    <div class="page-heading">
+
+        <h1>CASE PENDOLEM</h1>
+
+        <div style="
+    text-align: center;
+    margin-top: 9mm;
+    font-family: 'Times New Roman', serif;
+    font-size: 16pt;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+">
+    IN THE <span id="page01CourtName">COURT NAME</span>
+</div>
+
     </div>
+
+    <div class="page-content" id="page01Content">
+
+        <!-- PAGE 01 CONTENT WILL BE ADDED HERE -->
+
+    </div>
+
+</div>
+
 
 
     <!-- PAGE 02 -->
@@ -1068,22 +1120,22 @@ const questions = [
    GENERATE ALL FORM QUESTIONS
 ========================================== */
 
-const questionContainer =
-    document.getElementById("questionContainer");
+const questionContainer = document.getElementById("questionContainer");
 
-questions.forEach((question,index) => {
+questions.forEach((question, index) => {
 
     const number = index + 1;
+    const questionID = `q${number}`;
 
     const row = document.createElement("div");
     row.className = "question-row";
 
     let inputHTML = "";
 
-    if(question.type === "select") {
+    if (question.type === "select") {
 
         inputHTML = `
-            <select id="q${number}" name="q${number}">
+            <select id="${questionID}" name="${questionID}">
                 <option value="">Select an option</option>
                 ${question.options.map(option =>
                     `<option value="${option}">${option}</option>`
@@ -1091,12 +1143,12 @@ questions.forEach((question,index) => {
             </select>
         `;
 
-    } else if(question.type === "textarea") {
+    } else if (question.type === "textarea") {
 
         inputHTML = `
             <textarea
-                id="q${number}"
-                name="q${number}"
+                id="${questionID}"
+                name="${questionID}"
                 placeholder="Enter information here..."
             ></textarea>
         `;
@@ -1104,33 +1156,52 @@ questions.forEach((question,index) => {
     } else {
 
         inputHTML = `
-    <input
-        type="${question.type}"
-        id="q${number}"
-        name="q${number}"
-        placeholder="Enter ${question.label.toLowerCase()}..."
-        ${question.readonly ? "readonly" : ""}
-    >
-`;
+            <input
+                type="${question.type}"
+                id="${questionID}"
+                name="${questionID}"
+                placeholder="Enter ${question.label.toLowerCase()}..."
+                ${question.readonly ? "readonly" : ""}
+            >
+        `;
 
     }
 
-    
-row.innerHTML = `
-    <label for="q${number}">
-        <span style="color:#ff4444;">
-            ${String(number).padStart(2, "0")}.
-        </span>
-        ${question.label}
-    </label>
-    ${inputHTML}
-`;
+    row.innerHTML = `
+        <div class="question-number">
+            ${String(number).padStart(2, "0")}
+        </div>
 
+        <div class="question-content">
+            <label for="${questionID}">
+                ${question.label}
+            </label>
+
+            ${inputHTML}
+        </div>
+    `;
 
     questionContainer.appendChild(row);
 
 });
 
+/* ==========================================
+   PAGE 01 - AUTOMATIC COURT NAME
+========================================== */
+
+const courtNameInput = document.getElementById("q8");
+const page01CourtName = document.getElementById("page01CourtName");
+
+function updatePage01CourtName() {
+
+    page01CourtName.textContent =
+        courtNameInput.value.trim() || "COURT NAME";
+
+}
+
+courtNameInput.addEventListener("input", updatePage01CourtName);
+
+updatePage01CourtName();
 /* ==========================================
    AUTOMATIC STAMP DUTY CALCULATION
 ========================================== */
