@@ -1,0 +1,1229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Record & Judicial Documentation</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #e50914;
+    --dark-red: #a00012;
+    --black: #090909;
+    --panel: #151515;
+    --border: #383838;
+    --text: #f5f5f5;
+    --muted: #aaa;
+}
+
+html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #090909;
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================================
+   FIXED HEADER
+================================ */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    min-height: 85px;
+    padding: 17px 30px;
+    background: linear-gradient(110deg,#050505,#260006,#75000e);
+    border-bottom: 2px solid var(--red);
+    box-shadow: 0 5px 20px rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 23px;
+    color: white;
+}
+
+.header-title p {
+    margin: 6px 0 0;
+    color: #ccc;
+    font-size: 12px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.header-actions button {
+    padding: 12px 19px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.generate-btn {
+    background: var(--red);
+    color: white;
+}
+
+.print-btn {
+    background: #eeeeee;
+    color: #111;
+}
+
+.header-actions button:hover {
+    transform: translateY(-2px);
+    opacity: .9;
+}
+
+/* ================================
+   MAIN FORM
+================================ */
+
+.container {
+    max-width: 1250px;
+    margin: 35px auto;
+    padding: 0 25px 60px;
+}
+
+.form-heading {
+    border-left: 5px solid var(--red);
+    padding: 5px 15px;
+    margin-bottom: 25px;
+}
+
+.form-heading h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.form-heading p {
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+#caseForm {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.question-row {
+    display: grid;
+    grid-template-columns: 42px minmax(0,1fr);
+    gap: 13px;
+    align-items: start;
+    padding: 17px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color .2s;
+}
+
+.question-row:focus-within {
+    border-color: var(--red);
+}
+
+.question-number {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #33050b;
+    border: 1px solid #9c1425;
+    border-radius: 5px;
+    color: #ff4757;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.question-content {
+    min-width: 0;
+}
+
+.question-content label {
+    display: block;
+    color: #f4f4f4;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 9px;
+}
+
+.question-content input,
+.question-content select,
+.question-content textarea {
+    width: 100%;
+    padding: 12px;
+    background: #090909;
+    color: white;
+    border: 1px solid #414141;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    font-family: Arial, sans-serif;
+}
+
+.question-content textarea {
+    min-height: 100px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.question-content input:focus,
+.question-content select:focus,
+.question-content textarea:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 2px rgba(229,9,20,.12);
+}
+
+.question-content input::placeholder,
+.question-content textarea::placeholder {
+    color: #777;
+}
+
+.question-content select option {
+    background: #151515;
+    color: white;
+}
+
+/* ================================
+   PRINTING PAGE AREA
+================================ */
+
+#printArea {
+    display: none;
+}
+
+.print-page {
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    margin: 20px auto;
+    padding: 18mm;
+    background: white;
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    page-break-after: always;
+    break-after: page;
+}
+
+.print-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+}
+
+.page-border {
+    position: absolute;
+    top: 7mm;
+    left: 7mm;
+    right: 7mm;
+    bottom: 7mm;
+    border: 2px solid #172554;
+    pointer-events: none;
+}
+
+.page-border::after {
+    content: "";
+    position: absolute;
+    top: 3mm;
+    left: 3mm;
+    right: 3mm;
+    bottom: 3mm;
+    border: 1px solid #172554;
+}
+
+.page-heading {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding-top: 5mm;
+}
+
+.page-heading h1 {
+    font-size: 20pt;
+    margin: 0 0 5mm;
+    text-transform: uppercase;
+}
+
+.page-heading p {
+    font-size: 10pt;
+    margin: 0;
+}
+
+.page-content {
+    position: relative;
+    z-index: 2;
+    margin-top: 12mm;
+}
+
+.page-number {
+    position: absolute;
+    bottom: 11mm;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 9pt;
+    z-index: 2;
+}
+
+/* ================================
+   PRINT RULES
+================================ */
+
+@page {
+    size: A4 portrait;
+    margin: 0;
+}
+
+@media print {
+
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 210mm !important;
+        background: white !important;
+        color: black !important;
+    }
+
+    body > header,
+    body > .container {
+        display: none !important;
+    }
+
+    #printArea {
+        display: block !important;
+        width: 210mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .print-page {
+        display: block !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
+        max-height: 297mm !important;
+        margin: 0 !important;
+        padding: 18mm !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .print-page:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
+    }
+
+    .page-border {
+        display: block !important;
+    }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:700px) {
+
+    header {
+        padding: 12px;
+        flex-wrap: wrap;
+    }
+
+    .header-title h1 {
+        font-size: 17px;
+    }
+
+    .header-actions {
+        width: 100%;
+    }
+
+    .header-actions button {
+        flex: 1;
+        padding: 11px 7px;
+    }
+
+    .container {
+        padding: 0 12px 40px;
+    }
+
+    .question-row {
+        padding: 12px;
+        grid-template-columns: 32px minmax(0,1fr);
+        gap: 9px;
+    }
+
+    .question-number {
+        width: 29px;
+        height: 29px;
+    }
+}
+
+
+/* =========================================
+   PROFESSIONAL MULTI-COLUMN FORM
+========================================= */
+
+#questionContainer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    width: 100%;
+}
+
+.question-row {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 9px;
+    padding: 17px;
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 10px;
+    transition: 0.25s ease;
+}
+
+.question-row:hover {
+    border-color: #a00000;
+    background: #191919;
+}
+
+.question-row label {
+    color: #eeeeee;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.question-row input,
+.question-row select,
+.question-row textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 13px;
+    background: #090909;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.question-row input:focus,
+.question-row select:focus,
+.question-row textarea:focus {
+    border-color: #e00000;
+    box-shadow: 0 0 0 2px rgba(220, 0, 0, 0.15);
+}
+
+.question-row textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.question-row input[readonly] {
+    background: #202020;
+    color: #ff5555;
+    font-weight: bold;
+    cursor: not-allowed;
+}
+
+/* Long questions occupy full width */
+.question-row:has(textarea) {
+    grid-column: span 3;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+    #questionContainer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .question-row:has(textarea) {
+        grid-column: span 2;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    #questionContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .question-row:has(textarea) {
+        grid-column: span 1;
+    }
+}
+
+
+/* =========================================
+   FULL-SCREEN PROFESSIONAL FORM
+========================================= */
+
+/* Main form container */
+#questionContainer {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* Remove width restrictions from form sections */
+.form-container,
+.form-section,
+#formSection,
+.question-container {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}
+
+/* Individual question boxes */
+.question-row {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Long text fields */
+.question-row:has(textarea) {
+    grid-column: span 3;
+}
+
+/* Full-width page */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main,
+.container,
+.form-wrapper {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+    #questionContainer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .question-row:has(textarea) {
+        grid-column: span 2;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    #questionContainer {
+        grid-template-columns: 1fr;
+        padding: 12px;
+    }
+
+    .question-row:has(textarea) {
+        grid-column: span 1;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================================
+     FIXED HEADER AND BUTTONS
+================================ -->
+
+<header>
+
+    <div class="header-title">
+        <h1>JUDICIAL CASE <span style="color:#ff233d;">DOSSIER</span></h1>
+        <p>Comprehensive Court Case Documentation & Record Management</p>
+    </div>
+
+    <div class="header-title">
+        <h1 style="font-size: 36px;">BHARAT <span style="color:#ff233d;">KANOON</span> VIDHI HUB</h1>
+        <p style="text-align: center;">© 2026 Bharat Kanoon Vidhi Hub. All Rights Reserved.</p>
+    </div>
+
+    <div class="header-actions">
+        <button class="generate-btn" onclick="generateDocuments()">
+            Draft
+        </button>
+
+        <button class="print-btn" onclick="printDocuments()">
+            Hard Copy
+        </button>
+    </div>
+
+</header>
+
+
+<!-- ================================
+     FORM
+================================ -->
+
+<div class="container">
+
+    <div class="form-heading">
+        <h2>Case Information Form</h2>
+        <p>Complete the following 72 questions in serial order.</p>
+    </div>
+
+    <form id="caseForm">
+
+        <div id="questionContainer"></div>
+
+    </form>
+
+</div>
+
+
+<!-- ================================
+     PRINTING DOCUMENTS
+     11 INDIVIDUAL A4 PAGES
+================================ -->
+
+<div id="printArea">
+
+    <!-- PAGE 01 -->
+    <div class="print-page" id="page01">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>Case Pendolem</h1>
+        </div>
+
+        <div class="page-content" id="page01Content">
+            <!-- PAGE 01 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">01</div>
+    </div>
+
+
+    <!-- PAGE 02 -->
+    <div class="print-page" id="page02">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>Factual Matrix</h1>
+        </div>
+
+        <div class="page-content" id="page02Content">
+            <!-- PAGE 02 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">02</div>
+    </div>
+
+
+    <!-- PAGE 03 -->
+    <div class="print-page" id="page03">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>PRI</h1>
+            <p>Petitioner Registry Information</p>
+        </div>
+
+        <div class="page-content" id="page03Content">
+            <!-- PAGE 03 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">03</div>
+    </div>
+
+
+    <!-- PAGE 04 -->
+    <div class="print-page" id="page04">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>RRI</h1>
+            <p>Respondent Registry Information</p>
+        </div>
+
+        <div class="page-content" id="page04Content">
+            <!-- PAGE 04 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">04</div>
+    </div>
+
+
+    <!-- PAGE 05 -->
+    <div class="print-page" id="page05">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>AIR</h1>
+            <p>Accused Information Record</p>
+        </div>
+
+        <div class="page-content" id="page05Content">
+            <!-- PAGE 05 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">05</div>
+    </div>
+
+
+    <!-- PAGE 06 -->
+    <div class="print-page" id="page06">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>VIR</h1>
+            <p>Victim Information Record</p>
+        </div>
+
+        <div class="page-content" id="page06Content">
+            <!-- PAGE 06 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">06</div>
+    </div>
+
+
+    <!-- PAGE 07 -->
+    <div class="print-page" id="page07">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>FIR</h1>
+            <p>First Information Report</p>
+        </div>
+
+        <div class="page-content" id="page07Content">
+            <!-- PAGE 07 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">07</div>
+    </div>
+
+
+    <!-- PAGE 08 -->
+    <div class="print-page" id="page08">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>Stamp Paper</h1>
+        </div>
+
+        <div class="page-content" id="page08Content">
+            <!-- PAGE 08 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">08</div>
+    </div>
+
+
+    <!-- PAGE 09 -->
+    <div class="print-page" id="page09">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>E-Stamp</h1>
+        </div>
+
+        <div class="page-content" id="page09Content">
+            <!-- PAGE 09 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">09</div>
+    </div>
+
+
+    <!-- PAGE 10 -->
+    <div class="print-page" id="page10">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>Affidavit</h1>
+        </div>
+
+        <div class="page-content" id="page10Content">
+            <!-- PAGE 10 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">10</div>
+    </div>
+
+
+    <!-- PAGE 11 -->
+    <div class="print-page" id="page11">
+        <div class="page-border"></div>
+
+        <div class="page-heading">
+            <h1>Adjudication and Disposition</h1>
+        </div>
+
+        <div class="page-content" id="page11Content">
+            <!-- PAGE 11 CONTENT WILL BE DESIGNED AS PER YOUR INSTRUCTIONS -->
+        </div>
+
+        <div class="page-number">11</div>
+    </div>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   ALL 72 QUESTIONS
+   NO CATEGORIES
+========================================== */
+
+const questions = [
+
+    {
+    label:"Book Name",
+    type:"select",
+    options:[
+        "1. Constitutional",
+        "2. Criminal",
+        "3. Civil",
+        "4. Property",
+        "5. Contract",
+        "6. Family",
+        "7. Labour and Employment",
+        "8. Evidence",
+        "9. Criminal Procedure",
+        "10. Administrative",
+        "11. Taxation",
+        "12. Consumer Protection",
+        "13. Environmental",
+        "14. Intellectual Property",
+        "15. Human Rights",
+        "16. Arbitration and ADR",
+        "17. Banking and Finance",
+        "18. Cybercrime",
+        "19. Motor Vehicle",
+        "20. Company and Corporate",
+        "21. Education",
+        "22. Election",
+        "23. Insurance",
+        "24. Medical Negligence",
+        "25. Land and Revenue",
+        "26. Competition Law",
+        "27. International Law"
+    ]
+},
+    {label:"Case Name",type:"text"},
+    {label:"Case Type",type:"text"},
+    {label:"Case Number",type:"text"},
+    {label:"Jurisdiction",type:"text"},
+
+    {
+        label:"Case Level",
+        type:"select",
+        options:[
+            "Level 1 — Standard",
+            "Level 2 — Procedural",
+            "Level 3 — Specialized",
+            "Level 4 — Intermediate",
+            "Level 5 — Significant",
+            "Level 6 — Major",
+            "Level 7 — High Priority",
+            "Level 8 — Severe",
+            "Level 9 — Critical",
+            "Level 10 — Core Critical"
+        ]
+    },
+
+    {label:"Citation",type:"text"},
+    {label:"Court Name",type:"text"},
+    {label:"On Bench",type:"text"},
+    {label:"Judgement By",type:"text"},
+    {label:"District",type:"text"},
+    {
+    label:"State / Union Territory",
+    type:"select",
+    options:[
+        "1. Andaman and Nicobar Islands",
+        "2. Andhra Pradesh",
+        "3. Arunachal Pradesh",
+        "4. Assam",
+        "5. Bihar",
+        "6. Chandigarh",
+        "7. Chhattisgarh",
+        "8. Dadra and Nagar Haveli and Daman and Diu",
+        "9. Delhi",
+        "10. Goa",
+        "11. Gujarat",
+        "12. Haryana",
+        "13. Himachal Pradesh",
+        "14. Jammu and Kashmir",
+        "15. Jharkhand",
+        "16. Karnataka",
+        "17. Kerala",
+        "18. Ladakh",
+        "19. Lakshadweep",
+        "20. Madhya Pradesh",
+        "21. Maharashtra",
+        "22. Manipur",
+        "23. Meghalaya",
+        "24. Mizoram",
+        "25. Nagaland",
+        "26. Odisha",
+        "27. Puducherry",
+        "28. Punjab",
+        "29. Rajasthan",
+        "30. Sikkim",
+        "31. Tamil Nadu",
+        "32. Telangana",
+        "33. Tripura",
+        "34. Uttar Pradesh",
+        "35. Uttarakhand",
+        "36. West Bengal"
+    ]
+},
+    {label:"Stamp Description",type:"text"},
+
+    {
+    label:"Stamp Duty Amount (Automatically Calculated)",
+    type:"number",
+    readonly:true
+},
+    
+    {
+    label:"Consideration Price (Automatically Calculated)",
+    type:"text",
+    readonly:true
+},
+
+    {
+        label:"Bailable / Non-Bailable",
+        type:"select",
+        options:["Bailable","Non-Bailable","Unknown"]
+    },
+
+    {
+        label:"Cognizable / Non-Cognizable",
+        type:"select",
+        options:["Cognizable","Non-Cognizable","Unknown"]
+    },
+
+    {label:"Nature of Alleged Offences",type:"textarea"},
+    {label:"Present Sections",type:"textarea"},
+    {label:"Applicable Act / Law",type:"textarea"},
+    {label:"FIR Number",type:"text"},
+    {label:"FIR Date",type:"text"},
+    {label:"Judgement Date",type:"text"},
+    {label:"Police Station",type:"text"},
+    {label:"Police Station Address",type:"textarea"},
+    {label:"Nature of Case",type:"text"},
+    {label:"FIR Report Category",type:"text"},
+    {label:"Complainant Details",type:"textarea"},
+    {label:"Occurrence Details",type:"textarea"},
+    {label:"Petitioner Name",type:"text"},
+    {label:"Respondent Name",type:"text"},
+    {label:"Complainant",type:"text"},
+    {label:"Appellant",type:"text"},
+
+    {label:"What is the full name of the victim?",type:"text"},
+
+    {
+        label:"What is the gender?",
+        type:"select",
+        options:["Male","Female","Transgender","Other","Unknown"]
+    },
+
+    {label:"Victim City / Village",type:"text"},
+    {label:"What is the residential address of victim?",type:"textarea"},
+    {label:"What is the father's name?",type:"text"},
+    {label:"What is the mother's name?",type:"text"},
+    {label:"What is the age of victim?",type:"number"},
+    {label:"What is the occupation of victim?",type:"text"},
+    {label:"What is the relationship, if any, with the accused?",type:"text"},
+
+    {
+        label:"Victim was eyewitness?",
+        type:"select",
+        options:["Yes","No","Unknown"]
+    },
+
+    {
+        label:"Victim Complaint type",
+        type:"select",
+        options:["Written","Oral","Unknown"]
+    },
+
+    {
+        label:"Victim Sustained Injury?",
+        type:"select",
+        options:["Yes","No","Unknown"]
+    },
+
+    {label:"What is the full name of the accused?",type:"text"},
+    {label:"What is the father's or mother's name of the accused?",type:"text"},
+    {label:"What is the date of birth of the accused?",type:"date"},
+
+    {
+        label:"What is the gender of the accused?",
+        type:"select",
+        options:["Male","Female","Transgender","Other","Unknown"]
+    },
+
+    {label:"What is the age of the accused?",type:"number"},
+    {label:"What is the residential address of the accused?",type:"textarea"},
+    {label:"What is the mobile number of the accused, if available?",type:"tel"},
+    {label:"What is the occupation of the accused?",type:"text"},
+    {label:"What is the relationship, if any, of the accused with the victim?",type:"text"},
+
+    {
+        label:"What is the current status of the accused?",
+        type:"select",
+        options:[
+            "Not Arrested",
+            "Arrested",
+            "On Bail",
+            "In Custody",
+            "Acquitted",
+            "Convicted",
+            "Unknown"
+        ]
+    },
+
+    {label:"What are the facts of the case, and what events led to the filing of the case?",type:"textarea"},
+
+    {label:"Which Acts, Sections, Articles, Rules, and legal provisions apply to the case?",type:"textarea"},
+
+    {label:"What are the main legal issues, questions of law, and questions of fact that the court must decide?",type:"textarea"},
+
+    {label:"What are the allegations, claims, defences, and arguments presented by each party?",type:"textarea"},
+
+    {label:"What precedents, landmark judgments, and binding legal authorities were cited or relied upon by the court?",type:"textarea"},
+
+    {label:"What documentary, oral, medical, forensic, digital, and other evidence was presented before the court?",type:"textarea"},
+
+    {label:"What did the witnesses, experts, complainant, victim, and accused state during the proceedings, where applicable?",type:"textarea"},
+
+    {label:"What findings did the court make regarding the admissibility, credibility, reliability, and sufficiency of the evidence?",type:"textarea"},
+
+    {label:"What were the major stages of the proceedings, including investigation, charges, hearings, arguments, interim orders, and trial, where applicable?",type:"textarea"},
+
+    {label:"What was the final judgment or order passed by the court, and on what date was it delivered?",type:"textarea"},
+
+    {label:"What were the court's findings on each major legal issue, and what reasons supported those findings?",type:"textarea"},
+
+    {label:"Was the accused convicted, acquitted, discharged, or otherwise dealt with by the court, or was the petition or claim allowed, dismissed, or partly allowed?",type:"textarea"},
+
+    {label:"What relief, remedy, decree, injunction, compensation, restitution, or other directions did the court grant or refuse?",type:"textarea"},
+
+    {label:"What punishment or sentence was imposed, if any, including imprisonment, fine, probation, or other statutory consequences?",type:"textarea"},
+
+    {label:"Was compensation awarded to the victim or claimant, and what were the amount, legal basis, and payment directions, if applicable?",type:"textarea"},
+
+    {label:"Were bail, custody, probation, sentence suspension, appeal, revision, review, or other post-judgment proceedings ordered, requested, or initiated? What was their outcome, if known?",type:"textarea"},
+
+    {label:"What is the current legal status of the case, its final outcome, applicable legal principles, practical significance, and any subsequent appellate or higher-court decision?",type:"textarea"}
+
+];
+
+
+/* ==========================================
+   GENERATE ALL FORM QUESTIONS
+========================================== */
+
+const questionContainer =
+    document.getElementById("questionContainer");
+
+questions.forEach((question,index) => {
+
+    const number = index + 1;
+
+    const row = document.createElement("div");
+    row.className = "question-row";
+
+    let inputHTML = "";
+
+    if(question.type === "select") {
+
+        inputHTML = `
+            <select id="q${number}" name="q${number}">
+                <option value="">Select an option</option>
+                ${question.options.map(option =>
+                    `<option value="${option}">${option}</option>`
+                ).join("")}
+            </select>
+        `;
+
+    } else if(question.type === "textarea") {
+
+        inputHTML = `
+            <textarea
+                id="q${number}"
+                name="q${number}"
+                placeholder="Enter information here..."
+            ></textarea>
+        `;
+
+    } else {
+
+        inputHTML = `
+    <input
+        type="${question.type}"
+        id="q${number}"
+        name="q${number}"
+        placeholder="Enter ${question.label.toLowerCase()}..."
+        ${question.readonly ? "readonly" : ""}
+    >
+`;
+
+    }
+
+    
+row.innerHTML = `
+    <label for="q${number}">
+        <span style="color:#ff4444;">
+            ${String(number).padStart(2, "0")}.
+        </span>
+        ${question.label}
+    </label>
+    ${inputHTML}
+`;
+
+
+    questionContainer.appendChild(row);
+
+});
+
+/* ==========================================
+   AUTOMATIC STAMP DUTY CALCULATION
+========================================== */
+
+const caseLevelInput = document.getElementById("q6");
+const stampDutyInput = document.getElementById("q14");
+
+caseLevelInput.addEventListener("change", function () {
+
+    const selectedLevel = this.value;
+
+    if (!selectedLevel) {
+        stampDutyInput.value = "";
+        calculateConsiderationPrice();
+        return;
+    }
+
+    const levelNumber = parseInt(selectedLevel.match(/\d+/)[0]);
+
+    const stampDuty = levelNumber * 100;
+
+    stampDutyInput.value = stampDuty;
+
+    calculateConsiderationPrice();
+
+});
+
+/* ==========================================
+   AUTOMATIC CONSIDERATION PRICE
+========================================== */
+
+const considerationInput = document.getElementById("q15");
+
+function calculateConsiderationPrice() {
+
+    const stampDuty = Number(stampDutyInput.value);
+
+    if (!stampDuty) {
+        considerationInput.value = "";
+        return;
+    }
+
+    const considerationPrice = stampDuty * 29.436
+
+    considerationInput.value =
+        "₹" + considerationPrice.toLocaleString("en-IN", {
+            maximumFractionDigits: 2
+        });
+}
+/* ==========================================
+   GENERATE DOCUMENTS
+========================================== */
+
+function generateDocuments() {
+
+    const printArea = document.getElementById("printArea");
+
+    printArea.style.display = "block";
+
+    printArea.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+    alert(
+        "Document pages generated successfully.\n\n" +
+        "The 11 A4 page layouts will be completed according to your page-wise instructions."
+    );
+
+}
+
+
+/* ==========================================
+   PRINT DOCUMENTS
+========================================== */
+
+function printDocuments() {
+
+    const printArea = document.getElementById("printArea");
+
+    if(printArea.style.display !== "block") {
+
+        alert("Please click GENERATE before printing.");
+
+        return;
+
+    }
+
+    window.print();
+
+}
+
+</script>
+
+</body>
+</html>
