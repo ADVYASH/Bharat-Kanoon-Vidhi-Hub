@@ -1,0 +1,919 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Police Handbook | Handwritten Digital Notebook</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blue-ink: #183c91;
+  --black-ink: #22201e;
+  --red-ink: #d74949;
+  --paper: #fffdf5;
+  --grid: rgba(91,142,187,.17);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--paper);
+  font-family: Arial, sans-serif;
+}
+
+/* ========================================
+   FULLSCREEN DIGITAL BOOK
+======================================== */
+
+.book {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  perspective: 1800px;
+}
+
+/* ========================================
+   NOTEBOOK PAGES
+======================================== */
+
+.page {
+  position: relative;
+  flex: 0 0 50%;
+  width: 50%;
+  height: 100%;
+  padding: 35px 40px 65px;
+  overflow: hidden;
+
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(
+      var(--grid) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      var(--grid) 1px,
+      transparent 1px
+    );
+
+  background-size: 20px 20px;
+}
+
+.page.left {
+  box-shadow:
+    inset -18px 0 25px -18px #0008,
+    inset 7px 0 15px -12px #0003;
+}
+
+.page.right {
+  box-shadow:
+    inset 18px 0 25px -18px #0008,
+    inset -7px 0 15px -12px #0003;
+}
+
+/* RED NOTEBOOK MARGIN */
+
+.page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 25px;
+  width: 1.5px;
+  background: rgba(213,65,75,.5);
+  pointer-events: none;
+}
+
+/* CENTER BOOK FOLD */
+
+.book::after {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #0003,
+    #0001 25%,
+    #0006 50%,
+    #fff6 78%,
+    transparent
+  );
+}
+
+/* ========================================
+   HANDWRITTEN CONTENT
+======================================== */
+
+.page-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Kalam", cursive;
+  font-size: clamp(14px, 1.6vw, 22px);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: .15px;
+  color: var(--black-ink);
+  overflow-wrap: anywhere;
+}
+
+/* BLUE INK HEADINGS */
+
+.page-content h2 {
+  font-family: "Caveat", cursive;
+  font-size: 1.85em;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--blue-ink);
+  margin: 0 0 16px;
+
+  text-decoration-line: underline;
+  text-decoration-color: var(--red-ink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+/* PARAGRAPHS */
+
+.page-content p {
+  margin: 0 0 16px;
+  line-height: 1.55;
+}
+
+/* BLUE INK EMPHASIS */
+
+.page-content strong {
+  color: var(--blue-ink);
+  font-weight: 700;
+}
+
+/* YELLOW HIGHLIGHTER */
+
+.page-content mark,
+.page-content .highlight {
+  background: linear-gradient(
+    transparent 32%,
+    rgba(255,224,78,.65) 32%,
+    rgba(255,224,78,.65) 85%,
+    transparent 85%
+  );
+  color: inherit;
+  padding: 0 3px;
+  border-radius: 2px;
+}
+
+/* RED UNDERLINE */
+
+.red-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--red-ink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* RADIO CALL */
+
+.page-content .radio {
+  margin-top: 24px;
+  padding-left: 10px;
+  border-left: 3px solid rgba(24,60,145,.65);
+}
+
+/* LISTS */
+
+.page-content ul,
+.page-content ol {
+  padding-left: 25px;
+  margin: 0 0 16px;
+}
+
+.page-content li {
+  margin-bottom: 7px;
+}
+
+/* ========================================
+   PAGE 1 - COVER
+======================================== */
+
+.book-cover {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.book-cover h1 {
+  font-family: "Caveat", cursive;
+  font-size: clamp(38px, 5vw, 80px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--blue-ink);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.cover-line {
+  width: 55%;
+  height: 3px;
+  background: var(--red-ink);
+  margin-top: 20px;
+  transform: rotate(-1deg);
+}
+
+/* ========================================
+   PAGE NUMBERS
+======================================== */
+
+.page-number {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font: bold 20px "Kalam", cursive;
+  color: #555;
+}
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.controls {
+  position: fixed;
+  z-index: 100;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 9px 13px;
+  background: rgba(20,23,36,.88);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  white-space: nowrap;
+}
+
+.controls button {
+  padding: 10px 17px;
+  border: 1px solid #59638c;
+  border-radius: 8px;
+  background: #2b3558;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background: #44548a;
+}
+
+.controls button:disabled {
+  opacity: .4;
+  cursor: default;
+}
+
+#pageIndicator {
+  color: white;
+  font-size: 13px;
+}
+
+/* ========================================
+   PAGE TRANSITION
+======================================== */
+
+.turn-next {
+  animation: nextPage .3s ease;
+}
+
+.turn-prev {
+  animation: prevPage .3s ease;
+}
+
+@keyframes nextPage {
+  from {
+    opacity: .65;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes prevPage {
+  from {
+    opacity: .65;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media(max-width:650px) {
+  .page {
+    padding: 24px 14px 55px;
+    background-size: 14px 14px;
+  }
+
+  .page::before {
+    left: 8px;
+  }
+
+  .page-content {
+    font-size: clamp(10px, 2.5vw, 15px);
+    line-height: 1.4;
+  }
+
+  .page-content h2 {
+    font-size: 1.65em;
+  }
+
+  .book-cover h1 {
+    font-size: clamp(24px, 5vw, 40px);
+  }
+
+  .page-number {
+    font-size: 14px;
+  }
+
+  .controls {
+    bottom: 8px;
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .controls button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  #pageIndicator {
+    font-size: 11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================================
+     FULLSCREEN BOOK
+======================================== -->
+
+<main class="book" id="book">
+
+  <section class="page left">
+    <article class="page-content" id="leftContent"></article>
+    <div class="page-number" id="leftNumber"></div>
+  </section>
+
+  <section class="page right">
+    <article class="page-content" id="rightContent"></article>
+    <div class="page-number" id="rightNumber"></div>
+  </section>
+
+</main>
+
+<!-- NAVIGATION -->
+
+<div class="controls">
+  <button id="prevButton" onclick="previousPages()">
+    ⬅ Previous
+  </button>
+
+  <span id="pageIndicator">Loading...</span>
+
+  <button id="nextButton" onclick="nextPages()">
+    Next ➡
+  </button>
+</div>
+
+<script>
+"use strict";
+
+/* ========================================
+   BOOK TITLE
+======================================== */
+
+const BOOK_TITLE = "POLICE HANDBOOK";
+
+/* ========================================
+   BOOK CONTENT - STARTS PAGE 2
+======================================== */
+
+const sections = [
+  {
+    title: "Traffic Stop 🚙 🚦 🚓",
+    content: `
+      <p>
+        A pullover to interrogate and/or fine a Driver
+        for a <mark>"Violation of Traffic Rules"</mark>.
+        <br>
+        <span class="red-underline">
+          [Infraction - Probable Cause]
+        </span>
+      </p>
+
+      <p class="radio">
+        <strong>Radio Call</strong> -
+        919 to Dispatch performing a
+        <mark>10-11</mark> at
+        &lt;Location&gt; on a
+        &lt;Vehicle Info&gt; with
+        &lt;No. of Occupants&gt;.
+        No or &lt;x&gt; additional required.
+      </p>
+    `
+  },
+  {
+    title: "Terry Stop 🚙 🚓 🤔",
+    content: `
+      <p>
+        A pullover to Frisk the Driver and passenger
+        for anything
+        <mark>"Suspicious Activity or Behavior"</mark>.
+        <br>
+        <span class="red-underline">
+          [Misdemeanor/Felony - Reasonable Suspicion]
+        </span>
+      </p>
+
+      <p class="radio">
+        <strong>Radio Call</strong> -
+        919 to Dispatch performing a
+        <mark>Code 3</mark> at
+        &lt;Location&gt; on a
+        &lt;Vehicle Info&gt; with
+        &lt;No. of Occupants&gt;.
+        No or &lt;x&gt; additional required.
+      </p>
+    `
+  },
+  {
+    title: "Felony Stop 🚙 🚓 🚨 🚓",
+    content: `
+      <p>
+        A pullover to
+        <mark>"Detain or Arrest Suspects"</mark>
+        and <mark>"Seize Vehicle"</mark>
+        for a Criminal Activity Involved.
+        <br>
+        <span class="red-underline">
+          [Felony - Reasonable Suspicious and Probable Cause]
+        </span>
+      </p>
+
+      <p class="radio">
+        <strong>Radio Call</strong> -
+        919 to Dispatch performing
+        <mark>Code 5</mark> at
+        &lt;Location&gt; on a
+        &lt;Vehicle Info&gt; with
+        &lt;No. of Occupants&gt;.
+        No or &lt;x&gt; additional required.
+      </p>
+
+      <p>
+        - Driver Turn Your Engines Off and
+        Throw your Car Keys out.
+      </p>
+
+      <p>
+        - Ride-along Officers will get out on my
+        Countdown of <mark>3 2 1</mark>.
+      </p>
+
+      <p>
+        - Driver/Passenger go into deep eyes and
+        Face away from us. Hands up in air
+        and walk 3 steps back.
+      </p>
+
+      <p>
+        - 2 Officers Clear all Seats and Trunk
+        from Right &amp; Left &amp; take Evidence
+        of Glovebox.
+      </p>
+    `
+  }
+];
+
+/* ========================================
+   VARIABLES
+======================================== */
+
+let pages = [];
+let currentIndex = 0;
+
+const book = document.getElementById("book");
+const leftContent = document.getElementById("leftContent");
+const rightContent = document.getElementById("rightContent");
+const leftNumber = document.getElementById("leftNumber");
+const rightNumber = document.getElementById("rightNumber");
+const indicator = document.getElementById("pageIndicator");
+
+/* ========================================
+   MEASUREMENT
+======================================== */
+
+const measure = document.createElement("article");
+measure.className = "page-content";
+measure.setAttribute("aria-hidden", "true");
+
+Object.assign(measure.style, {
+  position: "absolute",
+  visibility: "hidden",
+  pointerEvents: "none",
+  height: "auto",
+  maxHeight: "none",
+  overflow: "visible",
+  left: "-10000px",
+  top: "0"
+});
+
+document.body.appendChild(measure);
+
+function prepareMeasure() {
+  const style = getComputedStyle(leftContent);
+
+  measure.style.width = leftContent.clientWidth + "px";
+  measure.style.fontFamily = style.fontFamily;
+  measure.style.fontSize = style.fontSize;
+  measure.style.fontWeight = style.fontWeight;
+  measure.style.lineHeight = style.lineHeight;
+  measure.style.letterSpacing = style.letterSpacing;
+}
+
+function fits(html) {
+  measure.innerHTML = html;
+  return measure.scrollHeight <= leftContent.clientHeight + 1;
+}
+
+function escapeHTML(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/* ========================================
+   TEXT TOKENIZATION
+======================================== */
+
+function tokenizeNode(node, wrappers = []) {
+  const result = [];
+
+  if (node.nodeType === Node.TEXT_NODE) {
+    const words = node.textContent.match(/\S+\s*|\s+/g) || [];
+
+    for (const word of words) {
+      result.push({
+        html: escapeHTML(word),
+        wrappers: [...wrappers]
+      });
+    }
+
+    return result;
+  }
+
+  if (node.nodeType !== Node.ELEMENT_NODE) {
+    return result;
+  }
+
+  const tag = node.tagName.toLowerCase();
+
+  if (tag === "br") {
+    result.push({
+      html: "<br>",
+      wrappers: [...wrappers]
+    });
+    return result;
+  }
+
+  const attrs = [...node.attributes]
+    .map(attr => ` ${attr.name}="${escapeHTML(attr.value)}"`)
+    .join("");
+
+  const nextWrappers = [
+    ...wrappers,
+    {
+      open: `<${tag}${attrs}>`,
+      close: `</${tag}>`
+    }
+  ];
+
+  for (const child of node.childNodes) {
+    result.push(...tokenizeNode(child, nextWrappers));
+  }
+
+  return result;
+}
+
+function wrapToken(token) {
+  let html = token.html;
+
+  for (let i = token.wrappers.length - 1; i >= 0; i--) {
+    html =
+      token.wrappers[i].open +
+      html +
+      token.wrappers[i].close;
+  }
+
+  return html;
+}
+
+function elementHTML(element, tokens) {
+  const copy = element.cloneNode(false);
+  copy.innerHTML = tokens.map(wrapToken).join("");
+  return copy.outerHTML;
+}
+
+/* ========================================
+   AUTOMATIC PAGINATION
+======================================== */
+
+function paginate() {
+  prepareMeasure();
+
+  /* PAGE 1 - COVER ONLY */
+
+  pages = [
+    `
+      <div class="book-cover">
+        <h1>${escapeHTML(BOOK_TITLE)}</h1>
+        <div class="cover-line"></div>
+      </div>
+    `
+  ];
+
+  let currentHTML = "";
+
+  function finishPage() {
+    pages.push(currentHTML);
+    currentHTML = "";
+  }
+
+  function addElement(element) {
+    const fullHTML = element.outerHTML;
+
+    if (fits(currentHTML + fullHTML)) {
+      currentHTML += fullHTML;
+      return;
+    }
+
+    if (currentHTML.trim()) {
+      finishPage();
+    }
+
+    if (fits(fullHTML)) {
+      currentHTML += fullHTML;
+      return;
+    }
+
+    const tokens = [];
+
+    for (const child of element.childNodes) {
+      tokens.push(...tokenizeNode(child));
+    }
+
+    let accepted = [];
+    let index = 0;
+    let safety = 0;
+
+    while (index < tokens.length && safety++ < 20000) {
+      const candidate = [...accepted, tokens[index]];
+      const candidateHTML = elementHTML(element, candidate);
+
+      if (fits(currentHTML + candidateHTML)) {
+        accepted.push(tokens[index]);
+        index++;
+        continue;
+      }
+
+      if (accepted.length) {
+        currentHTML += elementHTML(element, accepted);
+        finishPage();
+        accepted = [];
+        continue;
+      }
+
+      if (currentHTML.trim()) {
+        finishPage();
+        continue;
+      }
+
+      const token = tokens[index];
+
+      if (token.html.length > 1 && token.html !== "<br>") {
+        const characters = Array.from(token.html);
+        const middle = Math.ceil(characters.length / 2);
+
+        tokens.splice(
+          index,
+          1,
+          {
+            ...token,
+            html: characters.slice(0, middle).join("")
+          },
+          {
+            ...token,
+            html: characters.slice(middle).join("")
+          }
+        );
+
+        continue;
+      }
+
+      currentHTML += elementHTML(element, [token]);
+      index++;
+      finishPage();
+    }
+
+    if (accepted.length) {
+      currentHTML += elementHTML(element, accepted);
+    }
+  }
+
+  /* CONTENT BEGINS FROM PAGE 2 */
+
+  for (const section of sections) {
+    const wrapper = document.createElement("div");
+
+    const heading = document.createElement("h2");
+    heading.textContent = section.title;
+    wrapper.appendChild(heading);
+
+    const content = document.createElement("div");
+    content.innerHTML = section.content;
+
+    while (content.firstChild) {
+      wrapper.appendChild(content.firstChild);
+    }
+
+    for (const node of [...wrapper.childNodes]) {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        addElement(node);
+      } else if (node.textContent.trim()) {
+        const p = document.createElement("p");
+        p.textContent = node.textContent;
+        addElement(p);
+      }
+    }
+  }
+
+  if (currentHTML.trim()) {
+    finishPage();
+  }
+
+  if (pages.length % 2 !== 0) {
+    pages.push("");
+  }
+
+  currentIndex = Math.min(
+    currentIndex,
+    Math.max(0, pages.length - 2)
+  );
+
+  renderBook();
+}
+
+/* ========================================
+   DISPLAY BOOK
+======================================== */
+
+function renderBook(direction = "") {
+  leftContent.innerHTML = pages[currentIndex] || "";
+  rightContent.innerHTML = pages[currentIndex + 1] || "";
+
+  leftNumber.textContent =
+    `${currentIndex + 1} / ${pages.length}`;
+
+  rightNumber.textContent =
+    `${currentIndex + 2} / ${pages.length}`;
+
+  indicator.textContent =
+    `${currentIndex + 1} – ${currentIndex + 2} / ${pages.length}`;
+
+  document.getElementById("prevButton").disabled =
+    currentIndex === 0;
+
+  document.getElementById("nextButton").disabled =
+    currentIndex + 1 >= pages.length - 1;
+
+  book.classList.remove("turn-next", "turn-prev");
+
+  if (direction) {
+    void book.offsetWidth;
+
+    book.classList.add(
+      direction === "next" ? "turn-next" : "turn-prev"
+    );
+  }
+}
+
+/* ========================================
+   ONE PAGE AT A TIME
+======================================== */
+
+function nextPages() {
+  if (currentIndex + 1 < pages.length - 1) {
+    currentIndex += 1;
+    renderBook("next");
+  }
+}
+
+function previousPages() {
+  if (currentIndex > 0) {
+    currentIndex -= 1;
+    renderBook("prev");
+  }
+}
+
+/* ========================================
+   KEYBOARD NAVIGATION
+======================================== */
+
+document.addEventListener("keydown", event => {
+  if (event.key === "ArrowRight") nextPages();
+  if (event.key === "ArrowLeft") previousPages();
+});
+
+/* ========================================
+   TOUCH SWIPE
+======================================== */
+
+let touchStartX = 0;
+
+book.addEventListener("touchstart", event => {
+  touchStartX = event.changedTouches[0].screenX;
+}, { passive: true });
+
+book.addEventListener("touchend", event => {
+  const distance =
+    event.changedTouches[0].screenX - touchStartX;
+
+  if (Math.abs(distance) > 60) {
+    if (distance < 0) nextPages();
+    else previousPages();
+  }
+}, { passive: true });
+
+/* ========================================
+   RESIZE
+======================================== */
+
+let resizeTimer;
+
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(paginate, 180);
+});
+
+/* ========================================
+   INITIALIZE
+======================================== */
+
+async function initializeBook() {
+  await document.fonts.ready;
+  paginate();
+}
+
+initializeBook();
+
+</script>
+</body>
+</html>
