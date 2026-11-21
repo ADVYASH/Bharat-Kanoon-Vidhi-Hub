@@ -2253,7 +2253,7 @@ body:not(.tv-logged-in) {
     text-align: center;
     cursor: pointer;
     z-index: 9999;
-" onclick="window.location.href='index.html'">
+" onclick="window.location.href='https://yashkumar.space/'">
     HOME
 </p>
 
@@ -6325,7 +6325,6 @@ function tvShowLogin() {
     document.getElementById("tv-profile").hidden = true;
     document.getElementById("tv-profile-menu").hidden = true;
 
-    document.getElementById("homeNavButton").style.display = "none";
 }
 
 function tvShowWebsite(user) {
@@ -6352,8 +6351,6 @@ function tvShowWebsite(user) {
     document.body.classList.add("tv-logged-in");
 
     tvMessage("");
-
-    document.getElementById("homeNavButton").style.display = "flex";
 }
 
 async function tvGoogleCallback(response) {
