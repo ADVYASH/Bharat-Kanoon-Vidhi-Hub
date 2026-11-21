@@ -2545,7 +2545,7 @@ body:not(.tv-logged-in) {
             <div class="slideshow-frame">
 
                 <img
-                    src="slideshow/1.png"
+                    src="educationalresourcesimages/1.png"
                     alt="Slideshow Image 1"
                     class="slideshow-image"
                     id="slideshow-image"
@@ -3372,7 +3372,7 @@ if (legalNoteElement) {
                 currentImage = 1;
             }
 
-            image.src = `slideshow/${currentImage}.png`;
+            image.src = `educationalresourcesimages/${currentImage}.png`;
             image.alt = `Slideshow Image ${currentImage}`;
             counter.textContent =
                 `Image ${currentImage} of ${totalImages}`;
@@ -3384,7 +3384,7 @@ if (legalNoteElement) {
     // Preload all 50 images to help transitions run smoothly.
     for (let i = 1; i <= totalImages; i++) {
         const preload = new Image();
-        preload.src = `slideshow/${i}.png`;
+        preload.src = `educationalresourcesimages/${i}.png`;
     }
 
     // Change the displayed image every 2.2 seconds.
