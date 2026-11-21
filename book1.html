@@ -1,0 +1,1485 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101a63">
+<title>Police Handbook | Digital Book</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #101a63;
+  --ink: #171717;
+  --grid: rgba(80,90,115,.16);
+  --toolbar: rgba(17,23,43,.93);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+}
+
+/* ======================================
+   FULLSCREEN BOOK
+====================================== */
+
+.book {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  width: 100vw;
+  height: 100dvh;
+  background: white;
+  overflow: hidden;
+}
+
+.page {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  flex: 0 0 50%;
+  padding: 36px 38px 75px;
+  overflow: hidden;
+  color: var(--ink);
+  background-color: #fff;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.page.left {
+  box-shadow: inset -15px 0 25px -20px #0009;
+}
+
+.page.right {
+  box-shadow: inset 15px 0 25px -20px #0009;
+}
+
+.book::after {
+  content: "";
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #0003,
+    #0001 25%,
+    #0006 50%,
+    #fff6 78%,
+    transparent
+  );
+}
+
+/* ======================================
+   HANDWRITTEN TEXT
+====================================== */
+
+.page-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  font-family: "Kalam", cursive;
+  font-size: clamp(12px, 1.65vw, 21px);
+  font-weight: 700;
+  line-height: 1.48;
+}
+
+.page-content h2 {
+  color: var(--navy);
+  font-size: 1.5em;
+  line-height: 1.25;
+  margin: 0 0 10px;
+}
+
+.page-content p {
+  margin: 0 0 16px;
+}
+
+.page-content .radio {
+  margin-top: 24px;
+}
+
+.page-content strong {
+  color: var(--navy);
+}
+
+.page-content ul,
+.page-content ol {
+  padding-left: 24px;
+  margin: 0 0 16px;
+}
+
+.page-content li {
+  margin-bottom: 8px;
+}
+
+/* ======================================
+   PREMIUM COVER PAGE
+====================================== */
+
+.book-cover {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  border: 3px double var(--navy);
+  outline: 1px solid #b4b9ce;
+  outline-offset: -12px;
+}
+
+.cover-emblem {
+  font-size: clamp(38px, 5vw, 75px);
+  margin-bottom: 20px;
+}
+
+.book-cover h1 {
+  color: var(--navy);
+  font-family: "Kalam", cursive;
+  font-size: clamp(25px, 3.5vw, 62px);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.cover-line {
+  width: 65%;
+  height: 3px;
+  margin: 20px 0;
+  background: var(--navy);
+}
+
+.cover-subtitle {
+  color: #394470;
+  font-size: clamp(12px, 1.6vw, 22px);
+}
+
+.cover-edition {
+  margin-top: 28px;
+  color: #59617c;
+  font-size: clamp(11px, 1.2vw, 17px);
+}
+
+/* ======================================
+   PAGE NUMBERS
+====================================== */
+
+.page-number {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #444;
+  font: bold 20px "Kalam", cursive;
+}
+
+/* ======================================
+   FLOATING TOOLBAR
+====================================== */
+
+.toolbar {
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  bottom: 17px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  max-width: calc(100vw - 12px);
+  padding: 9px;
+  background: var(--toolbar);
+  border: 1px solid #ffffff22;
+  border-radius: 14px;
+  box-shadow: 0 8px 35px #0004;
+  backdrop-filter: blur(12px);
+}
+
+button {
+  border: 1px solid #65709a;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #303b62;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #485b93;
+}
+
+button:disabled {
+  opacity: .35;
+  cursor: default;
+}
+
+#pageIndicator {
+  color: white;
+  min-width: 92px;
+  text-align: center;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.progress-track {
+  position: fixed;
+  z-index: 90;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5px;
+  background: #d5d8e4;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--navy);
+  transition: width .25s ease;
+}
+
+/* ======================================
+   SIDE PANEL
+====================================== */
+
+.panel {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  right: 0;
+  width: min(410px, 100vw);
+  height: 100dvh;
+  padding: 22px;
+  overflow-y: auto;
+  background: #151a2c;
+  color: white;
+  box-shadow: -15px 0 45px #0007;
+  transform: translateX(105%);
+  transition: transform .3s ease;
+}
+
+.panel.open {
+  transform: translateX(0);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.panel input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #65709a;
+  border-radius: 8px;
+  background: #0e1323;
+  color: white;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.panel-item {
+  display: block;
+  width: 100%;
+  margin-bottom: 9px;
+  padding: 13px;
+  text-align: left;
+  border: 1px solid #ffffff20;
+  border-radius: 9px;
+  background: #242c48;
+  color: white;
+  cursor: pointer;
+}
+
+.panel-item:hover {
+  background: #3b4b7d;
+}
+
+.panel-item small {
+  display: block;
+  margin-top: 5px;
+  color: #bfc8e9;
+}
+
+.panel-note {
+  color: #bfc8e9;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ======================================
+   PAGE TRANSITION
+====================================== */
+
+.turn-next {
+  animation: turnNext .26s ease;
+}
+
+.turn-prev {
+  animation: turnPrev .26s ease;
+}
+
+@keyframes turnNext {
+  from {
+    opacity: .6;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes turnPrev {
+  from {
+    opacity: .6;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ======================================
+   MOBILE
+====================================== */
+
+@media(max-width:700px) {
+  .page {
+    padding: 23px 12px 66px;
+    background-size: 7px 7px;
+  }
+
+  .page-content {
+    font-size: clamp(10px, 2.7vw, 15px);
+    line-height: 1.35;
+  }
+
+  .page-number {
+    font-size: 13px;
+  }
+
+  .book-cover {
+    padding: 10px;
+  }
+
+  .book-cover h1 {
+    font-size: clamp(18px, 4.2vw, 32px);
+  }
+
+  .cover-emblem {
+    font-size: 32px;
+  }
+
+  .toolbar {
+    gap: 3px;
+    padding: 5px;
+    bottom: 10px;
+  }
+
+  .toolbar button {
+    padding: 9px 7px;
+    font-size: 11px;
+  }
+
+  #pageIndicator {
+    min-width: 45px;
+    font-size: 10px;
+  }
+}
+
+@media(max-width:390px) {
+  .toolbar button {
+    padding: 8px 5px;
+    font-size: 10px;
+  }
+
+  .toolbar {
+    gap: 2px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ======================================
+     FULLSCREEN BOOK
+====================================== -->
+
+<main class="book" id="book">
+
+  <section class="page left">
+    <article class="page-content" id="leftContent"></article>
+    <div class="page-number" id="leftNumber"></div>
+  </section>
+
+  <section class="page right">
+    <article class="page-content" id="rightContent"></article>
+    <div class="page-number" id="rightNumber"></div>
+  </section>
+
+</main>
+
+<!-- ======================================
+     FLOATING READING CONTROLS
+====================================== -->
+
+<nav class="toolbar" aria-label="Book navigation">
+
+  <button id="prevButton" onclick="previousPage()" title="Previous page">
+    ❮
+  </button>
+
+  <button onclick="openPanel('contents')" title="Table of contents">
+    ☰
+  </button>
+
+  <button onclick="openPanel('search')" title="Search">
+    🔍
+  </button>
+
+  <button onclick="toggleBookmark()" id="bookmarkButton" title="Bookmark page">
+    ☆
+  </button>
+
+  <button onclick="openPanel('bookmarks')" title="Saved bookmarks">
+    🔖
+  </button>
+
+  <span id="pageIndicator">1–2</span>
+
+  <button onclick="openPanel('jump')" title="Jump to page">
+    #
+  </button>
+
+  <button onclick="toggleSound()" id="soundButton" title="Page sound">
+    🔊
+  </button>
+
+  <button onclick="toggleFullscreen()" title="Fullscreen mode">
+    ⛶
+  </button>
+
+  <button id="nextButton" onclick="nextPage()" title="Next page">
+    ❯
+  </button>
+
+</nav>
+
+<!-- READING PROGRESS -->
+
+<div class="progress-track">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- SIDE PANEL -->
+
+<aside class="panel" id="panel">
+
+  <div class="panel-header">
+    <h2 id="panelTitle">Contents</h2>
+    <button onclick="closePanel()">✕</button>
+  </div>
+
+  <div id="panelBody"></div>
+
+</aside>
+
+<script>
+"use strict";
+
+/* ======================================
+   BOOK SETTINGS
+====================================== */
+
+const BOOK_TITLE = "POLICE HANDBOOK";
+const BOOK_SUBTITLE = "Procedures • Radio Codes • Field Reference";
+const BOOK_EDITION = "Digital Handbook • 2026";
+
+const STORAGE_PREFIX = "policeHandbookReaderV4";
+
+const KEYS = {
+  position: STORAGE_PREFIX + ":position",
+  bookmarks: STORAGE_PREFIX + ":bookmarks",
+  sound: STORAGE_PREFIX + ":sound"
+};
+
+/* ======================================
+   BOOK CONTENT
+   STARTS ON PAGE 2
+====================================== */
+
+const sections = [
+  {
+    id: "traffic-stop",
+    title: "Traffic Stop 🚙 🚦 🚓",
+    content: `
+      <p>A pullover to interrogate and/or fine a Driver
+      for a "Violation of Traffic Rules".<br>
+      [Infraction - Probable Cause]</p>
+
+      <p class="radio"><strong>Radio Call</strong> -
+      919 to Dispatch performing a 10-11 at
+      &lt;Location&gt; on a &lt;Vehicle Info&gt;
+      with &lt;No. of Occupants&gt;.
+      No or &lt;x&gt; additional required.</p>
+    `
+  },
+  {
+    id: "terry-stop",
+    title: "Terry Stop 🚙 🚓 🤔",
+    content: `
+      <p>A pullover to Frisk the Driver and passenger
+      for anything "Suspicious Activity or Behavior".<br>
+      [Misdemeanor/Felony - Reasonable Suspicion]</p>
+
+      <p class="radio"><strong>Radio Call</strong> -
+      919 to Dispatch performing a Code 3 at
+      &lt;Location&gt; on a &lt;Vehicle Info&gt;
+      with &lt;No. of Occupants&gt;.
+      No or &lt;x&gt; additional required.</p>
+    `
+  },
+  {
+    id: "felony-stop",
+    title: "Felony Stop 🚙 🚓 🚨 🚓",
+    content: `
+      <p>A pullover to "Detain or Arrest Suspects"
+      and "Seize Vehicle" for a Criminal Activity Involved.<br>
+      [Felony - Reasonable Suspicious and Probable Cause]</p>
+
+      <p class="radio"><strong>Radio Call</strong> -
+      919 to Dispatch performing Code 5 at
+      &lt;Location&gt; on a &lt;Vehicle Info&gt;
+      with &lt;No. of Occupants&gt;.
+      No or &lt;x&gt; additional required.</p>
+
+      <p>- Driver Turn Your Engines Off and Throw
+      your Car Keys out.</p>
+
+      <p>- Ride-along Officers will get out on my
+      Countdown of 3 2 1.</p>
+
+      <p>- Driver/Passenger go into deep eyes and
+      Face away from us. Hands up in air and
+      walk 3 steps back.</p>
+
+      <p>- 2 Officers Clear all Seats and Trunk
+      from Right &amp; Left &amp; take Evidence
+      of Glovebox.</p>
+    `
+  }, 
+
+  {
+    id: "felosssny-stop",
+    title: "Felssony Stop 🚙 🚓 🚨 🚓",
+    content: `
+      <p>A pullover to "Detain or Arrest Suspects"
+      and "Seize Vesssssssshicle" for a Criminal Activity Involved.<br>
+      [Felony - Reasonsssssssssssssssssssssable Suspicious and Probable Cause]</p>
+
+      <p class="radio"><strong>Radio Call</strong> -
+      919 to Dispatch performing Code 5 at
+      &lt;Location&gtssssssssssssssssssssss; on a &lt;Vehicle Info&gt;
+      with &lt;No. of Occupants&gt;.
+      No or &lt;x&gt; additional required.</p>
+
+      <p>- Driver Tussssssssssssssssssssrn Your Engines Off and Throw
+      your Car Keys out.</p>
+
+      <p>- Ride-assssssssssssssslong Officers will get out on my
+      Countdown of 3 2 1.</p>
+
+      <p>- Driver/Passenger go into deep eyes and
+      Face away fsssssssssssssssssssrom us. Hands up in air and
+      walk 3 steps back.</p>
+
+      <p>- 2 Officers Clear all Seats and Trunk
+      from Righsssssst &amp; Left &amp; take Evidence
+      of Glovebox.</p>
+    `
+  }
+];
+
+/* ======================================
+   STATE
+====================================== */
+
+let pages = [];
+let pageSections = [];
+let sectionStartPages = {};
+let currentIndex = 0;
+let soundEnabled = true;
+let bookmarks = [];
+
+const book = document.getElementById("book");
+const leftContent = document.getElementById("leftContent");
+const rightContent = document.getElementById("rightContent");
+const leftNumber = document.getElementById("leftNumber");
+const rightNumber = document.getElementById("rightNumber");
+const indicator = document.getElementById("pageIndicator");
+const panel = document.getElementById("panel");
+const panelTitle = document.getElementById("panelTitle");
+const panelBody = document.getElementById("panelBody");
+
+/* ======================================
+   LOCAL STORAGE
+====================================== */
+
+function readStorage(key, fallback = null) {
+  try {
+    const value = localStorage.getItem(key);
+    return value === null ? fallback : JSON.parse(value);
+  } catch {
+    return fallback;
+  }
+}
+
+function writeStorage(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    // Reader still works when storage is blocked.
+  }
+}
+
+function restorePreferences() {
+  const savedBookmarks = readStorage(KEYS.bookmarks, []);
+  bookmarks = Array.isArray(savedBookmarks)
+    ? savedBookmarks.filter(Number.isInteger)
+    : [];
+
+  soundEnabled = readStorage(KEYS.sound, true) !== false;
+  updateSoundButton();
+}
+
+/* ======================================
+   HTML HELPERS
+====================================== */
+
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function stripHTML(html) {
+  const element = document.createElement("div");
+  element.innerHTML = html;
+  return element.textContent || "";
+}
+
+/* ======================================
+   PAGE MEASUREMENT
+====================================== */
+
+const measure = document.createElement("article");
+measure.className = "page-content";
+measure.setAttribute("aria-hidden", "true");
+
+Object.assign(measure.style, {
+  position: "absolute",
+  visibility: "hidden",
+  pointerEvents: "none",
+  height: "auto",
+  maxHeight: "none",
+  overflow: "visible",
+  left: "-10000px",
+  top: "0"
+});
+
+document.body.appendChild(measure);
+
+function prepareMeasure() {
+  const style = getComputedStyle(leftContent);
+
+  measure.style.width = leftContent.clientWidth + "px";
+  measure.style.fontFamily = style.fontFamily;
+  measure.style.fontSize = style.fontSize;
+  measure.style.fontWeight = style.fontWeight;
+  measure.style.lineHeight = style.lineHeight;
+}
+
+function fits(html) {
+  measure.innerHTML = html;
+  return measure.scrollHeight <= leftContent.clientHeight + 1;
+}
+
+/* ======================================
+   TEXT TOKENIZATION
+====================================== */
+
+function tokenizeNode(node, wrappers = []) {
+  const result = [];
+
+  if (node.nodeType === Node.TEXT_NODE) {
+    const words = node.textContent.match(/\S+\s*|\s+/g) || [];
+
+    for (const word of words) {
+      result.push({
+        html: escapeHTML(word),
+        wrappers: [...wrappers]
+      });
+    }
+
+    return result;
+  }
+
+  if (node.nodeType !== Node.ELEMENT_NODE) {
+    return result;
+  }
+
+  const tag = node.tagName.toLowerCase();
+
+  if (tag === "br") {
+    return [{
+      html: "<br>",
+      wrappers: [...wrappers]
+    }];
+  }
+
+  const attrs = [...node.attributes]
+    .map(attr =>
+      ` ${attr.name}="${escapeHTML(attr.value)}"`
+    ).join("");
+
+  const nextWrappers = [
+    ...wrappers,
+    {
+      open: `<${tag}${attrs}>`,
+      close: `</${tag}>`
+    }
+  ];
+
+  for (const child of node.childNodes) {
+    result.push(...tokenizeNode(child, nextWrappers));
+  }
+
+  return result;
+}
+
+function wrapToken(token) {
+  let html = token.html;
+
+  for (let i = token.wrappers.length - 1; i >= 0; i--) {
+    html =
+      token.wrappers[i].open +
+      html +
+      token.wrappers[i].close;
+  }
+
+  return html;
+}
+
+function elementHTML(element, tokens) {
+  const copy = element.cloneNode(false);
+  copy.innerHTML = tokens.map(wrapToken).join("");
+  return copy.outerHTML;
+}
+
+/* ======================================
+   AUTOMATIC PAGINATION
+====================================== */
+
+function paginate() {
+  prepareMeasure();
+
+  const previousSection = pageSections[currentIndex] || null;
+
+  pages = [
+    `
+    <div class="book-cover">
+      <div class="cover-emblem">⚖️</div>
+      <h1>${escapeHTML(BOOK_TITLE)}</h1>
+      <div class="cover-line"></div>
+      <div class="cover-subtitle">
+        ${escapeHTML(BOOK_SUBTITLE)}
+      </div>
+      <div class="cover-edition">
+        ${escapeHTML(BOOK_EDITION)}
+      </div>
+    </div>
+    `
+  ];
+
+  pageSections = [null];
+  sectionStartPages = {};
+
+  let currentHTML = "";
+  let currentSectionId = null;
+
+  function finishPage() {
+    pages.push(currentHTML);
+    pageSections.push(currentSectionId);
+    currentHTML = "";
+  }
+
+  function addElement(element) {
+    const fullHTML = element.outerHTML;
+
+    if (fits(currentHTML + fullHTML)) {
+      currentHTML += fullHTML;
+      return;
+    }
+
+    if (currentHTML.trim()) {
+      finishPage();
+    }
+
+    if (fits(fullHTML)) {
+      currentHTML += fullHTML;
+      return;
+    }
+
+    const tokens = [];
+
+    for (const child of element.childNodes) {
+      tokens.push(...tokenizeNode(child));
+    }
+
+    let accepted = [];
+    let index = 0;
+    let safety = 0;
+
+    while (index < tokens.length && safety++ < 20000) {
+      const candidate = [...accepted, tokens[index]];
+      const candidateHTML = elementHTML(element, candidate);
+
+      if (fits(currentHTML + candidateHTML)) {
+        accepted.push(tokens[index]);
+        index++;
+        continue;
+      }
+
+      if (accepted.length) {
+        currentHTML += elementHTML(element, accepted);
+        finishPage();
+        accepted = [];
+        continue;
+      }
+
+      if (currentHTML.trim()) {
+        finishPage();
+        continue;
+      }
+
+      const token = tokens[index];
+
+      if (token.html.length > 1 && token.html !== "<br>") {
+        const chars = Array.from(token.html);
+        const middle = Math.ceil(chars.length / 2);
+
+        tokens.splice(
+          index,
+          1,
+          {
+            ...token,
+            html: chars.slice(0, middle).join("")
+          },
+          {
+            ...token,
+            html: chars.slice(middle).join("")
+          }
+        );
+        continue;
+      }
+
+      currentHTML += elementHTML(element, [token]);
+      index++;
+      finishPage();
+    }
+
+    if (accepted.length) {
+      currentHTML += elementHTML(element, accepted);
+    }
+  }
+
+  for (const section of sections) {
+    currentSectionId = section.id;
+
+    sectionStartPages[section.id] =
+      pages.length + (currentHTML.trim() ? 1 : 0);
+
+    const heading = document.createElement("h2");
+    heading.textContent = section.title;
+    addElement(heading);
+
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = section.content;
+
+    for (const node of [...wrapper.childNodes]) {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        addElement(node);
+      } else if (node.textContent.trim()) {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = node.textContent;
+        addElement(paragraph);
+      }
+    }
+  }
+
+  if (currentHTML.trim()) {
+    finishPage();
+  }
+
+  if (pages.length === 1) {
+    pages.push("");
+    pageSections.push(null);
+  }
+
+  if (pages.length % 2 !== 0) {
+    pages.push("");
+    pageSections.push(null);
+  }
+
+  currentIndex = Math.min(
+    currentIndex,
+    Math.max(0, pages.length - 2)
+  );
+
+  renderBook();
+}
+
+/* ======================================
+   BOOK RENDERING
+====================================== */
+
+function renderBook(direction = "") {
+  leftContent.innerHTML = pages[currentIndex] || "";
+  rightContent.innerHTML = pages[currentIndex + 1] || "";
+
+  leftNumber.textContent = currentIndex + 1;
+  rightNumber.textContent = currentIndex + 2;
+
+  indicator.textContent =
+    `${currentIndex + 1}–${currentIndex + 2}/${pages.length}`;
+
+  document.getElementById("prevButton").disabled =
+    currentIndex === 0;
+
+  document.getElementById("nextButton").disabled =
+    currentIndex >= pages.length - 2;
+
+  book.classList.remove("turn-next", "turn-prev");
+
+  if (direction) {
+    void book.offsetWidth;
+    book.classList.add(
+      direction === "next" ? "turn-next" : "turn-prev"
+    );
+  }
+
+  updateProgress();
+  updateBookmarkButton();
+  writeStorage(KEYS.position, currentIndex);
+}
+
+/* ======================================
+   ONE PAGE PER CLICK
+====================================== */
+
+function nextPage() {
+  if (currentIndex >= pages.length - 2) return;
+
+  currentIndex++;
+  playPageSound();
+  renderBook("next");
+}
+
+function previousPage() {
+  if (currentIndex <= 0) return;
+
+  currentIndex--;
+  playPageSound();
+  renderBook("prev");
+}
+
+function goToPage(pageNumber) {
+  const number = Number(pageNumber);
+
+  if (!Number.isInteger(number)) return;
+
+  currentIndex = Math.max(
+    0,
+    Math.min(number - 1, pages.length - 2)
+  );
+
+  playPageSound();
+  renderBook();
+  closePanel();
+}
+
+/* ======================================
+   READING PROGRESS
+====================================== */
+
+function updateProgress() {
+  const lastIndex = Math.max(1, pages.length - 2);
+  const percentage = Math.round(
+    (currentIndex / lastIndex) * 100
+  );
+
+  document.getElementById("progressFill").style.width =
+    percentage + "%";
+
+  document.getElementById("progressFill").title =
+    percentage + "% read";
+}
+
+/* ======================================
+   BOOKMARKS
+====================================== */
+
+function toggleBookmark() {
+  const page = currentIndex + 1;
+  const index = bookmarks.indexOf(page);
+
+  if (index === -1) {
+    bookmarks.push(page);
+    bookmarks.sort((a, b) => a - b);
+  } else {
+    bookmarks.splice(index, 1);
+  }
+
+  writeStorage(KEYS.bookmarks, bookmarks);
+  updateBookmarkButton();
+}
+
+function updateBookmarkButton() {
+  const button = document.getElementById("bookmarkButton");
+  const bookmarked = bookmarks.includes(currentIndex + 1);
+
+  button.textContent = bookmarked ? "★" : "☆";
+  button.title = bookmarked
+    ? "Remove bookmark"
+    : "Bookmark left page";
+}
+
+/* ======================================
+   SIDE PANEL
+====================================== */
+
+function openPanel(type) {
+  panel.classList.add("open");
+  panelBody.innerHTML = "";
+
+  if (type === "contents") {
+    showContents();
+  } else if (type === "search") {
+    showSearch();
+  } else if (type === "bookmarks") {
+    showBookmarks();
+  } else if (type === "jump") {
+    showJump();
+  }
+}
+
+function closePanel() {
+  panel.classList.remove("open");
+}
+
+function addPanelButton(title, subtitle, callback) {
+  const button = document.createElement("button");
+  button.className = "panel-item";
+
+  const heading = document.createElement("span");
+  heading.textContent = title;
+  button.appendChild(heading);
+
+  if (subtitle) {
+    const small = document.createElement("small");
+    small.textContent = subtitle;
+    button.appendChild(small);
+  }
+
+  button.addEventListener("click", callback);
+  panelBody.appendChild(button);
+}
+
+/* ======================================
+   TABLE OF CONTENTS
+====================================== */
+
+function showContents() {
+  panelTitle.textContent = "📑 Table of Contents";
+
+  addPanelButton(
+    "Premium Cover",
+    "Page 1",
+    () => goToPage(1)
+  );
+
+  for (const section of sections) {
+    const pageIndex = sectionStartPages[section.id] ?? 1;
+
+    addPanelButton(
+      section.title,
+      "Page " + (pageIndex + 1),
+      () => goToPage(pageIndex + 1)
+    );
+  }
+}
+
+/* ======================================
+   SEARCH INSIDE BOOK
+====================================== */
+
+function showSearch() {
+  panelTitle.textContent = "🔍 Search Handbook";
+
+  const input = document.createElement("input");
+  input.type = "search";
+  input.placeholder = "Search text or radio codes...";
+  input.setAttribute("aria-label", "Search handbook");
+
+  const results = document.createElement("div");
+
+  panelBody.appendChild(input);
+  panelBody.appendChild(results);
+
+  input.addEventListener("input", () => {
+    results.innerHTML = "";
+
+    const query = input.value.trim().toLowerCase();
+
+    if (!query) return;
+
+    let matches = 0;
+
+    pages.forEach((html, index) => {
+      const text = stripHTML(html);
+      const position = text.toLowerCase().indexOf(query);
+
+      if (position === -1) return;
+
+      matches++;
+
+      const start = Math.max(0, position - 40);
+      const end = Math.min(
+        text.length,
+        position + query.length + 70
+      );
+
+      const preview = text.slice(start, end).trim();
+
+      const button = document.createElement("button");
+      button.className = "panel-item";
+
+      const title = document.createElement("span");
+      title.textContent = "Page " + (index + 1);
+
+      const small = document.createElement("small");
+      small.textContent = "..." + preview + "...";
+
+      button.append(title, small);
+
+      button.addEventListener("click", () => {
+        goToPage(index + 1);
+      });
+
+      results.appendChild(button);
+    });
+
+    if (!matches) {
+      const message = document.createElement("p");
+      message.className = "panel-note";
+      message.textContent = "No matching text found.";
+      results.appendChild(message);
+    }
+  });
+
+  input.focus();
+}
+
+/* ======================================
+   SAVED BOOKMARKS
+====================================== */
+
+function showBookmarks() {
+  panelTitle.textContent = "🔖 Saved Bookmarks";
+
+  const validBookmarks = bookmarks.filter(
+    page => page >= 1 && page <= pages.length
+  );
+
+  if (!validBookmarks.length) {
+    panelBody.innerHTML =
+      '<p class="panel-note">No bookmarks saved yet.</p>';
+    return;
+  }
+
+  validBookmarks.forEach(page => {
+    addPanelButton(
+      "Page " + page,
+      stripHTML(pages[page - 1] || "")
+        .slice(0, 90),
+      () => goToPage(page)
+    );
+  });
+}
+
+/* ======================================
+   JUMP TO PAGE
+====================================== */
+
+function showJump() {
+  panelTitle.textContent = "📖 Jump to Page";
+
+  const label = document.createElement("p");
+  label.className = "panel-note";
+  label.textContent =
+    "Enter a page number from 1 to " + pages.length;
+
+  const input = document.createElement("input");
+  input.type = "number";
+  input.min = "1";
+  input.max = String(pages.length);
+  input.value = String(currentIndex + 1);
+
+  const button = document.createElement("button");
+  button.textContent = "Open Page";
+
+  function submit() {
+    const page = Number(input.value);
+
+    if (!Number.isInteger(page) ||
+        page < 1 ||
+        page > pages.length) {
+      alert("Please enter a valid page number.");
+      return;
+    }
+
+    goToPage(page);
+  }
+
+  button.addEventListener("click", submit);
+
+  input.addEventListener("keydown", event => {
+    if (event.key === "Enter") submit();
+  });
+
+  panelBody.append(label, input, button);
+}
+
+/* ======================================
+   PAGE TURN SOUND
+====================================== */
+
+let audioContext = null;
+
+function playPageSound() {
+  if (!soundEnabled) return;
+
+  try {
+    const AudioContextClass =
+      window.AudioContext || window.webkitAudioContext;
+
+    if (!AudioContextClass) return;
+
+    if (!audioContext) {
+      audioContext = new AudioContextClass();
+    }
+
+    if (audioContext.state === "suspended") {
+      audioContext.resume();
+    }
+
+    const duration = .16;
+    const sampleRate = audioContext.sampleRate;
+    const length = Math.floor(sampleRate * duration);
+
+    const buffer = audioContext.createBuffer(
+      1, length, sampleRate
+    );
+
+    const data = buffer.getChannelData(0);
+
+    for (let i = 0; i < length; i++) {
+      const progress = i / length;
+      const envelope = Math.sin(Math.PI * progress);
+
+      data[i] =
+        (Math.random() * 2 - 1) *
+        envelope * .13;
+    }
+
+    const source = audioContext.createBufferSource();
+    source.buffer = buffer;
+
+    const filter = audioContext.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.value = 1250;
+
+    const gain = audioContext.createGain();
+    gain.gain.value = .4;
+
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(audioContext.destination);
+
+    source.start();
+  } catch (error) {
+    console.warn("Audio unavailable", error);
+  }
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  writeStorage(KEYS.sound, soundEnabled);
+  updateSoundButton();
+}
+
+function updateSoundButton() {
+  const button = document.getElementById("soundButton");
+
+  button.textContent = soundEnabled ? "🔊" : "🔇";
+  button.title = soundEnabled
+    ? "Mute page sound"
+    : "Enable page sound";
+}
+
+/* ======================================
+   FULLSCREEN READING
+====================================== */
+
+async function toggleFullscreen() {
+  try {
+    if (!document.fullscreenElement) {
+      await document.documentElement.requestFullscreen();
+    } else {
+      await document.exitFullscreen();
+    }
+  } catch (error) {
+    alert("Fullscreen is not supported in this browser.");
+  }
+}
+
+/* ======================================
+   KEYBOARD CONTROLS
+====================================== */
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closePanel();
+    return;
+  }
+
+  if (
+    event.target.matches("input, textarea, select") ||
+    event.target.isContentEditable ||
+    panel.classList.contains("open")
+  ) return;
+
+  if (event.key === "ArrowRight") {
+    nextPage();
+  }
+
+  if (event.key === "ArrowLeft") {
+    previousPage();
+  }
+});
+
+/* ======================================
+   MOBILE SWIPE
+====================================== */
+
+let touchStartX = 0;
+
+book.addEventListener("touchstart", event => {
+  touchStartX = event.changedTouches[0].screenX;
+}, { passive: true });
+
+book.addEventListener("touchend", event => {
+  const distance =
+    event.changedTouches[0].screenX - touchStartX;
+
+  if (Math.abs(distance) > 60) {
+    if (distance < 0) nextPage();
+    else previousPage();
+  }
+}, { passive: true });
+
+/* ======================================
+   RESIZE AND REPAGINATION
+====================================== */
+
+let resizeTimer;
+
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+
+  resizeTimer = setTimeout(() => {
+    paginate();
+  }, 200);
+});
+
+/* ======================================
+   INITIALIZATION AND RESUME
+====================================== */
+
+async function initializeBook() {
+  restorePreferences();
+
+  await document.fonts.ready;
+
+  paginate();
+
+  const savedPosition = readStorage(KEYS.position, 0);
+
+  if (Number.isInteger(savedPosition)) {
+    currentIndex = Math.max(
+      0,
+      Math.min(savedPosition, pages.length - 2)
+    );
+  }
+
+  renderBook();
+}
+
+initializeBook();
+
+</script>
+</body>
+</html>
