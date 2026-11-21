@@ -1,0 +1,1486 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090c">
+<meta name="description" content="Discover useful websites, online tools, AI services, converters, editors and more.">
+<title>Useful Links Hub | Bharat Kanoon Vidhi Hub</title>
+
+<style>
+:root{
+  --bg:#09090c;
+  --panel:#15151b;
+  --panel2:#1c1c24;
+  --red:#ff233d;
+  --red2:#b71931;
+  --text:#f5f5f7;
+  --muted:#92929e;
+  --border:#303039;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Segoe UI",Arial,sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible{
+  outline:2px solid var(--red);
+  outline-offset:3px;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% -15%,#a30c291c,transparent 60%);
+  z-index:-1;
+}
+
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:#0c0c10f2;
+  border-bottom:1px solid #451d28;
+  backdrop-filter:blur(18px);
+}
+.navbar{
+  max-width:1550px;
+  margin:auto;
+  padding:15px 30px;
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.brand{
+  font-size:21px;
+  font-weight:850;
+  letter-spacing:.2px;
+}
+.brand span{color:var(--red)}
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+}
+.nav-right a,.nav-right button{
+  border:1px solid transparent;
+  background:transparent;
+  color:#dedee4;
+  padding:11px 15px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:650;
+}
+.nav-right a:hover,.nav-right button:hover{
+  background:#29141b;
+  color:#ff7b8c;
+  border-color:#6d2938;
+}
+.nav-right .nav-search{
+  background:var(--red);
+  color:white;
+}
+.nav-right .nav-search:hover{
+  background:#d91a34;
+  color:white;
+}
+
+/* HERO */
+.hero{
+  max-width:1100px;
+  margin:auto;
+  padding:85px 20px 50px;
+  text-align:center;
+}
+.eyebrow{
+  display:inline-block;
+  background:#241016;
+  color:#ff8595;
+  border:1px solid #652331;
+  padding:10px 19px;
+  border-radius:30px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+.hero h1{
+  font-size:clamp(36px,5.5vw,67px);
+  letter-spacing:-2px;
+  margin:23px 0 15px;
+  line-height:1.15;
+}
+.hero h1 span{color:var(--red)}
+.hero p{
+  max-width:690px;
+  margin:auto;
+  color:#a3a3af;
+  font-size:15px;
+  line-height:1.9;
+}
+
+/* SEARCH */
+.search-container{
+  max-width:850px;
+  margin:36px auto 0;
+}
+.search-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#17171e;
+  border:1px solid #75303e;
+  border-radius:14px;
+  padding:7px;
+  box-shadow:0 0 40px #ff233d0b;
+}
+.search-box:focus-within{
+  border-color:var(--red);
+  box-shadow:0 0 35px #ff233d20;
+}
+.search-icon{
+  font-size:21px;
+  padding-left:14px;
+  color:#ff6b80;
+}
+.search-box input{
+  flex:1;
+  min-width:0;
+  padding:15px 5px;
+  border:none;
+  outline:none;
+  background:transparent;
+  color:white;
+  font-size:15px;
+}
+.search-box input::placeholder{color:#777783}
+.search-box button{
+  border:0;
+  background:var(--red);
+  color:white;
+  font-weight:800;
+  padding:15px 24px;
+  border-radius:9px;
+}
+.search-box button:hover{background:#d91c35}
+.search-help{
+  margin-top:12px;
+  color:#777783;
+  font-size:12px;
+}
+
+/* QUICK LINKS */
+.quick-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:25px;
+}
+.quick-links button{
+  background:#1b161d;
+  border:1px solid #45313a;
+  border-radius:25px;
+  padding:10px 17px;
+  color:#d0c7cb;
+  font-size:12px;
+  transition:.2s;
+}
+.quick-links button:hover{
+  color:white;
+  background:#441923;
+  border-color:var(--red);
+}
+
+/* STATS */
+.stats{
+  max-width:1000px;
+  margin:0 auto 45px;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+.stat{
+  text-align:center;
+  padding:22px;
+  border:1px solid #30212a;
+  border-radius:12px;
+  background:#151218;
+}
+.stat strong{
+  display:block;
+  font-size:28px;
+  color:#ff526b;
+}
+.stat span{
+  display:block;
+  color:#96939e;
+  font-size:12px;
+  margin-top:7px;
+}
+
+/* MAIN */
+main{
+  max-width:1500px;
+  margin:auto;
+  padding:25px 28px 90px;
+  scroll-margin-top:100px;
+}
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  flex-wrap:wrap;
+  gap:18px;
+  margin-bottom:25px;
+}
+.section-label{
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+  color:var(--red);
+  margin-bottom:10px;
+}
+.section-heading h2{
+  font-size:29px;
+  margin:0;
+}
+.section-heading p{
+  font-size:13px;
+  color:var(--muted);
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+.action-btn{
+  padding:12px 16px;
+  background:#20151b;
+  color:#ff9cab;
+  border:1px solid #6b2937;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:750;
+}
+.action-btn:hover,.action-btn.active{
+  background:var(--red);
+  color:white;
+}
+
+/* CATEGORIES */
+.category-bar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-bottom:28px;
+}
+.category-btn{
+  background:#18181f;
+  border:1px solid #303039;
+  color:#c7c7d0;
+  border-radius:8px;
+  padding:11px 15px;
+  font-size:12px;
+  font-weight:650;
+  transition:.2s;
+}
+.category-btn:hover{
+  border-color:#9e3447;
+  color:white;
+}
+.category-btn.active{
+  background:#b71931;
+  color:white;
+  border-color:#e32b47;
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+}
+.card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  padding:22px;
+  background:linear-gradient(145deg,#1a1a22,#111116);
+  border:1px solid var(--border);
+  border-radius:13px;
+  min-height:202px;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+  animation:appear .35s ease both;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#a32b40;
+  box-shadow:0 15px 30px #0008,0 0 25px #ff233d10;
+}
+.card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:15px;
+}
+.card-icon{
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  background:#32151e;
+  border:1px solid #622533;
+  border-radius:11px;
+  font-size:23px;
+}
+.favorite-btn{
+  border:1px solid #34343e;
+  background:#202029;
+  color:#888894;
+  border-radius:8px;
+  width:34px;
+  height:34px;
+  font-size:19px;
+  flex-shrink:0;
+}
+.favorite-btn:hover,.favorite-btn.saved{
+  color:#ff566e;
+  border-color:#b12b40;
+}
+.card h3{
+  margin:0 0 8px;
+  font-size:16px;
+  font-weight:750;
+}
+.card p{
+  margin:0;
+  color:#9999a5;
+  font-size:12px;
+  line-height:1.65;
+  flex:1;
+}
+.card-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:22px;
+}
+.card-category{
+  font-size:10px;
+  color:#ff7e91;
+  background:#331820;
+  border-radius:5px;
+  padding:6px 9px;
+}
+.visit-link{
+  color:#ff6d83;
+  font-size:11px;
+  font-weight:800;
+}
+.visit-link:hover{color:white}
+.empty{
+  display:none;
+  padding:70px 20px;
+  text-align:center;
+  color:#9999a5;
+}
+.empty h3{color:white}
+footer{
+  border-top:1px solid #30212a;
+  text-align:center;
+  padding:30px 15px;
+  color:#888894;
+  font-size:12px;
+}
+footer strong{color:var(--red)}
+@keyframes appear{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:1100px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:760px){
+  .navbar{flex-direction:column;padding:15px}
+  .nav-right{justify-content:center}
+  .hero{padding-top:55px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  main{padding:20px 15px 60px}
+}
+@media(max-width:500px){
+  .brand{font-size:18px;text-align:center}
+  .nav-right a,.nav-right button{padding:9px;font-size:12px}
+  .hero h1{letter-spacing:-1px}
+  .grid{grid-template-columns:1fr}
+  .stats{gap:7px}
+  .stat{padding:15px 6px}
+  .stat strong{font-size:22px}
+  .search-box button{padding:14px 12px}
+  .section-heading h2{font-size:24px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="navbar">
+    <a href="index.html" class="brand">
+      BHARAT <span>KANOON</span> VIDHI HUB
+    </a>
+
+    <nav class="nav-right">
+      <a href="index.html">Home</a>
+      <button onclick="showAll()">All Links</button>
+      <button onclick="showFavorites()">Favorites</button>
+      <button onclick="randomWebsite()">Surprise Me</button>
+      <button class="nav-search" onclick="focusSearch()">⌕ Search</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">THE ULTIMATE ONLINE TOOL DIRECTORY</div>
+
+  <h1>Discover <span>Useful Websites.</span></h1>
+
+  <p>
+    Explore hundreds of useful online tools, AI platforms,
+    PDF editors, image converters, video utilities,
+    educational resources, entertainment websites,
+    productivity tools and much more — all in one place.
+  </p>
+
+  <div class="search-container" id="searchArea">
+    <div class="search-box">
+      <span class="search-icon">⌕</span>
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Search AI, PDF, image, video, tools..."
+        autocomplete="off"
+        aria-label="Search useful websites"
+      >
+      <button onclick="openFirstResult()">Search →</button>
+    </div>
+    <div class="search-help">
+      Search instantly by name, category or keyword.
+      Press Enter to visit the first matching website.
+    </div>
+  </div>
+
+  <div class="quick-links">
+    <button onclick="quickSearch('AI')">✦ AI Tools</button>
+    <button onclick="quickSearch('PDF')">▤ PDF Tools</button>
+    <button onclick="quickSearch('Image')">▧ Image Editing</button>
+    <button onclick="quickSearch('Video')">▶ Video Tools</button>
+    <button onclick="quickSearch('Converter')">⇄ Converters</button>
+    <button onclick="quickSearch('Calculator')">▦ Calculators</button>
+    <button onclick="quickSearch('Education')">◈ Education</button>
+    <button onclick="quickSearch('Download')">↓ Downloads</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <strong id="totalLinks">0</strong>
+    <span>Useful Websites</span>
+  </div>
+  <div class="stat">
+    <strong id="totalCategories">0</strong>
+    <span>Categories</span>
+  </div>
+  <div class="stat">
+    <strong id="totalFavorites">0</strong>
+    <span>Your Favorites</span>
+  </div>
+</div>
+
+<!-- DIRECTORY -->
+<main id="directory">
+  <div class="section-heading">
+    <div>
+      <div class="section-label">EXPLORE THE INTERNET</div>
+      <h2>All Useful Websites</h2>
+      <p id="resultCount">Loading websites...</p>
+    </div>
+
+    <div class="actions">
+      <button class="action-btn" onclick="shuffleWebsites()">
+        ⟳ Shuffle Links
+      </button>
+      <button class="action-btn" onclick="showFavorites()">
+        ♡ My Favorites
+      </button>
+      <button class="action-btn" onclick="showAll()">
+        Show All
+      </button>
+    </div>
+  </div>
+
+  <div class="category-bar" id="categoryBar"></div>
+  <div class="grid" id="websiteGrid"></div>
+
+  <div class="empty" id="emptyState">
+    <h3>No matching websites found</h3>
+    <p>Try another keyword or select a different category.</p>
+  </div>
+</main>
+
+<footer>
+  © <span id="year"></span>
+  <strong>BHARAT KANOON VIDHI HUB</strong>
+  | Useful Links Directory
+  <p>Third-party websites are independent services. Check their terms and privacy policies.</p>
+</footer>
+
+<script>
+
+/* ======================================================
+   WEBSITE DATABASE
+
+   Format:
+   ["Website Name", "URL", "Category", "Description", "Keywords"]
+
+   Add new websites by copying a row.
+
+   These are external links, not local HTML pages.
+====================================================== */
+
+const rawWebsites = [
+
+/* AI TOOLS */
+["ChatGPT","https://chatgpt.com","AI Tools","AI assistant for writing, research and everyday tasks.","chatbot artificial intelligence"],
+["Claude","https://claude.ai","AI Tools","AI assistant for writing and analysis.","chatbot"],
+["Gemini","https://gemini.google.com","AI Tools","Google's AI assistant.","google chatbot"],
+["Perplexity","https://www.perplexity.ai","AI Tools","AI-powered answer and research engine.","research search"],
+["Microsoft Copilot","https://copilot.microsoft.com","AI Tools","Microsoft AI assistant.","bing chatbot"],
+["Poe","https://poe.com","AI Tools","Access multiple AI assistants.","chatbot"],
+["Hugging Face","https://huggingface.co","AI Tools","AI models, datasets and demos.","machine learning"],
+["NotebookLM","https://notebooklm.google.com","AI Tools","Research and study with AI-assisted notebooks.","notes research"],
+["DeepL","https://www.deepl.com","AI Tools","AI-powered translation and writing.","language translation"],
+["ElevenLabs","https://elevenlabs.io","AI Tools","AI voice generation and speech tools.","voice audio"],
+["Suno","https://suno.com","AI Tools","Create music with AI.","music song"],
+["Runway","https://runwayml.com","AI Tools","AI video creation and editing.","video generation"],
+["Gamma","https://gamma.app","AI Tools","Create presentations with AI.","slides presentation"],
+["Leonardo AI","https://leonardo.ai","AI Tools","AI image generation and creative tools.","art image"],
+["Remove.bg","https://www.remove.bg","AI Tools","Automatically remove image backgrounds.","background photo"],
+
+/* PDF TOOLS */
+["iLovePDF","https://www.ilovepdf.com","PDF Tools","Merge, split, compress and convert PDFs.","pdf merge compress"],
+["Smallpdf","https://smallpdf.com","PDF Tools","PDF editing and conversion tools.","pdf edit"],
+["PDF24 Tools","https://tools.pdf24.org","PDF Tools","Free online PDF utilities.","pdf merge split"],
+["Sejda","https://www.sejda.com","PDF Tools","Edit and process PDF documents.","pdf editing"],
+["PDF Candy","https://pdfcandy.com","PDF Tools","PDF conversion and processing tools.","pdf converter"],
+["Adobe Acrobat Online","https://www.adobe.com/acrobat/online.html","PDF Tools","Online PDF tools from Adobe.","pdf"],
+["PDFescape","https://www.pdfescape.com","PDF Tools","Online PDF editor and form tools.","pdf forms"],
+["Online2PDF","https://online2pdf.com","PDF Tools","Convert and combine PDF files.","pdf conversion"],
+["PDFgear","https://www.pdfgear.com","PDF Tools","PDF reading, editing and conversion.","pdf"],
+["Xodo","https://xodo.com","PDF Tools","PDF annotation and document tools.","pdf annotate"],
+
+/* IMAGE EDITING */
+["Photopea","https://www.photopea.com","Image Editing","Advanced image editing in your browser.","photoshop image"],
+["Pixlr","https://pixlr.com","Image Editing","Online photo editing and design.","photo"],
+["Canva","https://www.canva.com","Image Editing","Graphics, posters and social media design.","design"],
+["Fotor","https://www.fotor.com","Image Editing","Online photo editing tools.","photo"],
+["LunaPic","https://www.lunapic.com","Image Editing","Free online photo effects and editing.","image"],
+["BeFunky","https://www.befunky.com","Image Editing","Photo editor and collage maker.","collage"],
+["Cleanup.pictures","https://cleanup.pictures","Image Editing","Remove unwanted objects from images.","remove object"],
+["Upscale.media","https://www.upscale.media","Image Editing","AI image upscaling.","enhance upscale"],
+["TinyPNG","https://tinypng.com","Image Editing","Compress PNG and JPEG images.","compress image"],
+["Squoosh","https://squoosh.app","Image Editing","Optimize and compress images.","compress"],
+["Img2Go","https://www.img2go.com","Image Editing","Convert and edit image files.","image converter"],
+["iLoveIMG","https://www.iloveimg.com","Image Editing","Resize, compress and convert images.","resize crop"],
+["SVG Repo","https://www.svgrepo.com","Image Editing","Free SVG icons and graphics.","svg icon"],
+
+/* VIDEO TOOLS */
+["CapCut","https://www.capcut.com","Video Tools","Video editing and creative effects.","video editor"],
+["VEED","https://www.veed.io","Video Tools","Online video editing and subtitles.","video captions"],
+["Clideo","https://clideo.com","Video Tools","Trim, merge and resize videos.","video editor"],
+["Kapwing","https://www.kapwing.com","Video Tools","Collaborative online video editing.","video"],
+["Clipchamp","https://clipchamp.com","Video Tools","Browser-based video editing.","video editor"],
+["EZGIF","https://ezgif.com","Video Tools","GIF creation and video-to-GIF tools.","gif animation"],
+["123apps Video","https://online-video-cutter.com","Video Tools","Trim and edit video files online.","video cutter"],
+["FlexClip","https://www.flexclip.com","Video Tools","Create and edit online videos.","video maker"],
+["YouTube Studio","https://studio.youtube.com","Video Tools","Manage YouTube videos and channels.","youtube creator"],
+["Vimeo","https://vimeo.com","Video Tools","Video hosting and sharing.","video"],
+
+/* CONVERTERS */
+["CloudConvert","https://cloudconvert.com","Converters","Convert documents, images, audio and video.","file converter"],
+["Convertio","https://convertio.co","Converters","Online file conversion service.","convert"],
+["FreeConvert","https://www.freeconvert.com","Converters","Convert and compress different file formats.","convert"],
+["Online-Convert","https://www.online-convert.com","Converters","Media and document conversion.","converter"],
+["Zamzar","https://www.zamzar.com","Converters","Convert files between formats.","file"],
+["123apps Audio Converter","https://online-audio-converter.com","Converters","Convert audio file formats.","mp3 wav"],
+["HEIC to JPG","https://heictojpg.com","Converters","Convert HEIC photos to JPG.","image photo"],
+["JSON to CSV","https://www.convertcsv.com/json-to-csv.htm","Converters","Convert JSON data to CSV.","json csv"],
+["UnitConverters","https://www.unitconverters.net","Converters","Convert measurement units.","length weight temperature"],
+["RapidTables","https://www.rapidtables.com","Converters","Conversions, calculators and reference tables.","units"],
+
+/* DOWNLOAD & FILE TOOLS */
+["Internet Archive","https://archive.org","Downloads","Explore public digital archives and media.","archive download books"],
+["Unsplash","https://unsplash.com","Downloads","Free high-quality photography.","photos download"],
+["Pexels","https://www.pexels.com","Downloads","Free photos and stock videos.","images video"],
+["Pixabay","https://pixabay.com","Downloads","Royalty-free media library.","images audio"],
+["Google Fonts","https://fonts.google.com","Downloads","Browse and download fonts.","typography"],
+["Font Squirrel","https://www.fontsquirrel.com","Downloads","Fonts with licensing information.","fonts"],
+["Flaticon","https://www.flaticon.com","Downloads","Icons and graphics library.","icons"],
+["Google Takeout","https://takeout.google.com","Downloads","Export your Google account data.","backup export"],
+["WeTransfer","https://wetransfer.com","Downloads","Transfer files online.","file transfer"],
+["SwissTransfer","https://www.swisstransfer.com","Downloads","Large file transfer service.","share files"],
+["7-Zip","https://www.7-zip.org","Downloads","File compression and archive software.","zip rar"],
+["Ninite","https://ninite.com","Downloads","Install multiple Windows applications.","software installer"],
+
+/* CALCULATORS */
+["Calculator.net","https://www.calculator.net","Calculators","Financial, scientific and everyday calculators.","math finance"],
+["Desmos","https://www.desmos.com/calculator","Calculators","Interactive graphing calculator.","graph maths"],
+["GeoGebra","https://www.geogebra.org","Calculators","Mathematics and geometry tools.","math"],
+["WolframAlpha","https://www.wolframalpha.com","Calculators","Computational knowledge engine.","math science"],
+["Symbolab","https://www.symbolab.com","Calculators","Step-by-step mathematics calculator.","algebra"],
+["Mathway","https://www.mathway.com","Calculators","Math problem solving.","mathematics"],
+["Omni Calculator","https://www.omnicalculator.com","Calculators","Specialized calculators for many topics.","calculator"],
+["Time and Date","https://www.timeanddate.com","Calculators","Date, time and timezone calculators.","date time"],
+["Percentage Calculator","https://www.calculator.net/percent-calculator.html","Calculators","Calculate percentages.","percentage"],
+
+/* EDUCATION */
+["Khan Academy","https://www.khanacademy.org","Education","Free lessons and practice exercises.","learning courses"],
+["Coursera","https://www.coursera.org","Education","Online courses and certificates.","university"],
+["edX","https://www.edx.org","Education","Courses from universities and institutions.","courses"],
+["MIT OpenCourseWare","https://ocw.mit.edu","Education","Free MIT course materials.","university"],
+["NPTEL","https://nptel.ac.in","Education","Indian higher education online courses.","india courses"],
+["SWAYAM","https://swayam.gov.in","Education","Indian government online learning platform.","mooc india"],
+["Google Scholar","https://scholar.google.com","Education","Search scholarly literature.","research papers"],
+["arXiv","https://arxiv.org","Education","Open-access scientific research papers.","research"],
+["Wikipedia","https://www.wikipedia.org","Education","Free online encyclopedia.","knowledge"],
+["Project Gutenberg","https://www.gutenberg.org","Education","Free public-domain ebooks.","books"],
+["Duolingo","https://www.duolingo.com","Education","Learn languages interactively.","language"],
+["Quizlet","https://quizlet.com","Education","Flashcards and study tools.","study"],
+
+/* CODING */
+["GitHub","https://github.com","Coding","Code hosting and collaboration.","git developer"],
+["GitLab","https://gitlab.com","Coding","Code repositories and DevOps.","git"],
+["CodePen","https://codepen.io","Coding","Experiment with HTML, CSS and JavaScript.","frontend"],
+["JSFiddle","https://jsfiddle.net","Coding","Online JavaScript and HTML playground.","code"],
+["Replit","https://replit.com","Coding","Online coding environment.","programming"],
+["Stack Overflow","https://stackoverflow.com","Coding","Programming questions and answers.","developer"],
+["MDN Web Docs","https://developer.mozilla.org","Coding","Web development documentation.","html css javascript"],
+["W3Schools","https://www.w3schools.com","Coding","Programming tutorials and examples.","learn code"],
+["freeCodeCamp","https://www.freecodecamp.org","Coding","Free coding courses.","programming"],
+["Regex101","https://regex101.com","Coding","Test and debug regular expressions.","regex"],
+["JSONLint","https://jsonlint.com","Coding","Validate JSON data.","json"],
+["Can I Use","https://caniuse.com","Coding","Browser feature compatibility tables.","css browser"],
+["Vercel","https://vercel.com","Coding","Deploy websites and applications.","hosting"],
+["Netlify","https://www.netlify.com","Coding","Website deployment and hosting.","hosting"],
+
+/* PRODUCTIVITY */
+["Notion","https://www.notion.so","Productivity","Notes, projects and workspace tools.","notes tasks"],
+["Trello","https://trello.com","Productivity","Organize projects using boards.","tasks"],
+["Todoist","https://todoist.com","Productivity","Task and productivity management.","todo"],
+["Google Keep","https://keep.google.com","Productivity","Quick notes and lists.","notes"],
+["Google Docs","https://docs.google.com","Productivity","Online document editing.","documents"],
+["Google Sheets","https://sheets.google.com","Productivity","Online spreadsheets.","excel"],
+["Google Slides","https://slides.google.com","Productivity","Online presentations.","slides"],
+["Google Calendar","https://calendar.google.com","Productivity","Schedule events and reminders.","calendar"],
+["Miro","https://miro.com","Productivity","Collaborative online whiteboards.","board"],
+["Excalidraw","https://excalidraw.com","Productivity","Hand-drawn style diagrams.","drawing"],
+["diagrams.net","https://app.diagrams.net","Productivity","Flowcharts and diagrams.","draw io"],
+["Grammarly","https://www.grammarly.com","Productivity","Writing and grammar assistance.","writing"],
+["LanguageTool","https://languagetool.org","Productivity","Grammar and spelling checker.","writing"],
+
+/* DESIGN */
+["Figma","https://www.figma.com","Design","Interface design and prototyping.","ui ux"],
+["Coolors","https://coolors.co","Design","Generate color palettes.","colors"],
+["Adobe Color","https://color.adobe.com","Design","Color palette creation.","colors"],
+["Google Fonts","https://fonts.google.com","Design","Free web typography.","fonts"],
+["Font Awesome","https://fontawesome.com","Design","Icons for websites and apps.","icons"],
+["Lucide","https://lucide.dev","Design","Open-source icon library.","icons"],
+["Heroicons","https://heroicons.com","Design","SVG icons for interfaces.","icons"],
+["CSS Gradient","https://cssgradient.io","Design","Generate CSS gradients.","gradient"],
+["Haikei","https://haikei.app","Design","Generate SVG backgrounds and shapes.","background"],
+["Dribbble","https://dribbble.com","Design","Creative design inspiration.","ui inspiration"],
+["Behance","https://www.behance.net","Design","Discover creative portfolios.","design"],
+["UIverse","https://uiverse.io","Design","Community-made UI components.","css buttons"],
+
+/* ENTERTAINMENT */
+["YouTube","https://www.youtube.com","Entertainment","Watch videos and creators.","video"],
+["Spotify","https://open.spotify.com","Entertainment","Music and podcasts.","songs audio"],
+["SoundCloud","https://soundcloud.com","Entertainment","Music and audio discovery.","songs"],
+["Twitch","https://www.twitch.tv","Entertainment","Live streaming platform.","gaming live"],
+["IMDb","https://www.imdb.com","Entertainment","Movie and television information.","movies"],
+["Letterboxd","https://letterboxd.com","Entertainment","Discover and review films.","movies"],
+["JustWatch","https://www.justwatch.com","Entertainment","Find where movies and shows are streaming.","ott movies"],
+["Steam","https://store.steampowered.com","Entertainment","PC games and gaming community.","games"],
+["itch.io","https://itch.io","Entertainment","Independent games marketplace.","games"],
+["Chess.com","https://www.chess.com","Entertainment","Play and learn chess.","chess game"],
+["Lichess","https://lichess.org","Entertainment","Free online chess.","chess"],
+["Radio Garden","https://radio.garden","Entertainment","Explore radio stations around the world.","music radio"],
+
+/* UTILITIES */
+["Speedtest","https://www.speedtest.net","Utilities","Test internet connection speed.","internet speed"],
+["Fast.com","https://fast.com","Utilities","Quick internet speed test.","network"],
+["DownDetector","https://downdetector.com","Utilities","Check reported service outages.","website down"],
+["Is It Down Right Now","https://www.isitdownrightnow.com","Utilities","Check website availability.","status"],
+["Google Translate","https://translate.google.com","Utilities","Translate text and documents.","languages"],
+["QR Code Monkey","https://www.qrcode-monkey.com","Utilities","Generate customizable QR codes.","qr generator"],
+["Bitly","https://bitly.com","Utilities","Shorten and manage links.","url shortener"],
+["TinyURL","https://tinyurl.com","Utilities","Create short website links.","short url"],
+["Random.org","https://www.random.org","Utilities","Generate random numbers and selections.","random"],
+["World Time Buddy","https://www.worldtimebuddy.com","Utilities","Compare timezones.","time"],
+["Have I Been Pwned","https://haveibeenpwned.com","Utilities","Check whether an email appears in known breaches.","security breach"],
+["VirusTotal","https://www.virustotal.com","Utilities","Analyze suspicious files and URLs.","security scan"],
+["Google Maps","https://maps.google.com","Utilities","Maps, places and navigation.","location"],
+["OpenStreetMap","https://www.openstreetmap.org","Utilities","Open collaborative world map.","maps"],
+
+/* CYBERSECURITY */
+["Bitwarden","https://bitwarden.com","Cybersecurity","Password manager.","password"],
+["Proton Mail","https://proton.me/mail","Cybersecurity","Privacy-focused email.","secure email"],
+["Proton VPN","https://protonvpn.com","Cybersecurity","VPN service.","privacy"],
+["Privacy Guides","https://www.privacyguides.org","Cybersecurity","Digital privacy information.","security"],
+["Mozilla Observatory","https://observatory.mozilla.org","Cybersecurity","Website security analysis.","security"],
+["SSL Labs","https://www.ssllabs.com/ssltest/","Cybersecurity","Test website TLS configurations.","ssl"],
+["SecurityHeaders","https://securityheaders.com","Cybersecurity","Inspect HTTP security headers.","headers"],
+["Cloudflare Radar","https://radar.cloudflare.com","Cybersecurity","Internet traffic and security insights.","network"],
+
+/* CLOUD STORAGE */
+["Google Drive","https://drive.google.com","Cloud Storage","Cloud file storage and sharing.","cloud files"],
+["Dropbox","https://www.dropbox.com","Cloud Storage","Store and share files.","cloud"],
+["OneDrive","https://onedrive.live.com","Cloud Storage","Microsoft cloud storage.","files"],
+["MEGA","https://mega.nz","Cloud Storage","Cloud storage and sharing.","cloud"],
+["Proton Drive","https://proton.me/drive","Cloud Storage","Encrypted cloud storage.","privacy"],
+["Box","https://www.box.com","Cloud Storage","Cloud content management.","files"],
+
+/* DOCUMENT TOOLS */
+["Google Docs","https://docs.google.com","Document Tools","Create and edit documents.","word"],
+["Zoho Writer","https://www.zoho.com/writer/","Document Tools","Online word processor.","document"],
+["ONLYOFFICE","https://www.onlyoffice.com","Document Tools","Office document tools.","word excel"],
+["Aspose Apps","https://products.aspose.app","Document Tools","Document processing and conversion.","documents"],
+["Diffchecker","https://www.diffchecker.com","Document Tools","Compare text and documents.","compare"],
+["WordCounter","https://wordcounter.net","Document Tools","Count words and characters.","text"],
+["QuillBot","https://quillbot.com","Document Tools","Writing and paraphrasing tools.","writing"],
+["Hemingway Editor","https://hemingwayapp.com","Document Tools","Improve writing clarity.","editor"],
+
+/* AUDIO TOOLS */
+["Audacity","https://www.audacityteam.org","Audio Tools","Free audio recording and editing software.","audio"],
+["AudioMass","https://audiomass.co","Audio Tools","Browser-based audio editor.","mp3"],
+["TwistedWave","https://twistedwave.com/online","Audio Tools","Online audio editing.","sound"],
+["123apps Audio Cutter","https://mp3cut.net","Audio Tools","Trim audio files online.","mp3 cutter"],
+["123apps Audio Joiner","https://audio-joiner.com","Audio Tools","Merge audio files.","audio merge"],
+["Vocal Remover","https://vocalremover.org","Audio Tools","Separate vocals and instrumentals.","karaoke"],
+["Online Voice Recorder","https://online-voice-recorder.com","Audio Tools","Record audio in your browser.","microphone"],
+
+/* RESUME & CAREER */
+["Canva Resume","https://www.canva.com/resumes/","Career","Resume design templates.","cv"],
+["Overleaf","https://www.overleaf.com","Career","Online LaTeX document editor.","latex cv"],
+["LinkedIn","https://www.linkedin.com","Career","Professional networking.","jobs"],
+["Indeed","https://in.indeed.com","Career","Search employment opportunities.","jobs"],
+["Naukri","https://www.naukri.com","Career","Indian job search platform.","jobs india"],
+["Internshala","https://internshala.com","Career","Internship and job opportunities.","internships"],
+["Glassdoor","https://www.glassdoor.com","Career","Company reviews and job listings.","career"],
+
+/* RESEARCH */
+["Google Trends","https://trends.google.com","Research","Explore search trends.","trends"],
+["Our World in Data","https://ourworldindata.org","Research","Research and data visualizations.","statistics"],
+["Statista","https://www.statista.com","Research","Statistics and market information.","data"],
+["Semantic Scholar","https://www.semanticscholar.org","Research","Academic research discovery.","papers"],
+["CORE","https://core.ac.uk","Research","Open-access research discovery.","papers"],
+["PubMed","https://pubmed.ncbi.nlm.nih.gov","Research","Biomedical research database.","medical research"],
+["Internet Archive Wayback","https://web.archive.org","Research","Browse archived versions of websites.","history archive"],
+
+/* SHOPPING & COMPARISON */
+["Google Shopping","https://shopping.google.com","Shopping","Search and compare products.","products"],
+["Amazon India","https://www.amazon.in","Shopping","Online shopping marketplace.","products"],
+["Flipkart","https://www.flipkart.com","Shopping","Indian shopping marketplace.","products"],
+["PriceHistory","https://pricehistory.app","Shopping","Product price history tracking.","price"],
+["GSMArena","https://www.gsmarena.com","Shopping","Phone specifications and comparisons.","mobile phones"],
+["Versus","https://versus.com","Shopping","Compare products and specifications.","comparison"],
+
+/* MISCELLANEOUS */
+["Product Hunt","https://www.producthunt.com","Miscellaneous","Discover new technology products.","apps"],
+["AlternativeTo","https://alternativeto.net","Miscellaneous","Find alternatives to applications.","software"],
+["Futurepedia","https://www.futurepedia.io","Miscellaneous","Discover AI tools.","ai directory"],
+["Internet Is Beautiful","https://www.reddit.com/r/InternetIsBeautiful/","Miscellaneous","Community sharing useful and interesting websites.","websites"],
+["This Person Does Not Exist","https://thispersondoesnotexist.com","Miscellaneous","AI-generated fictional face examples.","ai image"],
+["WindowSwap","https://www.window-swap.com","Miscellaneous","Explore window views from around the world.","travel"],
+["Earth Nullschool","https://earth.nullschool.net","Miscellaneous","Interactive global weather visualization.","earth weather"],
+["Neal.fun","https://neal.fun","Miscellaneous","Interactive web experiments and games.","fun"],
+["Bored Button","https://www.boredbutton.com","Miscellaneous","Discover random activities.","fun"],
+["Little Alchemy 2","https://littlealchemy2.com","Miscellaneous","Creative combination puzzle game.","game"]
+
+];
+
+
+/* ======================================================
+   SETUP & DATA
+====================================================== */
+
+const websites = [];
+const seen = new Set();
+
+rawWebsites.forEach(row => {
+  const [name,url,category,desc,keywords] = row;
+
+  // Remove repeated URL entries.
+  const key = url.replace(/\/$/,"").toLowerCase();
+
+  if(seen.has(key)) return;
+  seen.add(key);
+
+  websites.push({
+    name,url,category,desc,keywords
+  });
+});
+
+const categories = [
+  "All",
+  ...new Set(websites.map(site => site.category))
+];
+
+const storageKey = "bkvh_useful_links_favorites_v1";
+
+function loadFavorites(){
+  try{
+    const value = JSON.parse(localStorage.getItem(storageKey));
+    return Array.isArray(value) ? value : [];
+  }catch(error){
+    return [];
+  }
+}
+
+let favorites = loadFavorites();
+let currentCategory = "All";
+let favoritesOnly = false;
+let shuffledWebsites = [...websites];
+
+const grid = document.getElementById("websiteGrid");
+const searchInput = document.getElementById("searchInput");
+
+
+/* ======================================================
+   RANDOM SHUFFLE
+====================================================== */
+
+function shuffleArray(array){
+  for(let i=array.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [array[i],array[j]]=[array[j],array[i]];
+  }
+  return array;
+}
+
+function shuffleWebsites(){
+  shuffleArray(shuffledWebsites);
+  renderWebsites();
+}
+
+
+/* ======================================================
+   CATEGORY BUTTONS
+====================================================== */
+
+function renderCategories(){
+  const bar = document.getElementById("categoryBar");
+  bar.innerHTML = "";
+
+  categories.forEach(category=>{
+    const button = document.createElement("button");
+    button.className = "category-btn";
+    button.textContent = category;
+
+    if(category === currentCategory && !favoritesOnly){
+      button.classList.add("active");
+    }
+
+    button.addEventListener("click",()=>{
+      currentCategory = category;
+      favoritesOnly = false;
+      renderCategories();
+      renderWebsites();
+    });
+
+    bar.appendChild(button);
+  });
+}
+
+
+/* ======================================================
+   SEARCH FILTER
+====================================================== */
+
+function getFilteredWebsites(){
+
+  const query = searchInput.value.toLowerCase().trim();
+
+  return shuffledWebsites.filter(site=>{
+
+    const matchesCategory =
+      currentCategory === "All" ||
+      site.category === currentCategory;
+
+    const matchesFavorites =
+      !favoritesOnly ||
+      favorites.includes(site.url);
+
+    const searchableText = [
+      site.name,
+      site.category,
+      site.desc,
+      site.keywords
+    ].join(" ").toLowerCase();
+
+    const matchesSearch = searchableText.includes(query);
+
+    return matchesCategory &&
+           matchesFavorites &&
+           matchesSearch;
+  });
+}
+
+
+/* ======================================================
+   CARD GENERATOR
+====================================================== */
+
+function createCard(site,index){
+
+  const card = document.createElement("article");
+  card.className = "card";
+  card.style.animationDelay = Math.min(index*0.015,.25)+"s";
+
+  const top = document.createElement("div");
+  top.className = "card-top";
+
+  const icon = document.createElement("div");
+  icon.className = "card-icon";
+
+  // Website favicon provided by Google's favicon service.
+  const favicon = document.createElement("img");
+  favicon.width = 26;
+  favicon.height = 26;
+  favicon.alt = "";
+  favicon.loading = "lazy";
+  favicon.referrerPolicy = "no-referrer";
+  favicon.src =
+    "https://www.google.com/s2/favicons?domain_url="+
+    encodeURIComponent(site.url)+"&sz=64";
+
+  favicon.onerror = ()=>{
+    icon.textContent = "🔗";
+  };
+
+  icon.appendChild(favicon);
+
+  const favorite = document.createElement("button");
+  favorite.className = "favorite-btn";
+  favorite.type = "button";
+
+  const isSaved = favorites.includes(site.url);
+
+  favorite.textContent = isSaved ? "♥" : "♡";
+  favorite.title = isSaved ? "Remove favorite" : "Add favorite";
+  favorite.setAttribute("aria-label",favorite.title);
+  favorite.setAttribute("aria-pressed",String(isSaved));
+
+  if(isSaved) favorite.classList.add("saved");
+
+  favorite.addEventListener("click",()=>{
+    toggleFavorite(site.url);
+  });
+
+  top.append(icon,favorite);
+
+  const heading = document.createElement("h3");
+  heading.textContent = site.name;
+
+  const description = document.createElement("p");
+  description.textContent = site.desc;
+
+  const bottom = document.createElement("div");
+  bottom.className = "card-footer";
+
+  const category = document.createElement("span");
+  category.className = "card-category";
+  category.textContent = site.category;
+
+  const link = document.createElement("a");
+  link.className = "visit-link";
+  link.href = site.url;
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = "VISIT WEBSITE ↗";
+  link.setAttribute("aria-label","Visit "+site.name);
+
+  bottom.append(category,link);
+
+  card.append(top,heading,description,bottom);
+
+  return card;
+}
+
+
+/* ======================================================
+   RENDER WEBSITE CARDS
+====================================================== */
+
+function renderWebsites(){
+
+  const filtered = getFilteredWebsites();
+  const fragment = document.createDocumentFragment();
+
+  filtered.forEach((site,index)=>{
+    fragment.appendChild(createCard(site,index));
+  });
+
+  grid.replaceChildren(fragment);
+
+  document.getElementById("resultCount").textContent =
+    `Showing ${filtered.length} of ${websites.length} websites`;
+
+  document.getElementById("emptyState").style.display =
+    filtered.length ? "none" : "block";
+
+  document.getElementById("totalFavorites").textContent =
+    favorites.length;
+
+  return filtered;
+}
+
+
+/* ======================================================
+   FAVORITES
+====================================================== */
+
+function toggleFavorite(url){
+
+  if(favorites.includes(url)){
+    favorites = favorites.filter(item=>item!==url);
+  }else{
+    favorites.push(url);
+  }
+
+  try{
+    localStorage.setItem(storageKey,JSON.stringify(favorites));
+  }catch(error){
+    console.warn("Favorites could not be saved.",error);
+  }
+
+  renderWebsites();
+}
+
+function showFavorites(){
+  favoritesOnly = true;
+  currentCategory = "All";
+  searchInput.value = "";
+
+  renderCategories();
+  renderWebsites();
+  scrollToDirectory();
+}
+
+function showAll(){
+  favoritesOnly = false;
+  currentCategory = "All";
+  searchInput.value = "";
+
+  renderCategories();
+  renderWebsites();
+  scrollToDirectory();
+}
+
+
+/* ======================================================
+   SEARCH FUNCTIONS
+====================================================== */
+
+function scrollToDirectory(){
+  document.getElementById("directory").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+function focusSearch(){
+  document.getElementById("searchArea").scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+  searchInput.focus({preventScroll:true});
+}
+
+function quickSearch(keyword){
+  favoritesOnly = false;
+  currentCategory = "All";
+  searchInput.value = keyword;
+
+  renderCategories();
+  renderWebsites();
+  scrollToDirectory();
+}
+
+searchInput.addEventListener("input",()=>{
+  // Search across every category.
+  currentCategory = "All";
+  favoritesOnly = false;
+
+  renderCategories();
+  renderWebsites();
+});
+
+function openFirstResult(){
+  const filtered = getFilteredWebsites();
+
+  if(filtered.length){
+    window.open(filtered[0].url,"_blank","noopener,noreferrer");
+  }else{
+    searchInput.focus();
+  }
+}
+
+searchInput.addEventListener("keydown",event=>{
+  if(event.key==="Enter"){
+    event.preventDefault();
+    openFirstResult();
+  }
+});
+
+
+/* ======================================================
+   SURPRISE ME
+====================================================== */
+
+function randomWebsite(){
+
+  const pool = getFilteredWebsites();
+
+  if(!pool.length){
+    alert("No websites match the current filters.");
+    return;
+  }
+
+  const site = pool[Math.floor(Math.random()*pool.length)];
+
+  window.open(site.url,"_blank","noopener,noreferrer");
+}
+
+
+/* ======================================================
+   INITIALIZATION
+====================================================== */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+document.getElementById("totalLinks").textContent =
+  websites.length;
+
+document.getElementById("totalCategories").textContent =
+  categories.length-1;
+
+// Automatically shuffle all links on each page load.
+shuffleArray(shuffledWebsites);
+
+renderCategories();
+renderWebsites();
+
+</script>
+
+
+<!-- BKVH VISITOR ANALYTICS -->
+<style>
+#analyticsConsent {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#analyticsConsent[hidden] {
+  display: none;
+}
+
+.analytics-panel {
+  background: #17171d;
+  border: 1px solid #ff233d;
+  border-radius: 14px;
+  padding: 30px;
+  max-width: 460px;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.analytics-panel h2 {
+  color: #ff233d;
+  margin-top: 0;
+}
+
+.analytics-panel p {
+  color: #bcbcc6;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.analytics-panel label {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 18px 0;
+  font-size: 13px;
+}
+
+.analytics-panel button {
+  padding: 12px 18px;
+  border: 1px solid #ff233d;
+  border-radius: 8px;
+  color: white;
+  background: #252029;
+  cursor: pointer;
+  margin: 4px;
+}
+
+.analytics-panel .accept {
+  background: #ff233d;
+}
+</style>
+
+<div id="analyticsConsent" hidden>
+  <div class="analytics-panel">
+    <h2>Visitor Analytics</h2>
+
+    <p>
+      With your permission, this website will send
+      your public IP address, approximate location,
+      device information, entry time and exit time
+      to the website administrator through Discord.
+      You can decline and continue using the website.
+    </p>
+
+    <label>
+      <input type="checkbox" id="preciseGPS">
+      Also share my precise GPS coordinates
+      (requires separate browser permission).
+    </label>
+
+    <button id="declineAnalytics">Decline</button>
+    <button class="accept" id="acceptAnalytics">
+      Allow Analytics
+    </button>
+  </div>
+</div>
+
+<script>
+/*
+  BHARAT KANOON VIDHI HUB
+  SINGLE HTML VISITOR ANALYTICS
+
+  Replace the URL below with your secure
+  Cloudflare Worker endpoint.
+
+  Do not insert your Discord webhook here.
+*/
+
+const TRACKING_ENDPOINT =
+  "https://bkvh-visitor-tracker.mradvocate2326.workers.dev/";
+
+const TRACKING_CONSENT = "bkvh_analytics_consent";
+
+let trackingStarted = false;
+let exitSent = false;
+let visitId = null;
+let entryTime = null;
+
+const analyticsDialog =
+  document.getElementById("analyticsConsent");
+
+function detectDevice() {
+  const ua = navigator.userAgent;
+
+  let type = "Desktop / PC";
+
+  if (/ipad|tablet/i.test(ua)) {
+    type = "Tablet";
+  } else if (/iphone|mobile|android/i.test(ua)) {
+    type = "Mobile";
+  }
+
+  let os = "Unknown";
+
+  if (/Windows/i.test(ua)) os = "Windows";
+  else if (/Android/i.test(ua)) os = "Android";
+  else if (/iPhone|iPad/i.test(ua)) os = "iOS / iPadOS";
+  else if (/Macintosh/i.test(ua)) os = "macOS";
+  else if (/Linux/i.test(ua)) os = "Linux";
+
+  let browser = "Other";
+
+  if (/Edg\//i.test(ua)) browser = "Edge";
+  else if (/Firefox\//i.test(ua)) browser = "Firefox";
+  else if (/Chrome\//i.test(ua)) browser = "Chrome";
+  else if (/Safari\//i.test(ua)) browser = "Safari";
+
+  return { type, os, browser };
+}
+
+function requestGPS() {
+  return new Promise(resolve => {
+    if (!navigator.geolocation) {
+      resolve(null);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      position => resolve({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        accuracyMeters: position.coords.accuracy
+      }),
+      () => resolve(null),
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+      }
+    );
+  });
+}
+
+function sendTrackingEvent(eventData, isExit = false) {
+  const payload = JSON.stringify({
+    ...eventData,
+    consent: true,
+    visitId,
+    page: location.pathname,
+    device: detectDevice()
+  });
+
+  if (isExit && navigator.sendBeacon) {
+    const blob = new Blob([payload], {
+      type: "text/plain"
+    });
+
+    if (navigator.sendBeacon(TRACKING_ENDPOINT, blob)) {
+      return;
+    }
+  }
+
+  fetch(TRACKING_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain"
+    },
+    body: payload,
+    keepalive: isExit
+  }).catch(error => {
+    console.error("Analytics delivery failed:", error);
+  });
+}
+
+async function beginTracking(shareGPS = false) {
+  if (trackingStarted) return;
+
+  trackingStarted = true;
+  exitSent = false;
+  visitId = crypto.randomUUID();
+  entryTime = Date.now();
+
+  let gps = null;
+
+  if (shareGPS) {
+    gps = await requestGPS();
+  }
+
+  sendTrackingEvent({
+    event: "entry",
+    timestamp: new Date(entryTime).toISOString(),
+    preciseLocationConsent: shareGPS && gps !== null,
+    preciseLocation: gps
+  });
+}
+
+function finishTracking() {
+  if (!trackingStarted || exitSent) return;
+
+  exitSent = true;
+
+  const now = Date.now();
+
+  sendTrackingEvent({
+    event: "exit",
+    timestamp: new Date(now).toISOString(),
+    entryTime: new Date(entryTime).toISOString(),
+    durationSeconds: Math.round(
+      (now - entryTime) / 1000
+    )
+  }, true);
+}
+
+document.getElementById("acceptAnalytics")
+  .addEventListener("click", () => {
+    const shareGPS =
+      document.getElementById("preciseGPS").checked;
+
+    localStorage.setItem(TRACKING_CONSENT, "accepted");
+    analyticsDialog.hidden = true;
+
+    beginTracking(shareGPS);
+  });
+
+document.getElementById("declineAnalytics")
+  .addEventListener("click", () => {
+    localStorage.setItem(TRACKING_CONSENT, "declined");
+    analyticsDialog.hidden = true;
+  });
+
+const consent = localStorage.getItem(TRACKING_CONSENT);
+
+if (consent === "accepted") {
+  // Do not automatically request GPS on future visits.
+  beginTracking(false);
+} else if (consent !== "declined") {
+  analyticsDialog.hidden = false;
+}
+
+// Browser exit notification is best effort.
+window.addEventListener("pagehide", finishTracking);
+
+// Optional privacy control for your website.
+function disableVisitorAnalytics() {
+  finishTracking();
+  trackingStarted = false;
+  localStorage.setItem(TRACKING_CONSENT, "declined");
+}
+</script>
+
+
+</body>
+</html>
