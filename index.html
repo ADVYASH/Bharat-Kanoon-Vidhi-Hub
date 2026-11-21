@@ -2174,51 +2174,11 @@ body:not(.tv-logged-in) {
     }
 }
 
-
-/* TOP RIGHT HOME BUTTON */
-.home-nav-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-
-    display: none;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-
-    padding: 12px 28px;
-    background: rgba(8, 13, 24, 0.95);
-    border: 1px solid #d4af37;
-    border-radius: 6px;
-
-    color: #f4d28b;
-    font-size: 15px;
-    font-weight: 700;
-    text-decoration: none;
-    letter-spacing: 2px;
-
-    transition: 0.3s ease;
-}
-
-.home-nav-button:hover {
-    background: #d4af37;
-    color: #080d18;
-    box-shadow: 0 0 20px rgba(212,175,55,0.4);
-}
-
 </style>
 </head>
 
 <body>
 
-
-<!-- HOME BUTTON - AFTER LOGIN -->
-<a href="index.html"
-   id="homeNavButton"
-   class="home-nav-button">
-    &#8962; Log Out
-</a>
 
 <!-- GOOGLE LOGIN SCREEN -->
 
@@ -2279,6 +2239,24 @@ body:not(.tv-logged-in) {
 <section class="home" id="home">
 
     <div class="home-content">
+
+
+<p class="top-line" style="
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    padding: 12px 28px;
+    border: 2px solid #f4d28b;
+    border-radius: 8px;
+    background: rgba(8, 13, 24, 0.85);
+    color: #f4d28b;
+    text-align: center;
+    cursor: pointer;
+    z-index: 9999;
+" onclick="window.location.href='index.html'">
+    HOME
+</p>
+
 
         <p class="top-line">
             Knowledge of Law, Access to Justice
@@ -6340,19 +6318,13 @@ function tvMessage(message) {
     el.hidden = !message;
 }
 
-
 function tvShowLogin() {
     document.body.classList.remove("tv-logged-in");
 
     document.getElementById("tv-login-screen").hidden = false;
     document.getElementById("tv-profile").hidden = true;
     document.getElementById("tv-profile-menu").hidden = true;
-
-    // HIDE HOME BUTTON BEFORE LOGIN
-    document.getElementById("homeNavButton").style.display = "none";
 }
-
-
 
 function tvShowWebsite(user) {
     if (!user || !user.email) {
@@ -6377,12 +6349,8 @@ function tvShowWebsite(user) {
 
     document.body.classList.add("tv-logged-in");
 
-    // SHOW HOME BUTTON AFTER SUCCESSFUL LOGIN
-    document.getElementById("homeNavButton").style.display = "flex";
-
     tvMessage("");
 }
-
 
 async function tvGoogleCallback(response) {
     if (!response.credential) {
@@ -6512,18 +6480,10 @@ function tvInitializeGoogle() {
     );
 }
 
-
-/* ALWAYS SHOW LOGIN WHEN WEBSITE OPENS */
-
 tvShowLogin();
+tvCheckSession();
 
-// Do not restore the previous login session.
-// tvCheckSession();
-
-window.addEventListener("load", () => {
-    tvInitializeGoogle();
-});
-
+window.addEventListener("load", tvInitializeGoogle);
 </script>
 
 </body>
