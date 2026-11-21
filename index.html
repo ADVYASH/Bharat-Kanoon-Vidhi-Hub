@@ -6303,8 +6303,411 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </script>
 
-<script src="https://accounts.google.com/gsi/client"
-        async defer></script>
+
+<script>
+/* ==========================================
+   THEMIS VERITAS
+   GOOGLE AUTH + VISITOR TRACKING
+========================================== */
+
+const TV_AUTH_API =
+  "https://themis-visitor-monitor.mradvocate2326.workers.dev";
+
+let tvToken = null;
+let tvActivityTimer = null;
+let tvVisitStarted = null;
+let tvActiveSeconds = 0;
+let tvLastInteraction = Date.now();
+let tvLastTick = Date.now();
+let tvAnalyticsEnabled = false;
+
+const TV_ACTIVITY_INTERVAL = 60000;
+
+/* ==========================================
+   LOGIN SCREEN
+========================================== */
+
+function tvMessage(message) {
+  const el = document.getElementById("tv-login-message");
+
+  if (!el) return;
+
+  el.textContent = message;
+  el.hidden = !message;
+}
+
+function tvShowLogin() {
+  document.body.classList.remove("tv-logged-in");
+
+  document.getElementById("tv-login-screen").hidden = false;
+  document.getElementById("tv-profile").hidden = true;
+  document.getElementById("tv-profile-menu").hidden = true;
+}
+
+function tvShowWebsite(user) {
+  if (!user || !user.email) {
+    tvShowLogin();
+    return;
+  }
+
+  document.getElementById("tv-profile-name").textContent =
+    user.name || "My Profile";
+
+  document.getElementById("tv-user-name").textContent =
+    user.name || "Google User";
+
+  document.getElementById("tv-user-email").textContent =
+    user.email;
+
+  document.getElementById("tv-profile-photo").src =
+    user.picture || "";
+
+  document.getElementById("tv-login-screen").hidden = true;
+  document.getElementById("tv-profile").hidden = false;
+
+  document.body.classList.add("tv-logged-in");
+
+  tvMessage("");
+}
+
+/* ==========================================
+   GOOGLE LOGIN BUTTON
+========================================== */
+
+function tvStartGoogleLogin() {
+  window.location.href = TV_AUTH_API + "/auth/start";
+}
+
+function tvInitializeGoogle() {
+  const container =
+    document.getElementById("tv-google-button");
+
+  if (!container) return;
+
+  container.replaceChildren();
+
+  const button = document.createElement("button");
+
+  button.type = "button";
+  button.textContent = "Sign in with Google";
+
+  button.style.cssText = `
+    padding: 14px 28px;
+    background: #ffffff;
+    color: #202124;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+  `;
+
+  button.addEventListener(
+    "click",
+    tvStartGoogleLogin
+  );
+
+  container.appendChild(button);
+}
+
+/* ==========================================
+   API REQUESTS
+========================================== */
+
+async function tvRequest(endpoint, options = {}) {
+  const headers = {
+    ...(options.headers || {})
+  };
+
+  if (tvToken) {
+    headers.Authorization = "Bearer " + tvToken;
+  }
+
+  const response = await fetch(
+    TV_AUTH_API + endpoint,
+    {
+      ...options,
+      headers,
+      cache: "no-store"
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      endpoint + " returned HTTP " + response.status
+    );
+  }
+
+  return response.json();
+}
+
+async function tvPost(endpoint, body) {
+  return tvRequest(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  });
+}
+
+/* ==========================================
+   OAUTH CODE EXCHANGE
+========================================== */
+
+async function tvProcessGoogleLogin() {
+  const url = new URL(window.location.href);
+  const loginCode = url.searchParams.get("login_code");
+
+  if (!loginCode) return;
+
+  url.searchParams.delete("login_code");
+
+  history.replaceState(
+    {},
+    "",
+    url.pathname + url.search + url.hash
+  );
+
+  tvMessage("Verifying your Google account...");
+
+  try {
+    const result = await tvPost(
+      "/auth/exchange",
+      { code: loginCode }
+    );
+
+    if (!result.token) {
+      throw new Error("Missing session token");
+    }
+
+    tvToken = result.token;
+
+    const profile = await tvRequest("/auth/me");
+
+    if (!profile.user) {
+      throw new Error("Missing Google profile");
+    }
+
+    tvShowWebsite(profile.user);
+
+    console.log("THEMIS Google login successful");
+
+    tvVisitStarted = Date.now();
+    tvLastInteraction = Date.now();
+    tvLastTick = Date.now();
+
+    await tvAskAnalyticsConsent();
+
+  } catch (error) {
+    console.error("Google login failed:", error);
+
+    tvToken = null;
+    tvShowLogin();
+
+    tvMessage(
+      "Login verification failed. Please try again."
+    );
+  }
+}
+
+/* ==========================================
+   OPTIONAL ANALYTICS CONSENT
+========================================== */
+
+async function tvAskAnalyticsConsent() {
+  const accepted = window.confirm(
+    "THEMIS VERITAS offers optional activity analytics.\n\n" +
+    "If you agree, the website will record pages visited, " +
+    "approximate active time and session duration, and " +
+    "send activity updates to the private administration " +
+    "Discord channel approximately every 60 seconds " +
+    "while this page is open.\n\n" +
+    "Google login information is processed separately " +
+    "from optional activity analytics.\n\n" +
+    "Do you agree to optional activity tracking?"
+  );
+
+  try {
+    await tvPost("/analytics/consent", {
+      consent: accepted
+    });
+
+    tvAnalyticsEnabled = accepted;
+
+    if (accepted) {
+      await tvSendActivity("page_view");
+      tvStartActivityTracking();
+    }
+
+  } catch (error) {
+    tvAnalyticsEnabled = false;
+    console.error("Analytics consent failed:", error);
+  }
+}
+
+async function tvDisableAnalytics() {
+  if (!tvToken) return;
+
+  tvStopActivityTracking();
+
+  try {
+    await tvPost("/analytics/consent", {
+      consent: false
+    });
+  } finally {
+    tvAnalyticsEnabled = false;
+  }
+}
+
+/* ==========================================
+   ACTIVITY TRACKING
+========================================== */
+
+function tvTrackInteraction() {
+  tvLastInteraction = Date.now();
+}
+
+[
+  "pointerdown",
+  "keydown",
+  "scroll",
+  "touchstart"
+].forEach(eventName => {
+  document.addEventListener(
+    eventName,
+    tvTrackInteraction,
+    { passive: true }
+  );
+});
+
+async function tvSendActivity(eventType) {
+  if (!tvToken) return;
+
+  if (
+    !tvAnalyticsEnabled &&
+    eventType !== "logout"
+  ) {
+    return;
+  }
+
+  const payload = {
+    event: eventType,
+    page: location.pathname,
+    activeSeconds: Math.floor(tvActiveSeconds)
+  };
+
+  try {
+    return await tvPost(
+      "/analytics/event",
+      payload
+    );
+  } catch (error) {
+    console.error(
+      "Activity event failed:",
+      eventType,
+      error
+    );
+  }
+}
+
+function tvStartActivityTracking() {
+  tvStopActivityTracking();
+
+  if (!tvAnalyticsEnabled) return;
+
+  tvLastTick = Date.now();
+
+  tvActivityTimer = setInterval(() => {
+    const now = Date.now();
+
+    const seconds = Math.min(
+      60,
+      Math.max(0, (now - tvLastTick) / 1000)
+    );
+
+    if (
+      !document.hidden &&
+      now - tvLastInteraction < 60000
+    ) {
+      tvActiveSeconds += seconds;
+    }
+
+    tvLastTick = now;
+
+    tvSendActivity("heartbeat");
+
+  }, TV_ACTIVITY_INTERVAL);
+}
+
+function tvStopActivityTracking() {
+  if (tvActivityTimer) {
+    clearInterval(tvActivityTimer);
+    tvActivityTimer = null;
+  }
+}
+
+/* ==========================================
+   PROFILE MENU
+========================================== */
+
+function tvToggleProfile() {
+  const menu =
+    document.getElementById("tv-profile-menu");
+
+  menu.hidden = !menu.hidden;
+}
+
+/* ==========================================
+   GOOGLE LOGOUT
+========================================== */
+
+async function tvSignOut() {
+  tvStopActivityTracking();
+
+  if (tvToken) {
+    await tvSendActivity("logout");
+  }
+
+  tvToken = null;
+  tvAnalyticsEnabled = false;
+  tvActiveSeconds = 0;
+  tvVisitStarted = null;
+
+  tvShowLogin();
+
+  console.log("THEMIS session ended");
+}
+
+/* ==========================================
+   PAGE VISIBILITY
+========================================== */
+
+document.addEventListener(
+  "visibilitychange",
+  () => {
+    if (document.hidden) {
+      tvSendActivity("page_hidden");
+    } else {
+      tvLastInteraction = Date.now();
+      tvLastTick = Date.now();
+    }
+  }
+);
+
+/* ==========================================
+   INITIALIZATION
+========================================== */
+
+window.addEventListener("load", async () => {
+  tvShowLogin();
+  tvInitializeGoogle();
+
+  await tvProcessGoogleLogin();
+});
+</script>
+
 
 <script>
 const TV_GOOGLE_CLIENT_ID =
