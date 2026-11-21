@@ -2070,10 +2070,161 @@ body {
     object-fit: contain !important;
     margin: 0 auto 25px !important;
 }
+
+
+/* THEMIS VERITAS — GOOGLE LOGIN SCREEN */
+
+#tv-login-screen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    z-index: 999999;
+    background: #080d18 url("wallpaper/1.jpg") center / cover no-repeat;
+}
+
+#tv-login-top {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    z-index: 2;
+}
+
+#tv-login-message {
+    max-width: 300px;
+    margin-top: 10px;
+    padding: 10px;
+    color: white;
+    background: rgba(0,0,0,.8);
+    border-radius: 8px;
+    font: 13px Arial, sans-serif;
+}
+
+#tv-protected-website {
+    display: none;
+}
+
+body.tv-logged-in #tv-protected-website {
+    display: block;
+}
+
+body:not(.tv-logged-in) {
+    overflow: hidden !important;
+}
+
+#tv-profile {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    z-index: 999998;
+}
+
+#tv-profile-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 15px 6px 6px;
+    background: #111827;
+    color: white;
+    border: 1px solid #d4af37;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#tv-profile-photo {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+}
+
+#tv-profile-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 250px;
+    padding: 20px;
+    background: #111827;
+    color: white;
+    border: 1px solid #d4af37;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#tv-profile-menu p {
+    overflow-wrap: anywhere;
+    margin: 12px 0;
+}
+
+#tv-profile-menu button {
+    padding: 10px 20px;
+    background: #d4af37;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+    #tv-login-top {
+        top: 15px;
+        right: 15px;
+    }
+}
+
 </style>
 </head>
 
 <body>
+
+
+<!-- GOOGLE LOGIN SCREEN -->
+
+<div id="tv-login-screen">
+
+    <div id="tv-login-top">
+        <div id="tv-google-button"></div>
+
+        <p id="tv-login-message"
+           role="status"
+           hidden></p>
+    </div>
+
+</div>
+
+<!-- GOOGLE ACCOUNT PROFILE -->
+
+<div id="tv-profile" hidden>
+
+    <button id="tv-profile-button"
+            type="button"
+            onclick="tvToggleProfile()">
+
+        <img id="tv-profile-photo" alt="Profile">
+
+        <span id="tv-profile-name"></span>
+
+    </button>
+
+    <div id="tv-profile-menu" hidden>
+
+        <h3 id="tv-user-name"></h3>
+
+        <p id="tv-user-email"></p>
+
+        <button type="button" onclick="tvSignOut()">
+            Sign Out
+        </button>
+
+    </div>
+
+</div>
+
+<!-- PROTECTED WEBSITE START -->
+
+<div id="tv-protected-website">
 
 <!-- FIXED VIDEO: DOES NOT SCROLL WITH THE PAGE -->
 
@@ -6132,6 +6283,189 @@ document.addEventListener("DOMContentLoaded", function () {
     render();
 });
 
+</script>
+
+<script src="https://accounts.google.com/gsi/client"
+        async defer></script>
+
+<script>
+const TV_GOOGLE_CLIENT_ID =
+    "320383659355-608tb907b8g3ggok10mn153u4bfe0hti.apps.googleusercontent.com";
+
+const TV_AUTH_API = "https://themis-google-auth.mradvocate2326.workers.dev";
+
+function tvMessage(message) {
+    const el = document.getElementById("tv-login-message");
+    el.textContent = message;
+    el.hidden = !message;
+}
+
+function tvShowLogin() {
+    document.body.classList.remove("tv-logged-in");
+
+    document.getElementById("tv-login-screen").hidden = false;
+    document.getElementById("tv-profile").hidden = true;
+    document.getElementById("tv-profile-menu").hidden = true;
+}
+
+function tvShowWebsite(user) {
+    if (!user || !user.email) {
+        tvShowLogin();
+        return;
+    }
+
+    document.getElementById("tv-profile-name").textContent =
+        user.name || "My Profile";
+
+    document.getElementById("tv-user-name").textContent =
+        user.name || "Google User";
+
+    document.getElementById("tv-user-email").textContent =
+        user.email;
+
+    document.getElementById("tv-profile-photo").src =
+        user.picture || "";
+
+    document.getElementById("tv-login-screen").hidden = true;
+    document.getElementById("tv-profile").hidden = false;
+
+    document.body.classList.add("tv-logged-in");
+
+    tvMessage("");
+}
+
+async function tvGoogleCallback(response) {
+    if (!response.credential) {
+        tvMessage("Google login failed.");
+        return;
+    }
+
+    tvMessage("Verifying your Google account...");
+
+    try {
+        const result = await fetch(
+            TV_AUTH_API + "/auth/google",
+            {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    credential: response.credential
+                })
+            }
+        );
+
+        if (!result.ok) {
+            throw new Error("Authentication rejected");
+        }
+
+        const data = await result.json();
+
+        if (!data.user) {
+            throw new Error("No verified user returned");
+        }
+
+        tvShowWebsite(data.user);
+
+    } catch (error) {
+        tvShowLogin();
+        tvMessage(
+            "Login verification unavailable. Check your Cloudflare Worker."
+        );
+    }
+}
+
+async function tvCheckSession() {
+    try {
+        const response = await fetch(
+            TV_AUTH_API + "/auth/session",
+            {
+                credentials: "include",
+                cache: "no-store"
+            }
+        );
+
+        if (!response.ok) {
+            tvShowLogin();
+            return;
+        }
+
+        const data = await response.json();
+
+        if (data.user) {
+            tvShowWebsite(data.user);
+        } else {
+            tvShowLogin();
+        }
+
+    } catch (error) {
+        tvShowLogin();
+    }
+}
+
+function tvToggleProfile() {
+    const menu = document.getElementById("tv-profile-menu");
+    menu.hidden = !menu.hidden;
+}
+
+async function tvSignOut() {
+    try {
+        const response = await fetch(
+            TV_AUTH_API + "/auth/logout",
+            {
+                method: "POST",
+                credentials: "include"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Logout failed");
+        }
+
+        google.accounts.id.disableAutoSelect();
+        tvShowLogin();
+
+    } catch (error) {
+        alert("Unable to sign out. Please try again.");
+    }
+}
+
+function tvInitializeGoogle() {
+    if (TV_GOOGLE_CLIENT_ID.startsWith("YOUR_")) {
+        tvMessage("Configure your Google Client ID first.");
+        return;
+    }
+
+    if (!window.google?.accounts?.id) {
+        tvMessage("Google Sign-In could not load.");
+        return;
+    }
+
+    google.accounts.id.initialize({
+        client_id: TV_GOOGLE_CLIENT_ID,
+        callback: tvGoogleCallback,
+        auto_select: false
+    });
+
+    google.accounts.id.renderButton(
+        document.getElementById("tv-google-button"),
+        {
+            type: "standard",
+            theme: "filled_black",
+            size: "large",
+            shape: "pill",
+            text: "signin_with",
+            logo_alignment: "left"
+        }
+    );
+}
+
+tvShowLogin();
+tvCheckSession();
+
+window.addEventListener("load", tvInitializeGoogle);
 </script>
 
 </body>
