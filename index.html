@@ -6324,6 +6324,8 @@ function tvShowLogin() {
     document.getElementById("tv-login-screen").hidden = false;
     document.getElementById("tv-profile").hidden = true;
     document.getElementById("tv-profile-menu").hidden = true;
+
+    document.getElementById("homeNavButton").style.display = "none";
 }
 
 function tvShowWebsite(user) {
@@ -6350,6 +6352,8 @@ function tvShowWebsite(user) {
     document.body.classList.add("tv-logged-in");
 
     tvMessage("");
+
+    document.getElementById("homeNavButton").style.display = "flex";
 }
 
 async function tvGoogleCallback(response) {
@@ -6461,11 +6465,16 @@ function tvInitializeGoogle() {
         return;
     }
 
-    google.accounts.id.initialize({
-        client_id: TV_GOOGLE_CLIENT_ID,
-        callback: tvGoogleCallback,
-        auto_select: false
-    });
+    
+google.accounts.id.initialize({
+    client_id: TV_GOOGLE_CLIENT_ID,
+    callback: tvGoogleCallback,
+    auto_select: false,
+    cancel_on_tap_outside: false
+});
+
+google.accounts.id.disableAutoSelect();
+
 
     google.accounts.id.renderButton(
         document.getElementById("tv-google-button"),
@@ -6480,10 +6489,19 @@ function tvInitializeGoogle() {
     );
 }
 
-tvShowLogin();
-tvCheckSession();
 
-window.addEventListener("load", tvInitializeGoogle);
+/* REQUIRE LOGIN ON EVERY PAGE LOAD */
+
+tvShowLogin();
+
+// Do not restore an existing session automatically.
+// tvCheckSession();
+
+window.addEventListener("load", function () {
+    tvShowLogin();
+    tvInitializeGoogle();
+});
+
 </script>
 
 </body>
