@@ -2174,6 +2174,53 @@ body:not(.tv-logged-in) {
     }
 }
 
+
+
+
+/* ==========================================
+   SLIDESHOW IMAGES — LANDSCAPE 16:9
+========================================== */
+
+.slideshow-frame {
+    width: 100% !important;
+    max-width: 900px !important;
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+    position: relative;
+    border: 1px solid rgba(244, 210, 139, 0.4);
+    border-radius: 10px;
+    background: #080d18;
+}
+
+/* LANDSCAPE IMAGE DISPLAY */
+
+.slideshow-image {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border-radius: 0;
+}
+
+/* RESPONSIVE LANDSCAPE */
+
+@media (max-width: 900px) {
+    .slideshow-frame {
+        width: 100% !important;
+        aspect-ratio: 16 / 9 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .slideshow-frame {
+        width: 100% !important;
+        aspect-ratio: 16 / 9 !important;
+    }
+}
+
 </style>
 </head>
 
@@ -2545,7 +2592,7 @@ body:not(.tv-logged-in) {
             <div class="slideshow-frame">
 
                 <img
-                    src="educationalresourcesimages/1.png"
+                    src="slideshow/1.png"
                     alt="Slideshow Image 1"
                     class="slideshow-image"
                     id="slideshow-image"
@@ -3372,7 +3419,7 @@ if (legalNoteElement) {
                 currentImage = 1;
             }
 
-            image.src = `educationalresourcesimages/${currentImage}.png`;
+            image.src = `slideshow/${currentImage}.png`;
             image.alt = `Slideshow Image ${currentImage}`;
             counter.textContent =
                 `Image ${currentImage} of ${totalImages}`;
@@ -3384,7 +3431,7 @@ if (legalNoteElement) {
     // Preload all 50 images to help transitions run smoothly.
     for (let i = 1; i <= totalImages; i++) {
         const preload = new Image();
-        preload.src = `educationalresourcesimages/${i}.png`;
+        preload.src = `slideshow/${i}.png`;
     }
 
     // Change the displayed image every 2.2 seconds.
